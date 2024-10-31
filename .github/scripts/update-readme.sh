@@ -69,6 +69,8 @@ GREY3="\e[38;5;250m"
 
 # #
 #   Color Code Test
+#
+#   @usage      .github/scripts/bt-transmission.sh clr
 # #
 
 function debug_ColorTest()
@@ -102,6 +104,35 @@ function debug_ColorTest()
     echo -e "GREY2 ${GREY1}................ ${GREY2}This is test text ███████████████${RESET}"
     echo -e "GREY3 ${GREY1}................ ${GREY3}This is test text ███████████████${RESET}"
     echo -e
+
+    exit 0
+}
+
+# #
+#   Helper > Show Color Chart
+#   Shows a complete color charge which can be used with the color declarations in this script.
+#
+#   @usage      .github/scripts/bt-transmission.sh chart
+# #
+
+function debug_ColorChart()
+{
+    # foreground / background
+    for fgbg in 38 48 ; do
+        # colors
+        for clr in {0..255} ; do
+            # show color
+            printf "\e[${fgbg};5;%sm  %3s  \e[0m" $clr $clr
+            # show 6 colors per lines
+            if [ $((($clr + 1) % 6)) == 4 ] ; then
+                echo -e
+            fi
+        done
+
+        echo -e
+    done
+    
+    exit 0
 }
 
 # #
@@ -112,7 +143,12 @@ ARG1=$1
 
 if [ "$ARG1" == "clr" ]; then
     debug_ColorTest
-    exit 1
+    exit 0
+fi
+
+if [ "$ARG1" == "chart" ]; then
+    debug_ColorChart
+    exit 0
 fi
 
 # #
@@ -131,4 +167,4 @@ fi
 # #
 
 sed -r -i 's@[[TEMPL_UPDATE]]@Last Sync: $now@g' README.md
-sed -r -i "s@Last Sync: [0-9]{2}\/[0-9]{2}\/[0-9]{4} [0-9]{2}\:[0-9]{2}@Last Sync: $TEMPL_NOW@g" README.md
+sed -r -i "s@Last Sync: [0-9]{2}\/[0-9]{2}\/[0-9]{4} [0-9]{2}\:[0-9]{2} UTC@Last Sync: $TEMPL_NOW UTC@g" README.md

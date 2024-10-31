@@ -1,7 +1,7 @@
 
 <div align="center">
 
-🕙 `Last Sync: 10/31/2024 18:19`
+🕙 `Last Sync: 10/31/2024 18:19 UTC`
 
 </div>
 
