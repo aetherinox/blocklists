@@ -1,0 +1,398 @@
+# #
+#   @usage              https://github.com/Aetherinox/csf-firewall
+#   @type               github workflow
+#
+#   generates a list of ipsets which can then be used within host files, config server firewall, and various other apps
+#
+#   📄 bl-master.sh               generate master ipset | URLs: VARARG
+#   📄 bl-plain.sh                generate ipset from online plain-text url / page | URLs: VARARG
+#   📄 bl-json.sh                 generate ipset from json formatted web url. requires url and jq query | URLs: SINGLE
+#   📄 bl-htmlip.sh               generate ipset by fetching HTML in web url, pulls only ips with grep rule (cant be changed) | URLs: SINGLE
+#   📄 bl-html.sh                 generate ipset by fetching HTML in web url, does not run its own grep, must be specified in command | URLs: VARARG
+#   📄 bl-block.sh                generate ipset by fetching locally specified file in /blocks/ repo folder
+#   📄 bl-format.sh               generate ipset by from an existing list of IPs. does not generate ips itself. only validates a list provided
+#   📄 bl-spf.sh                  generate ipset by fetching _spf ips from domain
+#
+#   local test requires the same structure as the github workflow
+#       📁 .github
+#           📁 blocks
+#               📁 bruteforce
+#                   📄 01.ipset
+#               📁 privacy
+#                   📄 01.ipset
+#           📁 scripts
+#               📄 bl-master.sh
+#               📄 bl-plain.sh
+#               📄 bl-json.sh
+#               📄 bl-htmlip.sh
+#               📄 bl-html.sh
+#               📄 bl-block.sh
+#               📄 bl-format.sh
+#               📄 bl-spf.sh
+#           📁 workflows
+#               📄 blocklist-generate.yml
+# #
+
+name: "🧱 Blocklist › Generate"
+run-name: "🧱 Blocklist › Generate"
+
+# #
+#   triggers
+# #
+
+on:
+    workflow_dispatch:
+
+    schedule:
+        - cron: '0 0,6,12,18 * * *'
+        - cron: '0 2 * * *'
+
+# #
+#   environment variables
+# #
+
+env:
+    BOT_NAME_1:           EuropaServ
+    BOT_NAME_DEPENDABOT:  dependabot[bot]
+
+# #
+#   jobs
+# #
+
+jobs:
+
+    # #
+    #   Job > Setup
+    # #
+
+    blocklist-setup:
+        name: >-
+          📦 Setup
+        runs-on: apollo-x64
+        steps:
+
+            - name: "✅ Start"
+              id: task_setup_start
+              run: |
+                echo "Starting blocklist build script"
+
+            # #
+            #   Job > Checkout
+            # #
+
+            - name: "☑️ Checkout"
+              id: task_setup_checkout
+              uses: actions/checkout@v4
+              with:
+                fetch-depth: 0
+
+            # #
+            #   Generate > Install Packages
+            # #
+
+            - name: "🧱 Install Packages"
+              id: task_setup_install
+              run: |
+                  sudo apt-get install -y ipcalc ed html2text whois uuid-runtime
+
+            # #
+            #   Generate > Cache Packages
+            # #
+
+            - name: "🧱 Cache Packages"
+              uses: awalsh128/cache-apt-pkgs-action@latest
+              with:
+                packages: ipcalc ed html2text whois uuid-runtime
+                version: 1.0
+
+    # #
+    #   Job > Blocklist > Master
+    # #
+
+    blocklist-generate:
+        name: >-
+          📋 Generate › Blocklist
+        runs-on: apollo-x64
+        needs: [ blocklist-setup ]
+        steps:
+
+            # #
+            #   Generate > Checkout
+            # #
+
+            - name: "☑️ Checkout"
+              id: task_blocklist_generate_checkout
+              uses: actions/checkout@v4
+              with:
+                fetch-depth: 0
+
+            # #
+            #   Generate > Set Template Permissions
+            # #
+
+            - name: "☑️ Set Permissions"
+              id: task_blocklist_generate_perms
+              run: |
+
+                  #   Set Permissions
+                  chmod +x ".github/scripts/bl-master.sh"
+                  chmod +x ".github/scripts/bl-format.sh"
+                  chmod +x ".github/scripts/bl-htmlip.sh"
+                  chmod +x ".github/scripts/bl-html.sh"
+                  chmod +x ".github/scripts/bl-block.sh"
+                  chmod +x ".github/scripts/bl-json.sh"
+                  chmod +x ".github/scripts/bl-plain.sh"
+                  chmod +x ".github/scripts/bl-spf.sh"
+                  chmod +x ".github/scripts/bt-transmission.sh"
+                  chmod +x ".github/scripts/update-readme.sh"
+
+            # #
+            #   Generate > Set Env Variables
+            # #
+
+            - name: "📦 Set Env Variables"
+              id: task_commit_pre
+              run: |
+                  useragent="Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36"
+                  echo "USERAGENT=$(echo $useragent)" >> $GITHUB_ENV
+
+            # #
+            #   Generate > Master
+            # #
+
+            - name: "🧱 Generate › Master"
+              id: task_blocklist_generate_master
+              run: |
+                  run_master=".github/scripts/bl-master.sh blocklists/${{ vars.API_01_OUT }} ${{ secrets.API_01_FILE_01 }} ${{ secrets.API_01_FILE_02 }} ${{ secrets.API_01_FILE_03 }} ${{ secrets.API_01_FILE_04 }} ${{ secrets.API_01_FILE_05 }} ${{ secrets.API_01_FILE_06 }} ${{ secrets.API_01_FILE_07 }} ${{ secrets.API_01_FILE_08 }}"
+                  eval "./$run_master"
+
+                  run_highrisk=".github/scripts/bl-htmlip.sh blocklists/${{ vars.API_01_HIGHRISK_OUT }} ${{ secrets.API_01_HIGHRISK_URL }} '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'"
+                  eval "./$run_highrisk"
+
+            # #
+            #   Generate > Privacy
+            # #
+
+            - name: "🧱 Generate › Privacy"
+              id: task_blocklist_generate_privacy
+              run: |
+
+                  #   Privacy › General
+                  run_general=".github/scripts/bl-block.sh blocklists/${{ vars.API_02_GENERAL_OUT }} privacy"
+                  eval "./$run_general"
+
+                  #   Privacy › Google
+                  run_google=".github/scripts/bl-json.sh blocklists/02_privacy_google.ipset https://developers.google.com/search/apis/ipranges/googlebot.json '.prefixes | .[] |.ipv4Prefix//empty,.ipv6Prefix//empty'"
+                  eval "./$run_google"
+
+                  #   Privacy › Cloudfront
+                  run_cloudfront=".github/scripts/bl-json.sh blocklists/02_privacy_cloudfront.ipset https://d7uri8nf7uskq.cloudfront.net/tools/list-cloudfront-ips 'map(.[]) | sort | .[]'"
+                  eval "./$run_cloudfront"
+
+                  #   Privacy › Bing
+                  run_bing=".github/scripts/bl-json.sh blocklists/02_privacy_bing.ipset https://bing.com/toolbox/bingbot.json '.prefixes | .[] |.ipv4Prefix//empty,.ipv6Prefix//empty'"
+                  eval "./$run_bing"
+                
+                  #   Privacy › Fastly
+                  run_fastly=".github/scripts/bl-json.sh blocklists/02_privacy_fastly.ipset https://api.fastly.com/public-ip-list 'map(.[]) | .[]'"
+                  eval "./$run_fastly"
+
+                  #   Privacy › Amazon AWS
+                  run_amz_aws=".github/scripts/bl-json.sh blocklists/02_privacy_amazon_aws.ipset https://ip-ranges.amazonaws.com/ip-ranges.json '.prefixes[] | select(.service==\"AMAZON\") | .ip_prefix'"
+                  eval "./$run_amz_aws"
+
+                  #   Privacy › Amazon EC2
+                  run_amz_ec2=".github/scripts/bl-json.sh blocklists/02_privacy_amazon_ec2.ipset https://ip-ranges.amazonaws.com/ip-ranges.json '.prefixes[] | select(.service==\"EC2\") | .ip_prefix'"
+                  eval "./$run_amz_ec2"
+
+                  #   Privacy › Facebook
+                  whois -h whois.radb.net -- '-i origin AS32934' | grep ^route | awk '{gsub("(route:|route6:)","");print}' | awk '{gsub(/ /,""); print}' | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/02_privacy_facebook.ipset
+
+                  #   Privacy › Ahrefs
+                  curl -sSL -A "${{ env.USERAGENT }}" https://api.ahrefs.com/v3/public/crawler-ips | jq -r '.ips[].ip_address | select( . != null )' | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/02_privacy_ahrefs.ipset
+
+                  #   Privacy › DuckDuckGo
+                  curl -sSL -A "${{ env.USERAGENT }}" https://raw.githubusercontent.com/duckduckgo/duckduckgo-help-pages/master/_docs/results/duckduckbot.md | grep "^\- " | awk '{gsub("-",""); print}' | awk '{gsub(/ /,""); print}' | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/02_privacy_duckduckgo.ipset
+
+                  #   Privacy › Telegram
+                  curl -sSL -A "${{ env.USERAGENT }}" https://core.telegram.org/resources/cidr.txt | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/02_privacy_telegram.ipset
+
+                  #   Privacy › Uptime Robot
+                  curl -sSL -A "${{ env.USERAGENT }}" https://uptimerobot.com/inc/files/ips/IPv4andIPv6.txt | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/02_privacy_uptimerobot.ipset
+
+                  #   Privacy › Pingdom
+                  PINGDOM_IPv4=$(curl -sSL -A "${{ env.USERAGENT }}" https://my.pingdom.com/probes/ipv4)
+                  PINGDOM_IPv6=$(curl -sSL -A "${{ env.USERAGENT }}" https://my.pingdom.com/probes/ipv6)
+                  PINGDOM_LIST="${PINGDOM_IPv4} ${PINGDOM_IPv6}"
+                  echo "$PINGDOM_LIST" | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/02_privacy_pingdom.ipset
+
+                  #   Privacy › Stripe › API
+                  curl -sSL -A "${{ env.USERAGENT }}" https://stripe.com/files/ips/ips_api.txt | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/02_privacy_stripe_api.ipset
+
+                  #   Privacy › Stripe › Webhooks
+                  curl -sSL -A "${{ env.USERAGENT }}" https://stripe.com/files/ips/ips_webhooks.txt | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/02_privacy_stripe_webhooks.ipset
+
+                  #   Privacy › Stripe › Armada Gator
+                  curl -sSL -A "${{ env.USERAGENT }}" https://stripe.com/files/ips/ips_armada_gator.txt | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/02_privacy_stripe_armada_gator.ipset
+
+                  #   Privacy › RSS API
+                  curl -sSL -A "${{ env.USERAGENT }}" https://rssapi.net/ips.txt | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/02_privacy_rssapi.ipset
+
+                  #   Privacy › WebPageTest
+                  curl -sSL -A "${{ env.USERAGENT }}" https://www.webpagetest.org/addresses.php?f=json | jq -r '.data[].addresses[] | select( . != null )' | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/02_privacy_webpagetest.ipset
+
+                  #   Privacy > Bunny CDN
+                  BUNNYCDN_IPv4=$(curl -sSL -A "${{ env.USERAGENT }}" https://api.bunny.net/system/edgeserverlist/plain)
+                  BUNNYCDN_IPv6=$(curl -sSL -A "${{ env.USERAGENT }}" https://api.bunny.net/system/edgeserverlist/ipv6 | jq -r '.[] | select( . != null )')
+                  BUNNYCDN_LIST="${BUNNYCDN_IPv4} ${BUNNYCDN_IPv6}"
+                  echo "$BUNNYCDN_LIST" | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/02_privacy_bunnycdn.ipset
+
+                  #   Privacy › Cloudflare CDN
+                  CLOUDFLARE_IPv4=$(curl -sSL -A "${{ env.USERAGENT }}" https://www.cloudflare.com/ips-v4)
+                  CLOUDFLARE_IPv6=$(curl -sSL -A "${{ env.USERAGENT }}" https://www.cloudflare.com/ips-v6)
+                  CLOUDFLARE_LIST="${CLOUDFLARE_IPv4} ${CLOUDFLARE_IPv6}"
+                  echo "$CLOUDFLARE_LIST" | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/02_privacy_cloudflarecdn.ipset
+
+                  #   Privacy › AppleBot
+                  curl -sSL -A "${{ env.USERAGENT }}" https://search.developer.apple.com/applebot.json | jq -r '.prefixes | .[] |.ipv4Prefix//empty,.ipv6Prefix//empty' | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/02_privacy_applebot.ipset
+
+            # #
+            #   Generate > Spam
+            # #
+
+            - name: "🧱 Generate › Spam"
+              id: task_blocklist_generate_spam
+              run: |
+                  run_spamhaus=".github/scripts/bl-plain.sh blocklists/${{ vars.API_03_SPAM_SPAMHAUS_OUT }} ${{ secrets.API_03_SPAM_SPAMHAUS_URL }}"
+                  eval "./$run_spamhaus"
+
+            # #
+            #   Generate > Spam > Forums
+            #
+            #   only updated once per day (at 1am UTC)
+            # #
+
+            - name: "🧱 Generate › Spam › Forums (1/day)"
+              id: task_blocklist_spam_generate_forums
+              if: github.event_name == 'schedule' && github.event.schedule == '0 2 * * *'
+              run: |
+                  chmod +x ".github/scripts/bl-plain.sh"
+                  run_forums=".github/scripts/bl-plain.sh blocklists/${{ vars.API_03_SPAM_FORUMS_OUT }} ${{ secrets.API_03_SPAM_FORUMS_URL }}"
+                  eval "./$run_forums"
+
+            # #
+            #   Generate > Geographical > Geolite2
+            #
+            #   only updated once per day (at 1am UTC)
+            # #
+
+            - name: "🧱 Geographical › GeoLite2 (1/day)"
+              id: task_blocklist_geographical_generate_geolite2
+              run: |
+                  chmod +x ".github/scripts/bl-geolite2.sh"
+                  run_geolite=".github/scripts/bl-geolite2.sh -p ${{ secrets.API_GEOLITE2_KEY }}"
+                  eval "./$run_geolite"
+
+            # #
+            #   Generate > Transmission
+            # #
+
+            - name: "🧱 Generate › Transmission"
+              id: task_blocklist_generate_transmission
+              run: |
+                  run_bt=".github/scripts/bt-transmission.sh"
+                  eval "./$run_bt"
+
+            # #
+            #   Generate  > Artifact > Upload
+            # #
+
+            - name: "🎁 Generate › Upload Artifact"
+              id: task_blocklist_generate_artifact_upload
+              uses: actions/upload-artifact@v4
+              with:
+                  name: blocklist-latest
+                  path: ./
+                  retention-days: 1
+
+    # #
+    #   Job > Commit
+    # #
+
+    blocklist-commit:
+      name: >-
+        📋 Commit
+      runs-on: apollo-x64
+      needs: [ blocklist-setup, blocklist-generate ]
+      steps:
+
+            # #
+            #   Generate > Checkout
+            # #
+
+            - name: "☑️ Commit › Checkout"
+              id: task_blocklist_master_checkout
+              uses: actions/checkout@v4
+              with:
+                fetch-depth: 0
+
+            # #
+            #   Generate  > Artifact > Download
+            # #
+
+            - name: "🎁 Commit › Download Artifact"
+              id: task_commit_artifact_download
+              uses: actions/download-artifact@v4
+              with:
+                  name: blocklist-latest
+                  path: ./
+
+            # #
+            #   Commit > Precommit
+            # #
+
+            - name: "📦 Commit › Pre-commit"
+              id: task_commit_pre
+              run: |
+                  now=$(date -u '+%m/%d/%Y %H:%M')
+                  commit_label="Sync" >> $GITHUB_ENV
+                  commit_message="\`️️🔒 $commit_label 🔒\` \`$now\`" >> $GITHUB_ENV
+                  echo "COMMIT_MESSAGE=$(echo $commit_message)" >> $GITHUB_ENV
+                  echo "NOW=$(echo $now)" >> $GITHUB_ENV
+
+            # #
+            #   Update README
+            # #
+
+            - name: "📄 Update README"
+              id: task_commit_readme_update
+              run: |
+                  chmod +x ".github/scripts/update-readme.sh"
+                  run_readme=".github/scripts/update-readme.sh"
+                  eval "./$run_readme"
+
+            # #
+            #   GPG Key
+            # #
+
+            - name: "📦 Commit › GPG Key"
+              id: task_commit_gpg
+              uses: crazy-max/ghaction-import-gpg@v6
+              with:
+                  gpg_private_key: ${{ secrets.ADMINSERV_GPG_KEY_ASC }}
+                  passphrase: ${{ secrets.ADMINSERV_GPG_PASSPHRASE }}
+                  git_user_signingkey: true
+                  git_commit_gpgsign: true
+
+            # #
+            #   Commit > Commit
+            # #
+
+            - name: "📦 Commit › Execute"
+              id: task_commit_execute
+              uses: stefanzweifel/git-auto-commit-action@v5
+              with:
+                  commit_message: ${{ env.COMMIT_MESSAGE }}
+                  commit_author: "${{ steps.task_commit_gpg.outputs.name }} <${{ steps.task_commit_gpg.outputs.email }}>"
+                  commit_user_name: ${{ steps.task_commit_gpg.outputs.name }}
+                  commit_user_email: ${{ steps.task_commit_gpg.outputs.email }}

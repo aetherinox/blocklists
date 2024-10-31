@@ -1,0 +1,20 @@
+# #
+#   🧱 Firewall Blocklist - blocklists/02_privacy_rssapi.ipset
+#
+#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/02_privacy_rssapi.ipset
+#   @source         https://rssapi.net/ips.txt
+#   @id             02_privacy_rssapi_ipset
+#   @uuid           7a761ce4-66aa-3e5a-9c17-47855a0c2940
+#   @updated        Thu 31 Oct 2024 06:10:21 PM UTC
+#   @entries        1 ips
+#                   1 subnets
+#                   2 lines
+#   @expires        6 hours
+#   @category       Privacy
+#
+#   Subscribe to RSS feeds and receive nearly real-time updates via webhooks.
+#   Consume any RSS, ATOM, and JSON feed.
+# #
+
+2a01:4f8:c010:7943::/64
+168.119.254.124
