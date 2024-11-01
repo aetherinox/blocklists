@@ -266,12 +266,16 @@ opt_usage()
 while [ $# -gt 0 ]; do
     case "$1" in
         -l|--license)
-                echo -e
-                echo -e "  ${WHITE}Specifies your MaxMind license key."
-                echo -e "  ${GREY1}Required if you are not running the script in local mode."
-                echo -e "  ${WHITE}      Example:    ${GREY2}./${APP_THIS_FILE} -l ABCDEF1234567-01234${RESET}"
-                echo
-                exit 1
+                if [[ "$1" != *=* ]]; then shift; fi
+                LICENSE_KEY="${1#*=}"
+                if [ -z "${LICENSE_KEY}" ]; then
+                    echo -e
+                    echo -e "  ${WHITE}Specifies your MaxMind license key."
+                    echo -e "  ${GREY1}Required if you are not running the script in local mode."
+                    echo -e "  ${WHITE}      Example:    ${GREY2}./${APP_THIS_FILE} -l ABCDEF1234567-01234${RESET}"
+                    echo
+                    exit 1
+                fi
                 ;;
         -d|--dev)
                 APP_DEBUG=true
