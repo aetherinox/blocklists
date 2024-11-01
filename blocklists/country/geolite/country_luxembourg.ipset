@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_luxembourg.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_luxembourg.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_luxembourg.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_luxembourg_ipset
 #   @uuid           6091660d-076d-38c5-8b24-3115fccded32
-#   @updated        Fri 01 Nov 2024 02:40:11 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:37 AM UTC
 #   @entries        1,546,031 ips
 #                   2,758 subnets
 #                   2,758 lines

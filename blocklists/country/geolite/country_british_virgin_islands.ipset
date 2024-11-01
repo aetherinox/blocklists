@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_british_virgin_islands.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_british_virgin_islands.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_british_virgin_islands.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_british_virgin_islands_ipset
 #   @uuid           e6b4ef15-e8b2-3829-9e19-6a18222ba30d
-#   @updated        Fri 01 Nov 2024 02:40:43 AM UTC
+#   @updated        Fri 01 Nov 2024 10:25:08 AM UTC
 #   @entries        88,393 ips
 #                   313 subnets
 #                   313 lines

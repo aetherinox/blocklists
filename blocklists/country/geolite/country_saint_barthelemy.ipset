@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_saint_barthelemy.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_saint_barthelemy.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_saint_barthelemy.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_saint_barthelemy_ipset
 #   @uuid           23bd6bd6-f772-3a3f-9a25-71e2311ec529
-#   @updated        Fri 01 Nov 2024 02:39:20 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:05 AM UTC
 #   @entries        1,672 ips
 #                   100 subnets
 #                   100 lines

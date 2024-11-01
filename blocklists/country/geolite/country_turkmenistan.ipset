@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_turkmenistan.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_turkmenistan.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_turkmenistan.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_turkmenistan_ipset
 #   @uuid           2ea2427c-7ea2-395d-b826-e24498f9bc95
-#   @updated        Fri 01 Nov 2024 02:40:34 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:58 AM UTC
 #   @entries        27,251 ips
 #                   140 subnets
 #                   140 lines

@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_cyprus.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_cyprus.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_cyprus.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_cyprus_ipset
 #   @uuid           7f133d29-c277-39c8-80e1-faac8ad5d1d6
-#   @updated        Fri 01 Nov 2024 02:39:30 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:13 AM UTC
 #   @entries        1,151,552 ips
 #                   1,338 subnets
 #                   1,338 lines

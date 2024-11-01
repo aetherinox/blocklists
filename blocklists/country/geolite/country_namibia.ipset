@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_namibia.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_namibia.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_namibia.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_namibia_ipset
 #   @uuid           57690377-074c-3d4d-8505-2b6da2095137
-#   @updated        Fri 01 Nov 2024 02:40:17 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:42 AM UTC
 #   @entries        457,174 ips
 #                   211 subnets
 #                   211 lines

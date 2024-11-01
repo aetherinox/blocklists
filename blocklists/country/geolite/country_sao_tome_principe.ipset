@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_sao_tome_principe.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_sao_tome_principe.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_sao_tome_principe.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_sao_tome_principe_ipset
 #   @uuid           a2a88f2c-d5b1-3b65-9ab7-28d6c4a9dfdd
-#   @updated        Fri 01 Nov 2024 02:40:32 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:56 AM UTC
 #   @entries        14,716 ips
 #                   122 subnets
 #                   122 lines

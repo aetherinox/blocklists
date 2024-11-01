@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_uganda.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_uganda.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_uganda.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_uganda_ipset
 #   @uuid           79d649b1-b5b6-32b5-8afd-62e4bea1da6e
-#   @updated        Fri 01 Nov 2024 02:40:36 AM UTC
+#   @updated        Fri 01 Nov 2024 10:25:00 AM UTC
 #   @entries        1,476,749 ips
 #                   328 subnets
 #                   328 lines

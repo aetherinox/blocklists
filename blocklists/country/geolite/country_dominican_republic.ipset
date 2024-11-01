@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_dominican_republic.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_dominican_republic.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_dominican_republic.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_dominican_republic_ipset
 #   @uuid           29cf6def-49df-3d1e-a81d-4bc234f77ec2
-#   @updated        Fri 01 Nov 2024 02:39:37 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:16 AM UTC
 #   @entries        1,891,703 ips
 #                   869 subnets
 #                   869 lines

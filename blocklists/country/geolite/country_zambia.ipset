@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_zambia.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_zambia.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_zambia.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_zambia_ipset
 #   @uuid           884b8971-6fab-347f-9eea-0d6068d76fed
-#   @updated        Fri 01 Nov 2024 02:40:45 AM UTC
+#   @updated        Fri 01 Nov 2024 10:25:10 AM UTC
 #   @entries        1,661,864 ips
 #                   262 subnets
 #                   262 lines

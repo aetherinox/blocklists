@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_western_sahara.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_western_sahara.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_western_sahara.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_western_sahara_ipset
 #   @uuid           981b96b7-bd3c-3343-9e81-f6f4c6481e33
-#   @updated        Fri 01 Nov 2024 02:39:39 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:17 AM UTC
 #   @entries        293 ips
 #                   46 subnets
 #                   46 lines

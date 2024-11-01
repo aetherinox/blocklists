@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_antarctica.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_antarctica.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_antarctica.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_antarctica_ipset
 #   @uuid           04dc0aca-cb31-383c-ada7-31ce31bdd2eb
-#   @updated        Fri 01 Nov 2024 02:39:15 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:00 AM UTC
 #   @entries        2,411 ips
 #                   202 subnets
 #                   202 lines

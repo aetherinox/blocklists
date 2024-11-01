@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_bahrain.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_bahrain.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_bahrain.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_bahrain_ipset
 #   @uuid           9d562a47-eed2-3274-a895-0deaa40538a4
-#   @updated        Fri 01 Nov 2024 02:39:19 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:04 AM UTC
 #   @entries        812,921 ips
 #                   446 subnets
 #                   446 lines

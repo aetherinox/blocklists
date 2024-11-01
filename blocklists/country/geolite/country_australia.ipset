@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_australia.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_australia.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_australia.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_australia_ipset
 #   @uuid           9a8e834c-5116-33bc-a19a-497657c63327
-#   @updated        Fri 01 Nov 2024 02:39:17 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:01 AM UTC
 #   @entries        52,946,789 ips
 #                   17,660 subnets
 #                   17,660 lines

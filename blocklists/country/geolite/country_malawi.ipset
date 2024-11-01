@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_malawi.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_malawi.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_malawi.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_malawi_ipset
 #   @uuid           1a801e6d-a38b-372d-88c0-5e4e99df7c4a
-#   @updated        Fri 01 Nov 2024 02:40:16 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:41 AM UTC
 #   @entries        559,936 ips
 #                   219 subnets
 #                   219 lines

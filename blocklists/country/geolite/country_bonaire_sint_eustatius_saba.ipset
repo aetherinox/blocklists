@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_bonaire_sint_eustatius_saba.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_bonaire_sint_eustatius_saba.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_bonaire_sint_eustatius_saba.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_bonaire_sint_eustatius_saba_ipset
 #   @uuid           b14c615b-0708-395c-a7e8-24c3784c1d17
-#   @updated        Fri 01 Nov 2024 02:39:21 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:05 AM UTC
 #   @entries        27,023 ips
 #                   126 subnets
 #                   126 lines

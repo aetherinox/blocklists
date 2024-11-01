@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_liberia.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_liberia.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_liberia.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_liberia_ipset
 #   @uuid           b9197ee4-93bc-3653-ad0a-9d1fb7a47b91
-#   @updated        Fri 01 Nov 2024 02:40:10 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:36 AM UTC
 #   @entries        44,986 ips
 #                   195 subnets
 #                   195 lines

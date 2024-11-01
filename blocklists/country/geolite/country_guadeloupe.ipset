@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_guadeloupe.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_guadeloupe.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_guadeloupe.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_guadeloupe_ipset
 #   @uuid           f97a66b7-47ac-3650-88e2-4b03e9f401fc
-#   @updated        Fri 01 Nov 2024 02:39:53 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:24 AM UTC
 #   @entries        273,347 ips
 #                   277 subnets
 #                   277 lines

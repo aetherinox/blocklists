@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_netherlands.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_netherlands.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_netherlands.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_netherlands_ipset
 #   @uuid           84366ea6-7807-38af-b752-f6a2c15a90c0
-#   @updated        Fri 01 Nov 2024 02:40:20 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:45 AM UTC
 #   @entries        53,164,477 ips
 #                   79,071 subnets
 #                   79,071 lines

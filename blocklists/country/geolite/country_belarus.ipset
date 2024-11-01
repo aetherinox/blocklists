@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_belarus.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_belarus.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_belarus.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_belarus_ipset
 #   @uuid           2c022716-2784-3acf-a8bd-b6cbef0dabef
-#   @updated        Fri 01 Nov 2024 02:39:23 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:07 AM UTC
 #   @entries        1,885,422 ips
 #                   631 subnets
 #                   631 lines

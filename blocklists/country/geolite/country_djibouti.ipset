@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_djibouti.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_djibouti.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_djibouti.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_djibouti_ipset
 #   @uuid           b9cadc49-d8af-3313-a6ef-2db51245c5d5
-#   @updated        Fri 01 Nov 2024 02:39:35 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:15 AM UTC
 #   @entries        57,020 ips
 #                   158 subnets
 #                   158 lines

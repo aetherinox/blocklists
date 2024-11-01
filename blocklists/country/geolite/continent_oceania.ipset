@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - continent_oceania.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/continent_oceania.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/continent_oceania.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             continent_oceania_ipset
 #   @uuid           c2566828-e45f-3f25-a4c7-53ef0c72b9f2
-#   @updated        Fri 01 Nov 2024 02:38:05 AM UTC
+#   @updated        Fri 01 Nov 2024 10:22:56 AM UTC
 #   @entries        60,814,867 ips
 #                   25,919 subnets
 #                   25,919 lines

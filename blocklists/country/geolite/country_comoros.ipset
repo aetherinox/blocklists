@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_comoros.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_comoros.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_comoros.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_comoros_ipset
 #   @uuid           f2a6bb8d-143e-3298-8cc1-5d7feac56ed1
-#   @updated        Fri 01 Nov 2024 02:40:07 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:33 AM UTC
 #   @entries        9,835 ips
 #                   124 subnets
 #                   124 lines

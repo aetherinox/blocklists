@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_haiti.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_haiti.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_haiti.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_haiti_ipset
 #   @uuid           634caffd-a630-3f77-9390-1230c043a941
-#   @updated        Fri 01 Nov 2024 02:40:00 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:27 AM UTC
 #   @entries        156,702 ips
 #                   188 subnets
 #                   188 lines

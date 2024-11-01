@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_montenegro.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_montenegro.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_montenegro.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_montenegro_ipset
 #   @uuid           f6e9b705-ad6a-3a19-87ae-34ca8e62e2e6
-#   @updated        Fri 01 Nov 2024 02:40:13 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:38 AM UTC
 #   @entries        202,282 ips
 #                   276 subnets
 #                   276 lines

@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_palestine.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_palestine.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_palestine.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_palestine_ipset
 #   @uuid           3209fbe8-87bf-3d1b-babb-83c027f612c8
-#   @updated        Fri 01 Nov 2024 02:40:25 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:49 AM UTC
 #   @entries        844,853 ips
 #                   431 subnets
 #                   431 lines

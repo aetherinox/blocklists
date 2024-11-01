@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_sudan.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_sudan.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_sudan.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_sudan_ipset
 #   @uuid           aaaa9090-a738-3d76-adb5-e1e130a32ab3
-#   @updated        Fri 01 Nov 2024 02:40:28 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:52 AM UTC
 #   @entries        1,893,594 ips
 #                   179 subnets
 #                   179 lines

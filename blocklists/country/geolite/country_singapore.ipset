@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_singapore.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_singapore.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_singapore.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_singapore_ipset
 #   @uuid           469ed76b-28d8-3aac-b006-b1f4e21062b4
-#   @updated        Fri 01 Nov 2024 02:40:29 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:53 AM UTC
 #   @entries        27,349,020 ips
 #                   11,468 subnets
 #                   11,468 lines

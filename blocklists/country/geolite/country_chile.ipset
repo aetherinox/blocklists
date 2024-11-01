@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_chile.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_chile.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_chile.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_chile_ipset
 #   @uuid           d9f6ded5-1dd7-3d44-830a-adb2e08cde4c
-#   @updated        Fri 01 Nov 2024 02:39:26 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:10 AM UTC
 #   @entries        10,554,518 ips
 #                   2,621 subnets
 #                   2,621 lines

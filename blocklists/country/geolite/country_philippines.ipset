@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_philippines.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_philippines.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_philippines.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_philippines_ipset
 #   @uuid           d0ff69cc-a4d8-3afd-974c-904ff5140b09
-#   @updated        Fri 01 Nov 2024 02:40:23 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:47 AM UTC
 #   @entries        6,515,347 ips
 #                   2,838 subnets
 #                   2,838 lines

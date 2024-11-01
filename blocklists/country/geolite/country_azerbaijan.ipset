@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_azerbaijan.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_azerbaijan.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_azerbaijan.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_azerbaijan_ipset
 #   @uuid           605c3c5d-be18-3c4a-bd9b-833bec79c44a
-#   @updated        Fri 01 Nov 2024 02:39:17 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:02 AM UTC
 #   @entries        776,363 ips
 #                   707 subnets
 #                   707 lines

@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_czech_republic.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_czech_republic.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_czech_republic.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_czech_republic_ipset
 #   @uuid           f4553f76-3492-3f53-a5e3-78af0767e8ee
-#   @updated        Fri 01 Nov 2024 02:39:31 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:13 AM UTC
 #   @entries        8,753,990 ips
 #                   5,482 subnets
 #                   5,482 lines

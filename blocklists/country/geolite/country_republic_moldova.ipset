@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_republic_moldova.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_republic_moldova.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_republic_moldova.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_republic_moldova_ipset
 #   @uuid           ceb0444f-9c98-363b-867e-0d4a5e4c35d5
-#   @updated        Fri 01 Nov 2024 02:40:12 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:38 AM UTC
 #   @entries        1,342,475 ips
 #                   2,252 subnets
 #                   2,252 lines

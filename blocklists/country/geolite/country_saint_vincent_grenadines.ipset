@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_saint_vincent_grenadines.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_saint_vincent_grenadines.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_saint_vincent_grenadines.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_saint_vincent_grenadines_ipset
 #   @uuid           8eaf2405-bc9a-3054-8831-87718a25262b
-#   @updated        Fri 01 Nov 2024 02:40:43 AM UTC
+#   @updated        Fri 01 Nov 2024 10:25:07 AM UTC
 #   @entries        27,845 ips
 #                   160 subnets
 #                   160 lines

@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_ukraine.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_ukraine.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_ukraine.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_ukraine_ipset
 #   @uuid           8e849cfe-7380-3fbe-9d27-c3c3d1e10cb0
-#   @updated        Fri 01 Nov 2024 02:40:36 AM UTC
+#   @updated        Fri 01 Nov 2024 10:25:00 AM UTC
 #   @entries        9,987,699 ips
 #                   7,867 subnets
 #                   7,867 lines

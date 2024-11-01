@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_hungary.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_hungary.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_hungary.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_hungary_ipset
 #   @uuid           951217fc-b9dc-3eb3-bb79-77b92b18bf52
-#   @updated        Fri 01 Nov 2024 02:40:00 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:28 AM UTC
 #   @entries        5,899,751 ips
 #                   2,752 subnets
 #                   2,752 lines

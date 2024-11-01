@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_faroe_islands.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_faroe_islands.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_faroe_islands.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_faroe_islands_ipset
 #   @uuid           fe41ff40-f9e5-3c51-8116-e00a97c34fb3
-#   @updated        Fri 01 Nov 2024 02:39:43 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:20 AM UTC
 #   @entries        46,029 ips
 #                   160 subnets
 #                   160 lines

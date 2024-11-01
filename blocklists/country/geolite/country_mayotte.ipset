@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_mayotte.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_mayotte.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_mayotte.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_mayotte_ipset
 #   @uuid           218e7a1d-4d0b-3b04-87e4-e717d08b5430
-#   @updated        Fri 01 Nov 2024 02:40:45 AM UTC
+#   @updated        Fri 01 Nov 2024 10:25:09 AM UTC
 #   @entries        46,348 ips
 #                   142 subnets
 #                   142 lines

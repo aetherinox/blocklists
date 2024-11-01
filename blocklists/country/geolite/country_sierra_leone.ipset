@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_sierra_leone.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_sierra_leone.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_sierra_leone.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_sierra_leone_ipset
 #   @uuid           92971a41-1b3e-385c-9405-99bc753600a2
-#   @updated        Fri 01 Nov 2024 02:40:30 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:55 AM UTC
 #   @entries        87,989 ips
 #                   173 subnets
 #                   173 lines

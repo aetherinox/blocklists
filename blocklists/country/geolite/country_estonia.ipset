@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_estonia.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_estonia.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_estonia.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_estonia_ipset
 #   @uuid           99b13814-c63a-3a7e-a974-2556381ddecd
-#   @updated        Fri 01 Nov 2024 02:39:38 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:16 AM UTC
 #   @entries        1,596,633 ips
 #                   1,587 subnets
 #                   1,587 lines

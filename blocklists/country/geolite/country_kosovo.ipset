@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_kosovo.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_kosovo.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_kosovo.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_kosovo_ipset
 #   @uuid           b356dc5e-c550-3ba8-95ad-049b1236b1a0
-#   @updated        Fri 01 Nov 2024 02:40:45 AM UTC
+#   @updated        Fri 01 Nov 2024 10:25:09 AM UTC
 #   @entries        156,944 ips
 #                   83 subnets
 #                   83 lines

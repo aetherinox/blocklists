@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_thailand.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_thailand.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_thailand.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_thailand_ipset
 #   @uuid           96b6db22-0059-3454-b825-4a03eb6b02b2
-#   @updated        Fri 01 Nov 2024 02:40:33 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:58 AM UTC
 #   @entries        9,758,998 ips
 #                   2,979 subnets
 #                   2,979 lines

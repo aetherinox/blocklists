@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_ghana.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_ghana.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_ghana.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_ghana_ipset
 #   @uuid           ea54933d-a319-3359-a553-f8ecf1e68b3d
-#   @updated        Fri 01 Nov 2024 02:39:51 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:24 AM UTC
 #   @entries        2,220,302 ips
 #                   503 subnets
 #                   503 lines

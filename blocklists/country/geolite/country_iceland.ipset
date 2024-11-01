@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_iceland.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_iceland.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_iceland.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_iceland_ipset
 #   @uuid           02608517-a80d-312e-ac6d-a62e1e3c7ab1
-#   @updated        Fri 01 Nov 2024 02:40:04 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:30 AM UTC
 #   @entries        923,662 ips
 #                   1,434 subnets
 #                   1,434 lines

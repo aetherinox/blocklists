@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_laos.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_laos.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_laos.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_laos_ipset
 #   @uuid           c322e2c7-b595-3ceb-a607-d9fc43a81933
-#   @updated        Fri 01 Nov 2024 02:40:08 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:35 AM UTC
 #   @entries        94,282 ips
 #                   221 subnets
 #                   221 lines

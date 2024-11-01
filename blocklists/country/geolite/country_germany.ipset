@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_germany.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_germany.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_germany.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_germany_ipset
 #   @uuid           123c91a3-612f-3439-95e0-b5a81c99b9be
-#   @updated        Fri 01 Nov 2024 02:39:35 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:15 AM UTC
 #   @entries        562,950,084,600,793 ips
 #                   75,074 subnets
 #                   75,074 lines

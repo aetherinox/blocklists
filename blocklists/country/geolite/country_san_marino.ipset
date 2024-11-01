@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_san_marino.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_san_marino.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_san_marino.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_san_marino_ipset
 #   @uuid           dd9a0f9e-486d-3e2f-96c2-56c0ffb6b3c0
-#   @updated        Fri 01 Nov 2024 02:40:31 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:55 AM UTC
 #   @entries        39,889 ips
 #                   187 subnets
 #                   187 lines

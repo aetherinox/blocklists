@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_croatia.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_croatia.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_croatia.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_croatia_ipset
 #   @uuid           bcffea06-de55-3e8b-957e-8abf981f76df
-#   @updated        Fri 01 Nov 2024 02:40:00 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:27 AM UTC
 #   @entries        2,992,236 ips
 #                   1,128 subnets
 #                   1,128 lines

@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_kyrgyzstan.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_kyrgyzstan.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_kyrgyzstan.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_kyrgyzstan_ipset
 #   @uuid           cbc4fb31-31df-32c3-a90c-4d7855db448d
-#   @updated        Fri 01 Nov 2024 02:40:06 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:33 AM UTC
 #   @entries        285,100 ips
 #                   332 subnets
 #                   332 lines

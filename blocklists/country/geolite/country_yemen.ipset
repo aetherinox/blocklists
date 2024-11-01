@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_yemen.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_yemen.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_yemen.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_yemen_ipset
 #   @uuid           290e7290-dc10-3df1-8d05-97d46b576e40
-#   @updated        Fri 01 Nov 2024 02:40:45 AM UTC
+#   @updated        Fri 01 Nov 2024 10:25:09 AM UTC
 #   @entries        238,511 ips
 #                   217 subnets
 #                   217 lines

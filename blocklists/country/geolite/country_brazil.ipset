@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_brazil.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_brazil.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_brazil.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_brazil_ipset
 #   @uuid           708bf346-7d98-362d-8f73-908a65901cb4
-#   @updated        Fri 01 Nov 2024 02:39:21 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:06 AM UTC
 #   @entries        90,659,448 ips
 #                   22,129 subnets
 #                   22,129 lines

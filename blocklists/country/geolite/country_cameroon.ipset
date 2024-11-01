@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_cameroon.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_cameroon.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_cameroon.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_cameroon_ipset
 #   @uuid           f7c2387c-f16f-35ec-bd8a-0f468b281189
-#   @updated        Fri 01 Nov 2024 02:39:26 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:11 AM UTC
 #   @entries        642,057 ips
 #                   292 subnets
 #                   292 lines

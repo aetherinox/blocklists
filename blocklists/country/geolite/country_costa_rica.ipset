@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_costa_rica.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_costa_rica.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_costa_rica.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_costa_rica_ipset
 #   @uuid           6fc745f4-0ffe-3c3c-8d43-76e82331df80
-#   @updated        Fri 01 Nov 2024 02:39:28 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:12 AM UTC
 #   @entries        2,312,135 ips
 #                   883 subnets
 #                   883 lines

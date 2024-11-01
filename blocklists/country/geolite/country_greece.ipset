@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_greece.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_greece.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_greece.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_greece_ipset
 #   @uuid           9b874ff5-7d3d-3f0e-9142-3f0b8cddea65
-#   @updated        Fri 01 Nov 2024 02:39:54 AM UTC
+#   @updated        Fri 01 Nov 2024 10:24:25 AM UTC
 #   @entries        5,840,865 ips
 #                   1,676 subnets
 #                   1,676 lines
