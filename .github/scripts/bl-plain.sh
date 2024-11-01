@@ -110,8 +110,8 @@ APP_VER=("1" "0" "0" "0")                               # current script version
 APP_DEBUG=false                                         # debug mode
 APP_REPO="Aetherinox/blocklists"                        # repository
 APP_REPO_BRANCH="main"                                  # repository branch
-APP_FILE_PERM="${ARG_SAVEFILE}"                         # perm file when building ipset list
 APP_OUT=""                                              # each ip fetched from stdin will be stored in this var
+APP_FILE_PERM="${ARG_SAVEFILE}"                         # perm file when building ipset list
 COUNT_LINES=0                                           # number of lines in doc
 COUNT_TOTAL_SUBNET=0                                    # number of IPs in all subnets combined
 COUNT_TOTAL_IP=0                                        # number of single IPs (counts each line)
@@ -200,11 +200,11 @@ download_list()
 
     echo -e "  🌎 Downloading IP blacklist to ${ORANGE2}${fnFileTemp}${RESET}"
 
-    curl -sSL -A "${CURL_AGENT}" ${fnUrl} -o ${fnFileTemp} >/dev/null 2>&1  # download file
-    sed -i 's/\-.*//' ${fnFileTemp}                                         # remove hyphens for ip ranges
-    sed -i '/[#;]/{s/#.*//;s/;.*//;/^$/d}' ${fnFileTemp}                    # remove # and ; comments
-    sed -i 's/[[:blank:]]*$//' ${fnFileTemp}                                # remove space / tab from EOL
-    sed -i '/^\s*$/d' ${fnFileTemp}                                         # remove empty lines
+    curl -sSL -A "${CURL_AGENT}" ${fnUrl} -o ${fnFileTemp} >/dev/null 2>&1      # download file
+    sed -i 's/\-.*//' ${fnFileTemp}                                             # remove hyphens for ip ranges
+    sed -i '/[#;]/{s/#.*//;s/;.*//;/^$/d}' ${fnFileTemp}                        # remove # and ; comments
+    sed -i 's/[[:blank:]]*$//' ${fnFileTemp}                                    # remove space / tab from EOL
+    sed -i '/^\s*$/d' ${fnFileTemp}                                             # remove empty lines
 
     # #
     #   calculate how many IPs are in a subnet
@@ -343,7 +343,6 @@ H=$((T/3600%24))
 M=$((T/60%60))
 S=$((T%60))
 
-echo -e
 echo -e "  🎌 ${GREY2}Finished! ${YELLOW2}${D} days ${H} hrs ${M} mins ${S} secs${RESET}"
 
 # #
@@ -354,6 +353,4 @@ echo -e
 echo -e " ──────────────────────────────────────────────────────────────────────────────────────────────"
 echo -e "  #️⃣ ${BLUE2}${APP_FILE_PERM}${RESET} | Added ${FUCHSIA2}${COUNT_TOTAL_IP} IPs${RESET} and ${FUCHSIA2}${COUNT_TOTAL_SUBNET} Subnets${RESET}"
 echo -e " ──────────────────────────────────────────────────────────────────────────────────────────────"
-echo -e
-echo -e
 echo -e

@@ -368,5 +368,3 @@ echo -e " ───────────────────────�
 echo -e "  #️⃣ ${BLUE2}${APP_FILE_PERM}${RESET} | Added ${FUCHSIA2}${COUNT_TOTAL_IP} IPs${RESET} and ${FUCHSIA2}${COUNT_TOTAL_SUBNET} Subnets${RESET}"
 echo -e " ──────────────────────────────────────────────────────────────────────────────────────────────"
 echo -e
-echo -e
-echo -e

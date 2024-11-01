@@ -422,7 +422,6 @@ H=$((T/3600%24))
 M=$((T/60%60))
 S=$((T%60))
 
-echo -e
 echo -e "  🎌 ${GREY2}Finished! ${YELLOW2}${D} days ${H} hrs ${M} mins ${S} secs${RESET}"
 
 # #
@@ -433,6 +432,4 @@ echo -e
 echo -e " ──────────────────────────────────────────────────────────────────────────────────────────────"
 echo -e "  #️⃣ ${BLUE2}${APP_FILE_PERM}${RESET} | Added ${FUCHSIA2}${COUNT_TOTAL_IP} IPs${RESET} and ${FUCHSIA2}${COUNT_TOTAL_SUBNET} Subnets${RESET}"
 echo -e " ──────────────────────────────────────────────────────────────────────────────────────────────"
-echo -e
-echo -e
 echo -e
