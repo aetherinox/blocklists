@@ -167,6 +167,7 @@ jobs:
                   chmod +x ".github/scripts/bl-spf.sh"
                   chmod +x ".github/scripts/bt-transmission.sh"
                   chmod +x ".github/scripts/update-readme.sh"
+                  chmod +x ".github/scripts/tool-range-iprange.sh"
 
             # #
             #   Generate > Set Env Variables
@@ -277,6 +278,10 @@ jobs:
 
                   #   Privacy › AppleBot
                   curl -sSL -A "${{ env.USERAGENT }}" https://search.developer.apple.com/applebot.json | jq -r '.prefixes | .[] |.ipv4Prefix//empty,.ipv6Prefix//empty' | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/02_privacy_applebot.ipset
+
+                  # Privacy › Blizzard
+                  run_blizzard=".github/scripts/tool-range-iprange.sh blocklists/02_privacy_blizzard.ipset http://list.iblocklist.com/?list=ercbntshuthyykfkmhxc 'at&t'"
+                  eval "./$run_blizzard"
 
             # #
             #   Generate > Spam

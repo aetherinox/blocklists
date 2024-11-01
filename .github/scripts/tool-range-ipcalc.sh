@@ -1,8 +1,21 @@
 #!/bin/bash
 
 # #
-#    Simple script to take ip ranges, clean them up, and pass them on to ipcalc.
-#    Need to create our own in-house script to do the conversion, ipcalc has massive overhead times.
+#   script to take ip ranges, clean them up, and pass them on to ipcalc.
+#   Need to create our own in-house script to do the conversion, ipcalc has massive overhead times.
+#
+#   this repository has created two versions for this scenario:
+#       - tool-range-ipcalc.sh
+#       - tool-range.iprange.sh
+#
+#   it is preferred to use the `iprange.sh` script. the ipcalc version is a backup, and is slower.
+#   however, iprange requires a custom package to be built and installed.
+#
+#   [ INSTALL ]
+#
+#   to install this `tool-range-iprange.sh` version, run the following commands within the server:
+#
+#       sudo apt-get install -y ipcalc
 # #
 
 APP_THIS_FILE=$(basename "$0")                          # current script file
@@ -61,6 +74,8 @@ function error()
 #   This bash script has the following arguments:
 #
 #       ARG_SAVEFILE        (str)       file to save IP addresses into
+#       ARG_SOURCEFILE      (str)       file containing list of ip ranges
+#       ARG_GREP_FILTER     (str)       grep filter to exclude certain words
 # #
 
 ARG_SAVEFILE=$1
@@ -79,14 +94,55 @@ fi
 
 if [[ -z "${ARG_SOURCEFILE}" ]]; then
     echo -e
-    echo -e "  ⭕ ${YELLOW1}[${APP_THIS_FILE}]${RESET}: No source file provided -- no ips to convert"
+    echo -e "  ⭕ ${YELLOW1}[${APP_THIS_FILE}]${RESET}: No source file provided -- must specify a file containing a list of ip ranges to convert"
     echo -e
     exit 0
 fi
 
+# #
+#    Define > General
+# #
+
+SECONDS=0                                               # set seconds count for beginning of script
+APP_VER=("1" "0" "0" "0")                               # current script version
+APP_DEBUG=false                                         # debug mode
+APP_REPO="Aetherinox/blocklists"                        # repository
+APP_REPO_BRANCH="main"                                  # repository branch
+APP_FILE_PERM="${ARG_SAVEFILE}"                         # perm file when building ipset list
+
+# #
+#   output
+# #
+
+echo -e
+echo -e "  ⭐ Starting script ${GREEN1}${APP_THIS_FILE}${RESET}"
+
+# #
+#   Create or Clean file
+# #
+
+if [ -f $APP_FILE_PERM ]; then
+    echo -e "  📄 Clean ${BLUE2}${APP_FILE_PERM}${RESET}"
+    echo -e
+   > ${APP_FILE_PERM}       # clean file
+else
+    echo -e "  📁 Create ${BLUE2}${APP_FILE_PERM}${RESET}"
+    echo -e
+    mkdir -p $(dirname "${APP_FILE_PERM}")
+    touch ${APP_FILE_PERM}
+fi
+
+# #
+#   ip ranges converted to CIDR notation
+#
+#   in case our source file is not clean, run the file through grep first and get only the ip ranges.
+#   ipcalc adds extra lines, so we will use `awk` to filter out the words "deaggregate". to add more items to the list, append | and other words.
+#       awk '!/^(deaggregate|word2|word3)/'
+# #
+
 cat "$ARG_SOURCEFILE" |\
 while IFS= read ip; do
-    ipAddr=$(echo "$ip" | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}-[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' )
+    ipAddr=$(echo "$ip" | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\s*-\s*[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' )
     ipcalc "$ipAddr" -nr |\
     awk '!/^(deaggregate)/'
 done
