@@ -45,6 +45,14 @@ go.work
 .vscode/
 
 # #
+#   Temp folders
+# #
+
+.temp/
+temp/
+work/
+
+# #
 #   Python Cache
 # #
 

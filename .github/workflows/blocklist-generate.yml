@@ -142,8 +142,8 @@ jobs:
             - name: "⚙️ Configure"
               id: task_blocklist_generate_configure
               run: |
-                  git clone https://github.com/firehol/iprange.git ./iprange
-                  cd iprange/
+                  git clone https://github.com/firehol/iprange.git ./.temp/iprange
+                  cd .temp/iprange
                   ./autogen.sh
                   ./configure --disable-man
                   sudo make && make install
