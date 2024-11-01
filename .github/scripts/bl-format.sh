@@ -29,7 +29,7 @@
 APP_THIS_FILE=$(basename "$0")                          # current script file
 APP_THIS_DIR="${PWD}"                                   # Current script directory
 
-# #
+## #
 #   vars > colors
 #
 #   Use the color table at:
@@ -63,6 +63,18 @@ YELLOW3="\e[38;5;193m"
 GREY1="\e[38;5;240m"
 GREY2="\e[38;5;244m"
 GREY3="\e[38;5;250m"
+
+# #
+#   print an error and exit with failure
+#   $1: error message
+# #
+
+function error()
+{
+    echo -e "  ⭕ ${GREY2}${APP_THIS_FILE}${RESET}: \n     ${BOLD}${RED}Error${NORMAL}: ${RESET}$1"
+    echo -e
+    exit 0
+}
 
 # #
 #   Arguments

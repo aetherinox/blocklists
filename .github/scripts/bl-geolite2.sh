@@ -7,11 +7,13 @@
 #   @summary            Aetherx Blocklists > GeoLite2 Country IPsets
 #                       generates a set of IPSET files by reading the GeoLite2 csv file and splitting the IPs up into their associated country.
 #   
-#   @terminal           .github/scripts/bl-geolite2.sh \
-#                           -p <LICENSE_KEY>
+#   @terminal           .github/scripts/bl-geolite2.sh -l <LICENSE_KEY>
+#                       .github/scripts/bl-geolite2.sh --local
+#                       .github/scripts/bl-geolite2.sh --local --dev
 #
-#   @command            bl-geolite2.sh [ -p <LICENSE_KEY> ]
-#                       bl-geolite2.sh -p ABCDEF123456789
+#   @command            bl-geolite2.sh -l <LICENSE_KEY> ]
+#                       bl-geolite2.sh --local
+#                       bl-geolite2.sh --dev
 # #
 
 # #
@@ -25,7 +27,8 @@
 #           Add LICENSE_KEY=YOUR_LICENSE_KEY
 #
 #       - Provide the license key as a parameter when running the script
-#           bl-geolite2.sh -p ABCDEF123456789
+#           bl-geolite2.sh --license ABCDEF123456789
+#           bl-geolite2.sh -l ABCDEF123456789
 # #
 
 # #
@@ -40,6 +43,57 @@
 #           APP_SOURCE_LOCAL_ENABLED=true
 # #
 
+APP_THIS_FILE=$(basename "$0")                          # current script file
+APP_THIS_DIR="${PWD}"                                   # Current script directory
+
+# #
+#   vars > colors
+#
+#   Use the color table at:
+#       - https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797
+# #
+
+RESET=$'\e[0m'
+WHITE=$'\e[97m'
+BOLD=$'\e[1m'
+DIM=$'\e[2m'
+UNDERLINE=$'\e[4m'
+BLINK=$'\e[5m'
+INVERTED=$'\e[7m'
+HIDDEN=$'\e[8m'
+BLACK=$'\e[38;5;0m'
+FUCHSIA1=$'\e[38;5;125m'
+FUCHSIA2=$'\e[38;5;198m'
+RED1=$'\e[38;5;160m'
+RED2=$'\e[38;5;196m'
+RED3=$'\e[38;5;166m'
+ORANGE1=$'\e[38;5;202m'
+ORANGE2=$'\e[38;5;208m'
+MAGENTA=$'\e[38;5;5m'
+BLUE1=$'\e[38;5;033m'
+BLUE2=$'\e[38;5;39m'
+CYAN=$'\e[38;5;6m'
+GREEN1=$'\e[38;5;2m'
+GREEN2=$'\e[38;5;76m'
+YELLOW1=$'\e[38;5;184m'
+YELLOW2=$'\e[38;5;190m'
+YELLOW3=$'\e[38;5;193m'
+GREY1=$'\e[38;5;240m'
+GREY2=$'\e[38;5;244m'
+GREY3=$'\e[38;5;250m'
+
+# #
+#   print an error and exit with failure
+#   $1: error message
+# #
+
+function error()
+{
+    echo -e "  ⭕ ${GREY2}${APP_THIS_FILE}${RESET}: \n     ${BOLD}${RED}Error${RESET}: ${RESET}$1"
+    echo -e
+    exit 0
+}
+
 # #
 #   Debug Mode
 #
@@ -50,12 +104,12 @@
 #   in production mode.
 # #
 
+SECONDS=0                                                           # set seconds count for beginning of script
+APP_NAME="GeoLite2 Database Script"                                 # name of app
 APP_VER=("1" "1" "0" "0")                                           # current script version
 APP_DEBUG=false                                                     # debug mode
-APP_REPO="Aetherinox/dev-kw"                                        # repository
+APP_REPO="Aetherinox/blocklists"                                    # repository
 APP_REPO_BRANCH="main"                                              # repository branch
-APP_THIS_FILE=$(basename "$0")                                      # current script file
-APP_THIS_DIR="${PWD}"                                               # Current script directory
 APP_CFG_FILE="aetherx.conf"                                         # Optional config file for license key / settings
 APP_TARGET_DIR="blocklists/country/geolite"                         # path to save ipsets
 APP_TARGET_EXT_TMP="tmp"                                            # temp extension for ipsets before work is done
@@ -68,12 +122,189 @@ APP_GEO_LOCS_CSV="GeoLite2-Country-Locations-en.csv"                # Geolite2 C
 APP_GEO_IPV4_CSV="GeoLite2-Country-Blocks-IPv4.csv"                 # Geolite2 Country CSV IPv4
 APP_GEO_IPV6_CSV="GeoLite2-Country-Blocks-IPv6.csv"                 # Geolite2 Country CSV IPv6
 APP_GEO_ZIP="GeoLite2-Country-CSV.zip"                              # Geolite2 Country CSV Zip
-APP_CURL_AGENT="Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36"
 COUNT_LINES=0                                                       # number of lines in doc
 COUNT_TOTAL_SUBNET=0                                                # number of IPs in all subnets combined
 COUNT_TOTAL_IP=0                                                    # number of single IPs (counts each line)
 BLOCKS_COUNT_TOTAL_IP=0                                             # number of ips for one particular file
 BLOCKS_COUNT_TOTAL_SUBNET=0                                         # number of subnets for one particular file
+APP_AGENT="Mozilla/5.0 (Windows NT 10.0; WOW64) "\
+"AppleWebKit/537.36 (KHTML, like Gecko) "\
+"Chrome/51.0.2704.103 Safari/537.36"                                # user agent used with curl
+
+# #
+#   Define > Help Vars
+# #
+
+APP_DESC="This script downloads the geographical databases from the MaxMind GeoLite2 servers. \n\n  They are then broken up into their respective continent and countrie files. Duplicates are removed, IPs\n  are re-sorted, and then all files are pushed to the repository."
+
+APP_USAGE="🗔  Usage: ./${APP_THIS_FILE} ${BLUE2}[-l <LICENSE_KEY>]${RESET}
+        ${GREY2}./${APP_THIS_FILE} ${BLUE2}-?${RESET}
+        ${GREY2}./${APP_THIS_FILE} ${BLUE2}clr${RESET}
+        ${GREY2}./${APP_THIS_FILE} ${BLUE2}chart${RESET}
+"
+
+# #
+#   Color Code Test
+#
+#   @usage      .github/scripts/bt-transmission.sh clr
+# #
+
+function debug_ColorTest()
+{
+    echo -e
+    echo -e "RESET ${GREY1}................ ${RESET}This is test text ███████████████${RESET}"
+    echo -e "WHITE ${GREY1}................ ${WHITE}This is test text ███████████████${RESET}"
+    echo -e "BOLD ${GREY1}................. ${BOLD}This is test text ███████████████${RESET}"
+    echo -e "DIM ${GREY1}.................. ${DIM}This is test text ███████████████${RESET}"
+    echo -e "UNDERLINE ${GREY1}............ ${UNDERLINE}This is test text ███████████████${RESET}"
+    echo -e "BLINK ${GREY1}................ ${BLINK}This is test text ███████████████${RESET}"
+    echo -e "INVERTED ${GREY1}............. ${INVERTED}This is test text ███████████████${RESET}"
+    echo -e "HIDDEN ${GREY1}............... ${HIDDEN}This is test text ███████████████${RESET}"
+    echo -e "BLACK ${GREY1}................ ${BLACK}This is test text ███████████████${RESET}"
+    echo -e "FUCHSIA1 ${GREY1}............. ${FUCHSIA1}This is test text ███████████████${RESET}"
+    echo -e "FUCHSIA2 ${GREY1}............. ${FUCHSIA2}This is test text ███████████████${RESET}"
+    echo -e "RED1 ${GREY1}................. ${RED1}This is test text ███████████████${RESET}"
+    echo -e "RED2 ${GREY1}................. ${RED2}This is test text ███████████████${RESET}"
+    echo -e "RED3 ${GREY1}................. ${RED3}This is test text ███████████████${RESET}"
+    echo -e "ORANGE1 ${GREY1}.............. ${ORANGE1}This is test text ███████████████${RESET}"
+    echo -e "ORANGE2 ${GREY1}.............. ${ORANGE2}This is test text ███████████████${RESET}"
+    echo -e "MAGENTA ${GREY1}.............. ${MAGENTA}This is test text ███████████████${RESET}"
+    echo -e "BLUE1 ${GREY1}................ ${BLUE1}This is test text ███████████████${RESET}"
+    echo -e "BLUE2 ${GREY1}................ ${BLUE2}This is test text ███████████████${RESET}"
+    echo -e "CYAN ${GREY1}................. ${CYAN}This is test text ███████████████${RESET}"
+    echo -e "GREEN1 ${GREY1}............... ${GREEN1}This is test text ███████████████${RESET}"
+    echo -e "GREEN2 ${GREY1}............... ${GREEN2}This is test text ███████████████${RESET}"
+    echo -e "YELLOW1 ${GREY1}.............. ${YELLOW1}This is test text ███████████████${RESET}"
+    echo -e "YELLOW2 ${GREY1}.............. ${YELLOW2}This is test text ███████████████${RESET}"
+    echo -e "YELLOW3 ${GREY1}.............. ${YELLOW3}This is test text ███████████████${RESET}"
+    echo -e "GREY1 ${GREY1}................ ${GREY1}This is test text ███████████████${RESET}"
+    echo -e "GREY2 ${GREY1}................ ${GREY2}This is test text ███████████████${RESET}"
+    echo -e "GREY3 ${GREY1}................ ${GREY3}This is test text ███████████████${RESET}"
+    echo -e
+
+    exit 1
+}
+
+# #
+#   Helper > Show Color Chart
+#   Shows a complete color charge which can be used with the color declarations in this script.
+#
+#   @usage      .github/scripts/bt-transmission.sh chart
+# #
+
+function debug_ColorChart()
+{
+    # foreground / background
+    for fgbg in 38 48 ; do
+        # colors
+        for clr in {0..255} ; do
+            # show color
+            printf "\e[${fgbg};5;%sm  %3s  \e[0m" $clr $clr
+            # show 6 colors per lines
+            if [ $((($clr + 1) % 6)) == 4 ] ; then
+                echo -e
+            fi
+        done
+
+        echo -e
+    done
+    
+    exit 1
+}
+
+# #
+#   func > get version
+#
+#   returns current version of app
+#   converts to human string.
+#       e.g.    "1" "2" "4" "0"
+#               1.2.4.0
+# #
+
+get_version()
+{
+    ver_join=${APP_VER[*]}
+    ver_str=${ver_join// /.}
+    echo ${ver_str}
+}
+
+# #
+#   Usage
+# #
+
+opt_usage()
+{
+    echo -e
+    printf "  ${BLUE1}${APP_NAME}${RESET}\n" 1>&2
+    printf "  ${DIM}${APP_DESC}${RESET}\n" 1>&2
+    echo -e
+    printf '  %-5s %-40s\n' "Usage:" "" 1>&2
+    printf '  %-5s %-40s\n' "    " "${APP_THIS_FILE} [ ${GREY2} options${RESET}]" 1>&2
+    printf '  %-5s %-40s\n\n' "    " "${APP_THIS_FILE} [${GREY2}-h${RESET}] [${GREY2}-d${RESET}] [${GREY2}-n${RESET}] [${GREY2}-l LICENSE_KEY${RESET}] [${GREY2}-v${RESET}]" 1>&2
+    printf '  %-5s %-40s\n' "Options:" "" 1>&2
+    printf '  %-5s %-18s %-40s\n' "    " "-l,  --license" "specifies your MaxMind license key" 1>&2
+    printf '  %-5s %-18s %-40s\n' "    " "-o,  --local" "enables local mode, geo database must be provided locally." 1>&2
+    printf '  %-5s %-18s %-40s\n' "    " "" "    ${GREY2}does not require MaxMind license key${RESET}" 1>&2
+    printf '  %-5s %-18s %-40s\n' "    " "" "    ${GREY2}local geo .csv files must be placed in folder ${BLUE2}${APP_THIS_DIR}/${APP_SOURCE_LOCAL}${RESET}" 1>&2
+    printf '  %-5s %-18s %-40s\n' "    " "-c,  --color" "displays a demo of the available colors" 1>&2
+    printf '  %-5s %-18s %-40s\n' "    " "" "    ${GREY2}only needed by developer${RESET}" 1>&2
+    printf '  %-5s %-18s %-40s\n' "    " "-g,  --graph" "displays a demo bash color graph" 1>&2
+    printf '  %-5s %-18s %-40s\n' "    " "" "    ${GREY2}only needed by developer${RESET}" 1>&2
+    printf '  %-5s %-18s %-40s\n' "    " "-d,  --dev" "dev mode" 1>&2
+    printf '  %-5s %-18s %-40s\n' "    " "-h,  --help" "show help menu" 1>&2
+    printf '  %-5s %-18s %-40s\n' "    " "" "    ${GREY2}not required when using local mode${RESET}" 1>&2
+    printf '  %-5s %-18s %-40s\n' "    " "-v,  --version" "current version of app manager" 1>&2
+    echo
+    echo
+    exit 1
+}
+
+# #
+#   Display help text if command not complete
+# #
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+        -l|--license)
+                echo -e
+                echo -e "  ${WHITE}Specifies your MaxMind license key."
+                echo -e "  ${GREY1}Required if you are not running the script in local mode."
+                echo -e "  ${WHITE}      Example:    ${GREY2}./${APP_THIS_FILE} -l ABCDEF1234567-01234${RESET}"
+                echo
+                exit 1
+                ;;
+        -d|--dev)
+                APP_DEBUG=true
+                echo -e "  ${FUCHSIA2}${BLINK}Devmode Enabled${RESET}"
+                ;;
+        -o|--local)
+                APP_SOURCE_LOCAL_ENABLED=true
+                echo -e "  ${FUCHSIA2}${BLINK}Local Mode Enabled${RESET}"
+                ;;
+        -v|--version)
+                echo -e
+                echo -e "  ${BLUE2}${BOLD}${APP_NAME}${RESET} - v$(get_version)${RESET}"
+                echo -e "  ${GREEN1}${BOLD}https://github.com/${APP_REPO}${RESET}"
+                echo
+                exit 1
+                ;;
+        -c|--color)
+                debug_ColorTest
+                exit 1
+                ;;
+        -g|--graph|--chart)
+                debug_ColorChart
+                exit 1
+                ;;
+        -\?|-h|--help)
+                opt_usage
+                ;;
+        *)
+                opt_usage
+                ;;
+    esac
+    shift
+done
 
 # #
 #   Define
@@ -82,6 +313,22 @@ BLOCKS_COUNT_TOTAL_SUBNET=0                                         # number of 
 readonly CONFIGS_LIST="${APP_GEO_LOCS_CSV} ${APP_GEO_IPV4_CSV} ${APP_GEO_IPV6_CSV}"
 declare -A MAP_COUNTRY
 declare -A MAP_CONTINENT
+
+# #
+#   Arguments
+# #
+
+ARG1=$1
+
+if [ "$ARG1" == "clr" ] || [ "$ARG1" == "color" ]; then
+    debug_ColorTest
+    exit 1
+fi
+
+if [ "$ARG1" == "chart" ] || [ "$ARG1" == "graph" ]; then
+    debug_ColorChart
+    exit 1
+fi
 
 # #
 #   Country codes
@@ -619,18 +866,6 @@ sa["uy"]="UY"               # Uruguay
 sa["ve"]="VE"               # Venezuela
 
 # #
-#   print an error and exit with failure
-#   $1: error message
-# #
-
-function error()
-{
-    echo -e "  ⭕ $0: err: $1"
-    echo -e
-    exit 1
-}
-
-# #
 #   Sort Results
 #
 #   @usage          line=$(parse_spf_record "${ip}" | sort_results)
@@ -678,7 +913,7 @@ function DB_DOWNLOAD()
     #   download files
     # #
 
-    echo -e "  🌎 Downloading file ${APP_GEO_ZIP}"
+    echo -e "  🌎 Downloading file ${GREEN2}${APP_GEO_ZIP}${RESET}"
     curl --silent --location --output $APP_GEO_ZIP "$URL_CSV" || error "Failed to curl file: ${URL_CSV}"
     curl --silent --location --output $FILE_MD5 "$URL_MD5" || error "Failed to curl file: ${URL_MD5}"
 
@@ -707,7 +942,7 @@ function CONFIG_LOAD()
 
     local configs=(${CONFIGS_LIST})
     for f in ${configs[@]}; do
-        echo -e "  📄 Adding config ${f}"
+        echo -e "      📄 Mounting database file ${BLUE2}${APP_SOURCE_LOCAL}/${f}${RESET}"
         [[ -f $f  ]] || error "Missing configuration file: $f"
     done
 }
@@ -809,10 +1044,16 @@ function GENERATE_IPv4
 {
 
     echo -e "  📟 Generate IPv4"
-    echo -e "      📂 Remove $APP_DIR_IPV4"
+    echo -e "      📂 Remove ${RED2}${APP_DIR_IPV4}${RESET}"
+
+    rm -rf $APP_DIR_IPV4
+    echo -e "      📂 Create ${GREEN1}${APP_DIR_IPV4}${RESET}"
+    mkdir --parent $APP_DIR_IPV4
 
     OIFS=$IFS
     IFS=','
+
+    echo -e "      ➕ Importing IPs from database${RESET}"
     while read -ra LINE; do
 
         # #
@@ -900,12 +1141,17 @@ function GENERATE_IPv4
 function GENERATE_IPv6
 {
 
-    echo -e "      📂 Remove $APP_DIR_IPV6"
+    echo -e "  📟 Generate IPv6"
+    echo -e "      📂 Remove ${RED2}${APP_DIR_IPV6}${RESET}"
+
     rm -rf $APP_DIR_IPV6
+    echo -e "      📂 Create ${GREEN1}${APP_DIR_IPV6}${RESET}"
     mkdir --parent $APP_DIR_IPV6
 
     OIFS=$IFS
     IFS=','
+
+    echo -e "      ➕ Importing IPs from database${RESET}"
     while read -ra LINE; do
 
         # #
@@ -988,7 +1234,11 @@ function MERGE_IPSETS()
     for fullpath_ipv6 in ${APP_DIR_IPV6}/*.${APP_TARGET_EXT_TMP}; do
         file_ipv6=$(basename ${fullpath_ipv6})
 
-        echo -e "  📄 Move ${fullpath_ipv6} to ${APP_DIR_IPV4}/${file_ipv6}"
+        if [[ $APP_DEBUG == "true" ]]; then
+            # /blocklists/country/geolite/ipv6/AE.tmp to ./blocklists/country/geolite/ipv4/AE.tmp
+            echo -e "  📄 Move ${fullpath_ipv6} to ${APP_DIR_IPV4}/${file_ipv6}"
+        fi
+
         cat $fullpath_ipv6 >> ${APP_DIR_IPV4}/${file_ipv6}
         rm -rf $fullpath_ipv6
     done
@@ -1075,8 +1325,7 @@ function GENERATE_CONTINENTS()
         FILE_CONTINENT_TEMP="$APP_DIR_IPV4/continent_$CONTINENT_ID.$APP_TARGET_EXT_TMP"             # blocklists/country/geolite/ipv4/continent_europe.tmp
         FILE_CONTINENT_PERM="$APP_TARGET_DIR/continent_$CONTINENT_ID.$APP_TARGET_EXT_PROD"          # blocklists/country/geolite/ipv4/continent_europe.ipset
 
-        echo -e
-        echo -e "  🌎 Generate Continent ${CONTINENT_NAME} (${CONTINENT_ID})"
+        echo -e "      🌎 Generate Continent ${BLUE2}${CONTINENT_NAME}${RESET} ${GREY3}(${CONTINENT_ID})${RESET}"
 
         # #
         #   Return each country's ips to be included in continent file
@@ -1093,20 +1342,20 @@ function GENERATE_CONTINENTS()
             # count number of items in country array for this particular continent
             i_array=$(eval echo \${#$COUNTRY_ABBREV${i}[@]})
 
-            echo -e "      🌎 Continent ${CONTINENT_NAME} -> Adding country ${CONTINENT_COUNTRY_NAME}"
+            echo -e "          🌎 + Country ${DIM}${BLUE2}${CONTINENT_NAME}${RESET} › ${BLUE2}${CONTINENT_COUNTRY_NAME}${RESET} ${GREY2}(${country})${RESET}"
 
             # blocklists/country/geolite/ipv4/JE.tmp
             FILE_TARGET="$APP_DIR_IPV4/$country.$APP_TARGET_EXT_TMP"
 
             # check if a specific country file exists, if so, open and grab all the IPs in the list. They need to be copied to $FILE_CONTINENT_TEMP
             if [ -f "$FILE_TARGET" ]; then
-                echo -e "      📒 Importing file ${FILE_TARGET} to ${FILE_CONTINENT_TEMP}"
+                # ./blocklists/country/geolite/ipv4/VU.tmp to ./blocklists/country/geolite/ipv4/continent_oceania.tmp
+                if [[ $APP_DEBUG == "true" ]]; then
+                    echo -e "          📒 Add country to continent file ${ORANGE2}${FILE_TARGET}${RESET} to ${BLUE2}${FILE_CONTINENT_TEMP}${RESET}"
+                fi
                 APP_OUTPUT=$(cat "$FILE_TARGET" | sort_results | awk '{if (++dup[$0] == 1) print $0;}' >> ${FILE_CONTINENT_TEMP})
-
-                echo -e ""
             else
-                echo -e "      ⭕ Could not find target file $FILE_TARGET"
-                echo -e
+                echo -e "          ⭕ Could not find target file $FILE_TARGET"
             fi
 
             # #
@@ -1144,13 +1393,12 @@ function GENERATE_CONTINENTS()
 
         CONTINENT_BASE_TARGET="$APP_DIR_IPV4/$key.$APP_TARGET_EXT_TMP"
         if [ -f "$CONTINENT_BASE_TARGET" ]; then
-            echo -e "      📒 Importing base continent file ${CONTINENT_BASE_TARGET} to ${FILE_CONTINENT_TEMP}"
+            echo -e "          📒 Merge base continent file ${ORANGE2}${CONTINENT_BASE_TARGET}${RESET} to ${BLUE2}${FILE_CONTINENT_TEMP}${RESET}"
 
             APP_OUTPUT=$(cat "$CONTINENT_BASE_TARGET" | sort_results | awk '{if (++dup[$0] == 1) print $0;}' >> ${FILE_CONTINENT_TEMP})
             echo -e
         else
-            echo -e "      ⭕ Continent ${CONTINENT_NAME} doesn't have a base file to import from ${CONTINENT_BASE_TARGET}"
-            echo -e
+            echo -e "          ⭕ Continent ${BLUE2}${CONTINENT_NAME}${RESET} doesn't have a base file to import from ${BLUE2}${CONTINENT_BASE_TARGET}${RESET} ... skipping"
         fi
 
         # #
@@ -1158,8 +1406,7 @@ function GENERATE_CONTINENTS()
         # #
 
         if [ ! -f "$FILE_TARGET" ]; then
-            echo -e "      ⭕ Could not find temp country file ${FILE_CONTINENT_TEMP}. Something failed."
-            echo -e
+            echo -e "          ⭕ Could not find temp country file ${ORANGE2}${FILE_CONTINENT_TEMP}${RESET}. Something failed."
             break
         fi
 
@@ -1214,11 +1461,11 @@ function GENERATE_CONTINENTS()
         BLOCKS_COUNT_TOTAL_SUBNET=$(printf "%'d" "$BLOCKS_COUNT_TOTAL_SUBNET")              # LOCAL add commas to thousands
         BLOCKS_COUNT_LINES=$(printf "%'d" "$BLOCKS_COUNT_LINES")                            # LOCAL add commas to thousands
 
-        echo -e "  🚛 Move ${FILE_CONTINENT_TEMP} to ${FILE_CONTINENT_PERM}"
+        echo -e "  🚛 Move ${ORANGE2}${FILE_CONTINENT_TEMP}${RESET} to ${BLUE2}${FILE_CONTINENT_PERM}${RESET}"
         mv -- "$FILE_CONTINENT_TEMP" "${FILE_CONTINENT_PERM}"
         # cp "$FILE_CONTINENT_TEMP" "${FILE_CONTINENT_PERM}"
 
-        echo -e "  ➕ Added ${BLOCKS_COUNT_TOTAL_IP} IPs and ${BLOCKS_COUNT_TOTAL_SUBNET} Subnets to ${FILE_CONTINENT_PERM}"
+        echo -e "  ➕ Added ${FUCHSIA2}${BLOCKS_COUNT_TOTAL_IP} IPs${RESET} and ${FUCHSIA2}${BLOCKS_COUNT_TOTAL_SUBNET} Subnets${RESET} to ${BLUE2}${FILE_CONTINENT_PERM}${RESET}"
         echo -e
 
         TEMPL_NAME=$(basename -- ${FILE_CONTINENT_PERM})        # file name
@@ -1296,8 +1543,12 @@ END_ED
     # #
 
     T=$SECONDS
-    echo -e
-    printf "  🎌 Finished! %02d days %02d hrs %02d mins %02d secs\n" "$((T/86400))" "$((T/3600%24))" "$((T/60%60))" "$((T%60))"
+    D=$((T/86400))
+    H=$((T/3600%24))
+    M=$((T/60%60))
+    S=$((T%60))
+
+    echo -e "  🎌 ${GREY2}Finished! ${YELLOW2}${D} days ${H} hrs ${M} mins ${S} secs${RESET}"
 
     # #
     #   Continents > Output
@@ -1305,7 +1556,7 @@ END_ED
 
     echo -e
     echo -e " ──────────────────────────────────────────────────────────────────────────────────────────────"
-    printf "%-25s | %-30s\n" "  #️⃣  ${FILE_CONTINENT_PERM}" "${COUNT_TOTAL_IP} IPs, ${COUNT_TOTAL_SUBNET} Subnets"
+    echo -e "  #️⃣ ${BLUE2}${FILE_CONTINENT_PERM}${RESET} | Added ${FUCHSIA2}${COUNT_TOTAL_IP} IPs${RESET} and ${FUCHSIA2}${COUNT_TOTAL_SUBNET} Subnets${RESET}"
     echo -e " ──────────────────────────────────────────────────────────────────────────────────────────────"
     echo -e
     echo -e
@@ -1331,11 +1582,8 @@ END_ED
 function GENERATE_COUNTRIES()
 {
 
-    COUNT_TOTAL_IP=0
-    COUNT_TOTAL_SUBNET=0
-
     echo -e
-    echo -e "  🏷️ Generate Headers"
+    echo -e "  🔖  Generate Countries"
 
     # #
     #   Loop each temp file
@@ -1343,17 +1591,20 @@ function GENERATE_COUNTRIES()
     #       US.TMP
     # #
 
+    COUNT_TOTAL_IP=0
+    COUNT_TOTAL_SUBNET=0
+
     for APP_FILE_TEMP in ./${APP_DIR_IPV4}/*.${APP_TARGET_EXT_TMP}; do
 
         file_temp_base=$(basename -- ${APP_FILE_TEMP})                                      # get two letter country code
         COUNTRY_CODE="${file_temp_base%.*}"                                                 # base file without extension
         COUNTRY=$(get_country_name "$COUNTRY_CODE")                                         # get full country name from abbreviation
+
+        echo -e "  📒 + Country ${GREY2}${COUNTRY}${RESET} to ${ORANGE2}${APP_FILE_TEMP}${RESET}"
         COUNTRY_ID=$(echo "$COUNTRY" | sed 's/ /_/g' | tr -d "[.,/\\-\=\+\{\[\]\}\!\@\#\$\%\^\*\'\\\(\)]" | tr '[:upper:]' '[:lower:]') # country long name with spaces, special chars removed
 
         APP_FILE_TEMP=${APP_FILE_TEMP#././}                                                 # remove ./ from front which means us with just the temp path
         APP_FILE_PERM="${APP_TARGET_DIR}/country_${COUNTRY_ID}.${APP_TARGET_EXT_PROD}"      # final location where ipset files should be
-
-        echo -e "  📒 Adding static file ${APP_FILE_TEMP} ( ${COUNTRY} )"
 
         # #
         #   calculate how many IPs are in a subnet
@@ -1367,6 +1618,7 @@ function GENERATE_COUNTRIES()
         BLOCKS_COUNT_TOTAL_IP=0
         BLOCKS_COUNT_TOTAL_SUBNET=0
 
+        echo -e "  📊 Fetching statistics for clean file ${ORANGE2}${APP_FILE_TEMP}${RESET}"
         for line in $(cat ${APP_FILE_TEMP}); do
 
             # is ipv6
@@ -1409,11 +1661,11 @@ function GENERATE_COUNTRIES()
         BLOCKS_COUNT_TOTAL_SUBNET=$(printf "%'d" "$BLOCKS_COUNT_TOTAL_SUBNET")              # LOCAL add commas to thousands
         BLOCKS_COUNT_LINES=$(printf "%'d" "$BLOCKS_COUNT_LINES")                            # LOCAL add commas to thousands
 
-        echo -e "  🚛 Move ${APP_FILE_TEMP} to ${APP_FILE_PERM}"
+        echo -e "  🚛 Move ${ORANGE2}${APP_FILE_TEMP}${RESET} to ${BLUE2}${APP_FILE_PERM}${RESET}"
         mv -- "$APP_FILE_TEMP" "${APP_FILE_PERM}"
         # cp "$APP_FILE_TEMP" "${APP_FILE_PERM}"
 
-        echo -e "  ➕ Added ${BLOCKS_COUNT_TOTAL_IP} IPs and ${BLOCKS_COUNT_TOTAL_SUBNET} Subnets to ${APP_FILE_PERM}"
+        echo -e "  ➕ Added ${FUCHSIA2}${BLOCKS_COUNT_TOTAL_IP} IPs${RESET} and ${FUCHSIA2}${BLOCKS_COUNT_TOTAL_SUBNET} subnets${RESET} to ${BLUE2}${APP_FILE_PERM}${RESET}"
         echo -e
 
         TEMPL_NAME=$(basename -- ${APP_FILE_PERM})              # file name
@@ -1492,12 +1744,16 @@ END_ED
     GARBAGE
 
     # #
-    #   Finished
+    #   Countries > Finished
     # #
 
     T=$SECONDS
-    echo -e
-    printf "  🎌 Finished! %02d days %02d hrs %02d mins %02d secs\n" "$((T/86400))" "$((T/3600%24))" "$((T/60%60))" "$((T%60))"
+    D=$((T/86400))
+    H=$((T/3600%24))
+    M=$((T/60%60))
+    S=$((T%60))
+
+    echo -e "  🎌 ${GREY2}Finished! ${YELLOW2}${D} days ${H} hrs ${M} mins ${S} secs${RESET}"
 
     # #
     #   Output
@@ -1505,10 +1761,8 @@ END_ED
 
     echo -e
     echo -e " ──────────────────────────────────────────────────────────────────────────────────────────────"
-    printf "%-25s | %-30s\n" "  #️⃣  ${APP_FILE_PERM}" "${COUNT_TOTAL_IP} IPs, ${COUNT_TOTAL_SUBNET} Subnets"
+    echo -e "  #️⃣ ${BLUE2}${APP_FILE_PERM}${RESET} | Added ${FUCHSIA2}${COUNT_TOTAL_IP} IPs${RESET} and ${FUCHSIA2}${COUNT_TOTAL_SUBNET} Subnets${RESET}"
     echo -e " ──────────────────────────────────────────────────────────────────────────────────────────────"
-    echo -e
-    echo -e
     echo -e
 
 }
@@ -1532,24 +1786,16 @@ function main()
         source "${APP_THIS_DIR}/${APP_CFG_FILE}" > /dev/null 2>&1
     fi
 
+    if [[ -z "${APP_SOURCE_LOCAL_ENABLED}" ]] && [[ -z "${LICENSE_KEY}" ]]; then
+        error "Must supply a valid MaxMind license key -- aborting"
+    fi
+
     # #
-    #   Display help text if command not complete
+    #   Start
     # #
 
-    local usage="Usage: ./${APP_SCRIPT} [-p <LICENSE_KEY>]" 
-    while getopts ":p:" opt; do
-        case ${opt} in
-          p )
-              [[ ! -z "${OPTARG}" ]] && LICENSE_KEY=$OPTARG || error "$usage" ;;
-          \? ) 
-              error "$usage" ;;
-          : )
-              error "$usage" ;;
-        esac
-    done
-    shift $((OPTIND -1))
-
-    [[ -z "${LICENSE_KEY}" ]] && error "Must supply a valid MaxMind license key -- aborting"
+    echo -e
+    echo -e "  ⭐ Starting script ${GREEN1}${APP_THIS_FILE}${RESET}"
 
     # #
     #   setup
@@ -1566,8 +1812,8 @@ function main()
     #   place geolite data in temporary directory
     # #
 
-    echo -e "  ⚙️  Setting temp path $TEMPDIR"
-    pushd $TEMPDIR > /dev/null 2>&1
+    echo -e "  ⚙️  Setting temp folder ${YELLOW2}${TEMPDIR}${RESET}"
+    pushd ${TEMPDIR} > /dev/null 2>&1
   
     if [[ $APP_SOURCE_LOCAL_ENABLED == "false" ]]; then
         DB_DOWNLOAD

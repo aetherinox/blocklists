@@ -15,25 +15,8 @@
 #   @command            bt-transmission.sh
 # #
 
-SECONDS=0                                                                                       # set seconds count for beginning of script
-APP_VER=("1" "0" "0" "0")                                                                       # current script version
-APP_DEBUG=false                                                                                 # debug mode
-APP_REPO="Aetherinox/blocklists"                                                                # repository
-APP_REPO_BRANCH="main"                                                                          # repository branch
-APP_THIS_FILE=$(basename "$0")                                                                  # current script file
-APP_THIS_DIR="${PWD}"                                                                           # Current script directory
-APP_FILE_TEMP="bt_temp"                                                                         # name of temp file to use throughout process
-APP_FILE_PERM_DIR="blocklists/transmission"                                                     # folder where perm files will be stored
-APP_FILE_PERM="${APP_FILE_PERM_DIR}/blocklist"                                                  # name of file to save at the end of the process
-APP_FILE_PERM_EXT="ipset"                                                                       # name of final file extension
-APP_ZIP_FILE="wael.list.p2p.zip"                                                                # zip to download from waelisa/Best-blocklist
-APP_ZIP_READ_FILE="wael.list.p2p"                                                               # file to target and read inside the zip
-APP_ZIP_URL="https://raw.githubusercontent.com/waelisa/Best-blocklist/main/${APP_ZIP_FILE}"     # location to download bt blocklist zip
-APP_URL_CBUCKET="https://mirror.codebucket.de/transmission/blocklist.p2p"
-APP_URL_IBL="https://www.iblocklist.com/lists.php"
-APP_AGENT="Mozilla/5.0 (Windows NT 10.0; WOW64) "\
-"AppleWebKit/537.36 (KHTML, like Gecko) "\
-"Chrome/51.0.2704.103 Safari/537.36"                                                            # user agent used with curl
+APP_THIS_FILE=$(basename "$0")                                      # current script file
+APP_THIS_DIR="${PWD}"                                               # Current script directory
 
 # #
 #   vars > colors
@@ -69,6 +52,40 @@ YELLOW3="\e[38;5;193m"
 GREY1="\e[38;5;240m"
 GREY2="\e[38;5;244m"
 GREY3="\e[38;5;250m"
+
+# #
+#   print an error and exit with failure
+#   $1: error message
+# #
+
+function error()
+{
+    echo -e "  ⭕ ${GREY2}${APP_THIS_FILE}${RESET}: \n     ${BOLD}${RED}Error${NORMAL}: ${RESET}$1"
+    echo -e
+    exit 0
+}
+
+# #
+#    Define > General
+# #
+
+SECONDS=0                                                                                       # set seconds count for beginning of script
+APP_VER=("1" "0" "0" "0")                                                                       # current script version
+APP_DEBUG=false                                                                                 # debug mode
+APP_REPO="Aetherinox/blocklists"                                                                # repository
+APP_REPO_BRANCH="main"                                                                          # repository branch
+APP_FILE_TEMP="bt_temp"                                                                         # name of temp file to use throughout process
+APP_FILE_PERM_DIR="blocklists/transmission"                                                     # folder where perm files will be stored
+APP_FILE_PERM="${APP_FILE_PERM_DIR}/blocklist"                                                  # name of file to save at the end of the process
+APP_FILE_PERM_EXT="ipset"                                                                       # name of final file extension
+APP_ZIP_FILE="wael.list.p2p.zip"                                                                # zip to download from waelisa/Best-blocklist
+APP_ZIP_READ_FILE="wael.list.p2p"                                                               # file to target and read inside the zip
+APP_ZIP_URL="https://raw.githubusercontent.com/waelisa/Best-blocklist/main/${APP_ZIP_FILE}"     # location to download bt blocklist zip
+APP_URL_CBUCKET="https://mirror.codebucket.de/transmission/blocklist.p2p"
+APP_URL_IBL="https://www.iblocklist.com/lists.php"
+APP_AGENT="Mozilla/5.0 (Windows NT 10.0; WOW64) "\
+"AppleWebKit/537.36 (KHTML, like Gecko) "\
+"Chrome/51.0.2704.103 Safari/537.36"                                                            # user agent used with curl
 
 # #
 #   Color Code Test
@@ -108,7 +125,7 @@ function debug_ColorTest()
     echo -e "GREY3 ${GREY1}................ ${GREY3}This is test text ███████████████${RESET}"
     echo -e
 
-    exit 0
+    exit 1
 }
 
 # #
@@ -135,7 +152,7 @@ function debug_ColorChart()
         echo -e
     done
     
-    exit 0
+    exit 1
 }
 
 # #
@@ -146,12 +163,12 @@ ARG1=$1
 
 if [ "$ARG1" == "clr" ]; then
     debug_ColorTest
-    exit 0
+    exit 1
 fi
 
 if [ "$ARG1" == "chart" ]; then
     debug_ColorChart
-    exit 0
+    exit 1
 fi
 
 # #

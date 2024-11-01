@@ -69,6 +69,18 @@ GREY2="\e[38;5;244m"
 GREY3="\e[38;5;250m"
 
 # #
+#   print an error and exit with failure
+#   $1: error message
+# #
+
+function error()
+{
+    echo -e "  ⭕ ${GREY2}${APP_THIS_FILE}${RESET}: \n     ${BOLD}${RED}Error${NORMAL}: ${RESET}$1"
+    echo -e
+    exit 0
+}
+
+# #
 #   Arguments
 #
 #   This bash script has the following arguments:
