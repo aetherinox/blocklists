@@ -5,10 +5,10 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_costa_rica_ipset
 #   @uuid           6fc745f4-0ffe-3c3c-8d43-76e82331df80
-#   @updated        Fri 01 Nov 2024 12:17:34 PM UTC
+#   @updated        Fri 01 Nov 2024 06:12:59 PM UTC
 #   @entries        2,312,135 ips
-#                   883 subnets
-#                   883 lines
+#                   884 subnets
+#                   884 lines
 #   @country        Costa Rica (CR)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -854,6 +854,7 @@
 2a04:4e41:4073:1000::/52
 2a04:4e41:4083:1000::/52
 2a05:dfc1:5a3c::/48
+2a07:d887:3100::/40
 2a09:54c1:156::/48
 2a09:bac0:1000:ad::/64
 2a09:bac0:1000:218::/64

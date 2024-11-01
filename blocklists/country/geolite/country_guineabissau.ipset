@@ -5,10 +5,10 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_guineabissau_ipset
 #   @uuid           8077ed97-e65d-301b-a830-bbf9d08eaeac
-#   @updated        Fri 01 Nov 2024 12:18:03 PM UTC
+#   @updated        Fri 01 Nov 2024 06:13:24 PM UTC
 #   @entries        8,697 ips
-#                   132 subnets
-#                   132 lines
+#                   133 subnets
+#                   133 lines
 #   @country        Guinea-Bissau (GW)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -124,6 +124,7 @@
 2a04:4e41:4075:c000::/52
 2a04:4e41:4085:c000::/52
 2a05:dfc1:5a69::/48
+2a07:d887:5c00::/40
 2a09:54c1:171::/48
 2a09:bac1:3080::/64
 2a09:bac1:30a0::/64

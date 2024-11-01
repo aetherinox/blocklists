@@ -5,10 +5,10 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_turks_caicos_islands_ipset
 #   @uuid           595a0a71-31a8-31f2-88f2-ff65a2a7e698
-#   @updated        Fri 01 Nov 2024 12:19:07 PM UTC
+#   @updated        Fri 01 Nov 2024 06:14:11 PM UTC
 #   @entries        16,025 ips
-#                   124 subnets
-#                   124 lines
+#                   125 subnets
+#                   125 lines
 #   @country        Turks Caicos Islands (TC)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -122,6 +122,7 @@
 2a04:4e41:407d:5000::/52
 2a04:4e41:408d:5000::/52
 2a05:dfc1:5adf::/48
+2a07:d887:d400::/40
 2a09:bac1:6d00::/64
 2a09:bac1:6d20::/64
 2a09:bac1:6d40::/64

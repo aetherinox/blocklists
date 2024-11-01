@@ -5,10 +5,10 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_jamaica_ipset
 #   @uuid           362003c5-5010-36ff-b6c4-a48f2ca8ae3b
-#   @updated        Fri 01 Nov 2024 12:18:13 PM UTC
+#   @updated        Fri 01 Nov 2024 06:13:32 PM UTC
 #   @entries        283,484 ips
-#                   363 subnets
-#                   363 lines
+#                   364 subnets
+#                   364 lines
 #   @country        Jamaica (JM)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -356,6 +356,7 @@
 2a04:4e41:4076:f000::/52
 2a04:4e41:4086:f000::/52
 2a05:dfc1:5a7c::/48
+2a07:d887:6f00::/40
 2a09:bac0:1000:62a::/64
 2a09:bac1:3a00::/64
 2a09:bac1:3a20::/64
