@@ -160,6 +160,26 @@ REGEX_URL='^(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%
 REGEX_ISNUM='^[0-9]+$'
 
 # #
+#   Default Values
+# #
+
+if [[ "$TEMPL_DESC" == *"404: Not Found"* ]]; then
+    TEMPL_DESC="#   No description provided"
+fi
+
+if [[ "$TEMPL_CAT" == *"404: Not Found"* ]]; then
+    TEMPL_CAT="Uncategorized"
+fi
+
+if [[ "$TEMPL_EXP" == *"404: Not Found"* ]]; then
+    TEMPL_EXP="6 hours"
+fi
+
+if [[ "$TEMP_URL_SRC" == *"404: Not Found"* ]]; then
+    TEMP_URL_SRC="None"
+fi
+
+# #
 #   output
 # #
 
@@ -189,6 +209,8 @@ if  [[ $ARG_SOURCEFILE =~ $REGEX_URL ]]; then
     wget -q "${ARG_SOURCEFILE}" -O "${ARG_SAVEFILE}.gz"
     ARG_SOURCEFILE=$(zcat "${ARG_SAVEFILE}.gz")
     ipAddr=$(echo "$ARG_SOURCEFILE" | grep -v "^#" | awk '{if (++dup[$0] == 1) print $0;}' | grep -vi "${ARG_GREP_FILTER}" | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\s*-\s*[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' | iprange | sort -n > ${APP_FILE_TEMP})
+
+    rm "${ARG_SAVEFILE}.gz"
 else
     ipAddr=$(cat "$ARG_SOURCEFILE" | grep -v "^#" | awk '{if (++dup[$0] == 1) print $0;}' | grep -vi "${ARG_GREP_FILTER}" | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\s*-\s*[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' | iprange | sort -n > ${APP_FILE_TEMP})
 fi
