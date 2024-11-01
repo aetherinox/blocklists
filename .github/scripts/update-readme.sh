@@ -24,6 +24,7 @@
 #                               📄 blocklist-generate.yml
 # #
 
+SECONDS=0                                                       # set seconds count for beginning of script
 APP_VER=("1" "0" "0" "0")                                       # current script version
 APP_DEBUG=false                                                 # debug mode
 APP_REPO="Aetherinox/blocklists"                                # repository
@@ -163,8 +164,33 @@ if [[ -z "${ARG1}" ]]; then
 fi
 
 # #
+#   Start
+# #
+
+echo -e
+echo -e "  ⭐ Starting script ${GREEN1}${APP_THIS_FILE}${RESET}"
+
+# #
 #   README > Set Sync Time
 # #
 
 sed -r -i 's@[[TEMPL_UPDATE]]@Last Sync: $now@g' README.md
 sed -r -i "s@Last Sync: [0-9]{2}\/[0-9]{2}\/[0-9]{4} [0-9]{2}\:[0-9]{2} UTC@Last Sync: $TEMPL_NOW UTC@g" README.md
+
+# #
+#   Finished
+# #
+
+T=$SECONDS
+D=$((T/86400))
+H=$((T/3600%24))
+M=$((T/60%60))
+S=$((T%60))
+
+echo -e
+echo -e " ──────────────────────────────────────────────────────────────────────────────────────────────"
+echo -e "  🎌  ${GREY2}Finished! ${YELLOW2}${D} days ${H} hrs ${M} mins ${S} secs${RESET}"
+echo -e " ──────────────────────────────────────────────────────────────────────────────────────────────"
+echo -e
+echo -e
+echo -e

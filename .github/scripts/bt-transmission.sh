@@ -15,9 +15,10 @@
 #   @command            bt-transmission.sh
 # #
 
+SECONDS=0                                                                                       # set seconds count for beginning of script
 APP_VER=("1" "0" "0" "0")                                                                       # current script version
 APP_DEBUG=false                                                                                 # debug mode
-APP_REPO="Aetherinox/dev-kw"                                                                    # repository
+APP_REPO="Aetherinox/blocklists"                                                                # repository
 APP_REPO_BRANCH="main"                                                                          # repository branch
 APP_THIS_FILE=$(basename "$0")                                                                  # current script file
 APP_THIS_DIR="${PWD}"                                                                           # Current script directory
@@ -30,7 +31,9 @@ APP_ZIP_READ_FILE="wael.list.p2p"                                               
 APP_ZIP_URL="https://raw.githubusercontent.com/waelisa/Best-blocklist/main/${APP_ZIP_FILE}"     # location to download bt blocklist zip
 APP_URL_CBUCKET="https://mirror.codebucket.de/transmission/blocklist.p2p"
 APP_URL_IBL="https://www.iblocklist.com/lists.php"
-APP_AGENT="Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36"
+APP_AGENT="Mozilla/5.0 (Windows NT 10.0; WOW64) "\
+"AppleWebKit/537.36 (KHTML, like Gecko) "\
+"Chrome/51.0.2704.103 Safari/537.36"                                                            # user agent used with curl
 
 # #
 #   vars > colors
@@ -171,6 +174,13 @@ domain_list=(
 )
 
 # #
+#   Start
+# #
+
+echo -e
+echo -e "  ⭐ Starting script ${GREEN1}${APP_THIS_FILE}${RESET}"
+
+# #
 #	Loop each website above and download the rules
 # #
 
@@ -292,3 +302,21 @@ if [ -f "${APP_ZIP_READ_FILE}" ]; then
     echo -e "  🗑️   ${GREY2}Cleanup ${APP_ZIP_READ_FILE}${RESET}"
     rm "${APP_ZIP_READ_FILE}"
 fi
+
+# #
+#   Finished
+# #
+
+T=$SECONDS
+D=$((T/86400))
+H=$((T/3600%24))
+M=$((T/60%60))
+S=$((T%60))
+
+echo -e
+echo -e " ──────────────────────────────────────────────────────────────────────────────────────────────"
+echo -e "  🎌  ${GREY2}Finished! ${YELLOW2}${D} days ${H} hrs ${M} mins ${S} secs${RESET}"
+echo -e " ──────────────────────────────────────────────────────────────────────────────────────────────"
+echo -e
+echo -e
+echo -e
