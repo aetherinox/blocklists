@@ -5,7 +5,7 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_iraq_ipset
 #   @uuid           e0d3b507-2abb-35bb-abd5-1736c374561a
-#   @updated        Fri 01 Nov 2024 10:24:30 AM UTC
+#   @updated        Fri 01 Nov 2024 12:18:07 PM UTC
 #   @entries        834,921 ips
 #                   2,228 subnets
 #                   2,228 lines

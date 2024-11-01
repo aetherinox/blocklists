@@ -5,7 +5,7 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_french_southern_territories_ipset
 #   @uuid           e91632fc-680a-3372-9d4b-fa4df3b3b847
-#   @updated        Fri 01 Nov 2024 10:24:57 AM UTC
+#   @updated        Fri 01 Nov 2024 12:19:08 PM UTC
 #   @entries        41 ips
 #                   39 subnets
 #                   39 lines
