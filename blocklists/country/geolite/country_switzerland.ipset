@@ -5,7 +5,7 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_switzerland_ipset
 #   @uuid           edd59f85-7392-39ef-a613-29467c16fd15
-#   @updated        Thu 31 Oct 2024 06:15:13 PM UTC
+#   @updated        Fri 01 Nov 2024 02:39:25 AM UTC
 #   @entries        26,441,978 ips
 #                   12,926 subnets
 #                   12,926 lines

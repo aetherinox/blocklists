@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/02_privacy_applebot.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/02_privacy_applebot.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/02_privacy_applebot.ipset
 #   @source         https://search.developer.apple.com/applebot.json
 #   @id             02_privacy_applebot_ipset
 #   @uuid           38de69e9-bc7d-319b-bdd8-a3a477442efc
-#   @updated        Thu 31 Oct 2024 06:10:25 PM UTC
+#   @updated        Fri 01 Nov 2024 02:34:15 AM UTC
 #   @entries        2,400 ips
 #                   12 subnets
 #                   12 lines

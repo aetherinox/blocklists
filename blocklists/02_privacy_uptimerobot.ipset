@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/02_privacy_uptimerobot.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/02_privacy_uptimerobot.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/02_privacy_uptimerobot.ipset
 #   @source         https://uptimerobot.com/inc/files/ips/IPv4andIPv6.txt
 #   @id             02_privacy_uptimerobot_ipset
 #   @uuid           523e2bd1-5608-38ea-b6b4-d141953c9a47
-#   @updated        Thu 31 Oct 2024 06:10:18 PM UTC
+#   @updated        Fri 01 Nov 2024 02:34:02 AM UTC
 #   @entries        244 ips
 #                   33 subnets
 #                   277 lines

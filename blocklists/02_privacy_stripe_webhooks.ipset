@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/02_privacy_stripe_webhooks.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/02_privacy_stripe_webhooks.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/02_privacy_stripe_webhooks.ipset
 #   @source         https://stripe.com/files/ips/ips_webhooks.txt
 #   @id             02_privacy_stripe_webhooks_ipset
 #   @uuid           5fd655c5-3039-3ab7-887b-ca4bf89b5b32
-#   @updated        Thu 31 Oct 2024 06:10:20 PM UTC
+#   @updated        Fri 01 Nov 2024 02:34:07 AM UTC
 #   @entries        12 ips
 #                   0 subnets
 #                   12 lines

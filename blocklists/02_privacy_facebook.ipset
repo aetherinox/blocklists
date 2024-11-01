@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/02_privacy_facebook.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/02_privacy_facebook.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/02_privacy_facebook.ipset
 #   @source         https://developers.facebook.com/docs/sharing/webmasters/web-crawlers/
 #   @id             02_privacy_facebook_ipset
 #   @uuid           dc031ad8-bad2-362e-bf50-29b029454fcf
-#   @updated        Thu 31 Oct 2024 06:10:04 PM UTC
+#   @updated        Fri 01 Nov 2024 02:33:43 AM UTC
 #   @entries        762,112 ips
 #                   907 subnets
 #                   907 lines
