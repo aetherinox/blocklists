@@ -5,7 +5,7 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_dominican_republic_ipset
 #   @uuid           29cf6def-49df-3d1e-a81d-4bc234f77ec2
-#   @updated        Thu 31 Oct 2024 06:15:20 PM UTC
+#   @updated        Fri 01 Nov 2024 01:10:34 AM UTC
 #   @entries        1,891,703 ips
 #                   869 subnets
 #                   869 lines

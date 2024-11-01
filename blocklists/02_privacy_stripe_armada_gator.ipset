@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/02_privacy_stripe_armada_gator.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/02_privacy_stripe_armada_gator.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/02_privacy_stripe_armada_gator.ipset
 #   @source         https://stripe.com/files/ips/ips_armada_gator.txt
 #   @id             02_privacy_stripe_armada_gator_ipset
 #   @uuid           1f48a5d3-df14-3927-b0be-106b86c13083
-#   @updated        Thu 31 Oct 2024 06:10:21 PM UTC
+#   @updated        Fri 01 Nov 2024 01:02:55 AM UTC
 #   @entries        548 ips
 #                   2 subnets
 #                   38 lines

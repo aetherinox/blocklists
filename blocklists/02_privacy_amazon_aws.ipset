@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/02_privacy_amazon_aws.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/02_privacy_amazon_aws.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/02_privacy_amazon_aws.ipset
 #   @source         https://ip-ranges.amazonaws.com/ip-ranges.json
 #   @id             02_privacy_amazon_aws_ipset
 #   @uuid           3b0631ca-1c95-3fa0-aadb-126c8a56e533
-#   @updated        Thu 31 Oct 2024 06:10:03 PM UTC
-#   @entries        80,121,572 ips
-#                   4,477 subnets
-#                   4,477 lines
+#   @updated        Fri 01 Nov 2024 01:02:26 AM UTC
+#   @entries        80,121,804 ips
+#                   4,491 subnets
+#                   4,491 lines
 #   @expires        6 hours
 #   @category       Privacy
 #
@@ -211,7 +211,15 @@
 3.4.12.36/32
 3.4.12.37/32
 3.4.12.38/32
+3.4.12.39/32
+3.4.12.40/32
+3.4.12.41/32
+3.4.12.42/32
 3.4.12.4/32
+3.4.12.43/32
+3.4.12.44/32
+3.4.12.45/32
+3.4.12.46/32
 3.4.12.5/32
 3.4.12.6/32
 3.4.13.0/28
@@ -222,6 +230,10 @@
 3.4.13.80/28
 3.4.15.0/29
 3.4.15.104/29
+3.4.15.112/29
+3.4.15.120/29
+3.4.15.128/29
+3.4.15.136/29
 3.4.15.16/29
 3.4.15.24/29
 3.4.15.32/29
@@ -4428,6 +4440,8 @@
 182.29.0.0/16
 182.30.0.0/16
 182.30.13.192/26
+182.30.157.0/26
+182.30.85.128/25
 184.169.128.0/17
 184.32.0.0/12
 184.72.0.0/18

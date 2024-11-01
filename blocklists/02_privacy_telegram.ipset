@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/02_privacy_telegram.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/02_privacy_telegram.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/02_privacy_telegram.ipset
 #   @source         https://core.telegram.org/resources/cidr.txt
 #   @id             02_privacy_telegram_ipset
 #   @uuid           a0208844-2499-370c-9cd2-752a950a6aac
-#   @updated        Thu 31 Oct 2024 06:10:17 PM UTC
+#   @updated        Fri 01 Nov 2024 01:02:48 AM UTC
 #   @entries        11,008 ips
 #                   14 subnets
 #                   14 lines

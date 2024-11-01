@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/02_privacy_pingdom.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/02_privacy_pingdom.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/02_privacy_pingdom.ipset
 #   @source         https://my.pingdom.com/probes/ipv4 | https://my.pingdom.com/probes/ipv6
 #   @id             02_privacy_pingdom_ipset
 #   @uuid           94491564-cb4d-3407-919a-2ebc3aa2fc67
-#   @updated        Thu 31 Oct 2024 06:10:20 PM UTC
+#   @updated        Fri 01 Nov 2024 01:02:52 AM UTC
 #   @entries        160 ips
 #                   0 subnets
 #                   160 lines
