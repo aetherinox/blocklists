@@ -317,8 +317,8 @@ jobs:
               id: task_blocklist_geographical_generate_geolite2
               run: |
                   chmod +x ".github/scripts/bl-geolite2.sh"
-                  run_geolite=".github/scripts/bl-geolite2.sh -p ${{ secrets.API_GEOLITE2_KEY }}"
-                  eval "./$run_geolite"
+                  run_geolite2=".github/scripts/bl-geolite2.sh -l ${{ secrets.API_GEOLITE2_KEY }}"
+                  eval "./$run_geolite2"
 
             # #
             #   Generate > Transmission
