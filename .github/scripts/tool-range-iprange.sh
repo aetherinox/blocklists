@@ -109,6 +109,16 @@ ARG_SOURCEFILE=$2
 ARG_GREP_FILTER=$3
 
 # #
+#   Grep search pattern not provided, ignore comments and blank lines.
+#   this is already done in the step before this grep exclude pattern is ran, but
+#   we need a default grep pattern if one is not provided.
+# #
+
+if [[ -z "${ARG_GREP_FILTER}" ]]; then
+    ARG_GREP_FILTER="^#|^;|^$"
+fi
+
+# #
 #   Validation checks
 # #
 
@@ -208,11 +218,11 @@ fi
 if  [[ $ARG_SOURCEFILE =~ $REGEX_URL ]]; then
     wget -q "${ARG_SOURCEFILE}" -O "${ARG_SAVEFILE}.gz"
     ARG_SOURCEFILE=$(zcat "${ARG_SAVEFILE}.gz")
-    ipAddr=$(echo "$ARG_SOURCEFILE" | grep -v "^#" | awk '{if (++dup[$0] == 1) print $0;}' | grep -vi "${ARG_GREP_FILTER}" | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\s*-\s*[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' | iprange | sort -n > ${APP_FILE_TEMP})
+    ipAddr=$(echo "$ARG_SOURCEFILE" | grep -v "^#|^;|^$" | awk '{if (++dup[$0] == 1) print $0;}' | grep -vi "${ARG_GREP_FILTER}" | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\s*-\s*[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' | iprange | sort -n > ${APP_FILE_TEMP})
 
     rm "${ARG_SAVEFILE}.gz"
 else
-    ipAddr=$(cat "$ARG_SOURCEFILE" | grep -v "^#" | awk '{if (++dup[$0] == 1) print $0;}' | grep -vi "${ARG_GREP_FILTER}" | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\s*-\s*[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' | iprange | sort -n > ${APP_FILE_TEMP})
+    ipAddr=$(cat "$ARG_SOURCEFILE" | grep -v "^#|^;|^$" | awk '{if (++dup[$0] == 1) print $0;}' | grep -vi "${ARG_GREP_FILTER}" | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\s*-\s*[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' | iprange | sort -n > ${APP_FILE_TEMP})
 fi
 
 # #

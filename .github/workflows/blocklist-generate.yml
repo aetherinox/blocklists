@@ -186,10 +186,10 @@ jobs:
             - name: "🧱 Generate › Master"
               id: task_blocklist_generate_master
               run: |
-                  run_master=".github/scripts/bl-master.sh blocklists/${{ vars.API_01_OUT }} ${{ secrets.API_01_FILE_01 }} ${{ secrets.API_01_FILE_02 }} ${{ secrets.API_01_FILE_03 }} ${{ secrets.API_01_FILE_04 }} ${{ secrets.API_01_FILE_05 }} ${{ secrets.API_01_FILE_06 }} ${{ secrets.API_01_FILE_07 }} ${{ secrets.API_01_FILE_08 }}"
+                  run_master=".github/scripts/bl-master.sh blocklists/master.ipset ${{ secrets.API_01_FILE_01 }} ${{ secrets.API_01_FILE_02 }} ${{ secrets.API_01_FILE_03 }} ${{ secrets.API_01_FILE_04 }} ${{ secrets.API_01_FILE_05 }} ${{ secrets.API_01_FILE_06 }} ${{ secrets.API_01_FILE_07 }} ${{ secrets.API_01_FILE_08 }}"
                   eval "./$run_master"
 
-                  run_highrisk=".github/scripts/bl-htmlip.sh blocklists/${{ vars.API_01_HIGHRISK_OUT }} ${{ secrets.API_01_HIGHRISK_URL }} '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'"
+                  run_highrisk=".github/scripts/bl-htmlip.sh blocklists/highrisk.ipset ${{ secrets.API_01_HIGHRISK_URL }} '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'"
                   eval "./$run_highrisk"
 
             # #
@@ -201,87 +201,135 @@ jobs:
               run: |
 
                   #   Privacy › General
-                  run_general=".github/scripts/bl-block.sh blocklists/${{ vars.API_02_GENERAL_OUT }} privacy"
+                  run_general=".github/scripts/bl-block.sh blocklists/privacy/privacy_general.ipset privacy"
                   eval "./$run_general"
 
                   #   Privacy › Google
-                  run_google=".github/scripts/bl-json.sh blocklists/02_privacy_google.ipset https://developers.google.com/search/apis/ipranges/googlebot.json '.prefixes | .[] |.ipv4Prefix//empty,.ipv6Prefix//empty'"
+                  run_google=".github/scripts/bl-json.sh blocklists/privacy/privacy_google.ipset https://developers.google.com/search/apis/ipranges/googlebot.json '.prefixes | .[] |.ipv4Prefix//empty,.ipv6Prefix//empty'"
                   eval "./$run_google"
 
                   #   Privacy › Cloudfront
-                  run_cloudfront=".github/scripts/bl-json.sh blocklists/02_privacy_cloudfront.ipset https://d7uri8nf7uskq.cloudfront.net/tools/list-cloudfront-ips 'map(.[]) | sort | .[]'"
+                  run_cloudfront=".github/scripts/bl-json.sh blocklists/privacy/privacy_cloudfront.ipset https://d7uri8nf7uskq.cloudfront.net/tools/list-cloudfront-ips 'map(.[]) | sort | .[]'"
                   eval "./$run_cloudfront"
 
                   #   Privacy › Bing
-                  run_bing=".github/scripts/bl-json.sh blocklists/02_privacy_bing.ipset https://bing.com/toolbox/bingbot.json '.prefixes | .[] |.ipv4Prefix//empty,.ipv6Prefix//empty'"
+                  run_bing=".github/scripts/bl-json.sh blocklists/privacy/privacy_bing.ipset https://bing.com/toolbox/bingbot.json '.prefixes | .[] |.ipv4Prefix//empty,.ipv6Prefix//empty'"
                   eval "./$run_bing"
                 
                   #   Privacy › Fastly
-                  run_fastly=".github/scripts/bl-json.sh blocklists/02_privacy_fastly.ipset https://api.fastly.com/public-ip-list 'map(.[]) | .[]'"
+                  run_fastly=".github/scripts/bl-json.sh blocklists/privacy/privacy_fastly.ipset https://api.fastly.com/public-ip-list 'map(.[]) | .[]'"
                   eval "./$run_fastly"
 
                   #   Privacy › Amazon AWS
-                  run_amz_aws=".github/scripts/bl-json.sh blocklists/02_privacy_amazon_aws.ipset https://ip-ranges.amazonaws.com/ip-ranges.json '.prefixes[] | select(.service==\"AMAZON\") | .ip_prefix'"
+                  run_amz_aws=".github/scripts/bl-json.sh blocklists/privacy/privacy_amazon_aws.ipset https://ip-ranges.amazonaws.com/ip-ranges.json '.prefixes[] | select(.service==\"AMAZON\") | .ip_prefix'"
                   eval "./$run_amz_aws"
 
                   #   Privacy › Amazon EC2
-                  run_amz_ec2=".github/scripts/bl-json.sh blocklists/02_privacy_amazon_ec2.ipset https://ip-ranges.amazonaws.com/ip-ranges.json '.prefixes[] | select(.service==\"EC2\") | .ip_prefix'"
+                  run_amz_ec2=".github/scripts/bl-json.sh blocklists/privacy/privacy_amazon_ec2.ipset https://ip-ranges.amazonaws.com/ip-ranges.json '.prefixes[] | select(.service==\"EC2\") | .ip_prefix'"
                   eval "./$run_amz_ec2"
 
                   #   Privacy › Facebook
-                  whois -h whois.radb.net -- '-i origin AS32934' | grep ^route | awk '{gsub("(route:|route6:)","");print}' | awk '{gsub(/ /,""); print}' | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/02_privacy_facebook.ipset
+                  whois -h whois.radb.net -- '-i origin AS32934' | grep ^route | awk '{gsub("(route:|route6:)","");print}' | awk '{gsub(/ /,""); print}' | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/privacy/privacy_facebook.ipset
 
                   #   Privacy › Ahrefs
-                  curl -sSL -A "${{ env.USERAGENT }}" https://api.ahrefs.com/v3/public/crawler-ips | jq -r '.ips[].ip_address | select( . != null )' | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/02_privacy_ahrefs.ipset
+                  curl -sSL -A "${{ env.USERAGENT }}" https://api.ahrefs.com/v3/public/crawler-ips | jq -r '.ips[].ip_address | select( . != null )' | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/privacy/privacy_ahrefs.ipset
 
                   #   Privacy › DuckDuckGo
-                  curl -sSL -A "${{ env.USERAGENT }}" https://raw.githubusercontent.com/duckduckgo/duckduckgo-help-pages/master/_docs/results/duckduckbot.md | grep "^\- " | awk '{gsub("-",""); print}' | awk '{gsub(/ /,""); print}' | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/02_privacy_duckduckgo.ipset
+                  curl -sSL -A "${{ env.USERAGENT }}" https://raw.githubusercontent.com/duckduckgo/duckduckgo-help-pages/master/_docs/results/duckduckbot.md | grep "^\- " | awk '{gsub("-",""); print}' | awk '{gsub(/ /,""); print}' | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/privacy/privacy_duckduckgo.ipset
 
                   #   Privacy › Telegram
-                  curl -sSL -A "${{ env.USERAGENT }}" https://core.telegram.org/resources/cidr.txt | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/02_privacy_telegram.ipset
+                  curl -sSL -A "${{ env.USERAGENT }}" https://core.telegram.org/resources/cidr.txt | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/privacy/privacy_telegram.ipset
 
                   #   Privacy › Uptime Robot
-                  curl -sSL -A "${{ env.USERAGENT }}" https://uptimerobot.com/inc/files/ips/IPv4andIPv6.txt | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/02_privacy_uptimerobot.ipset
+                  curl -sSL -A "${{ env.USERAGENT }}" https://uptimerobot.com/inc/files/ips/IPv4andIPv6.txt | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/privacy/privacy_uptimerobot.ipset
 
                   #   Privacy › Pingdom
                   PINGDOM_IPv4=$(curl -sSL -A "${{ env.USERAGENT }}" https://my.pingdom.com/probes/ipv4)
                   PINGDOM_IPv6=$(curl -sSL -A "${{ env.USERAGENT }}" https://my.pingdom.com/probes/ipv6)
                   PINGDOM_LIST="${PINGDOM_IPv4} ${PINGDOM_IPv6}"
-                  echo "$PINGDOM_LIST" | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/02_privacy_pingdom.ipset
+                  echo "$PINGDOM_LIST" | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/privacy/privacy_pingdom.ipset
 
                   #   Privacy › Stripe › API
-                  curl -sSL -A "${{ env.USERAGENT }}" https://stripe.com/files/ips/ips_api.txt | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/02_privacy_stripe_api.ipset
+                  curl -sSL -A "${{ env.USERAGENT }}" https://stripe.com/files/ips/ips_api.txt | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/privacy/privacy_stripe_api.ipset
 
                   #   Privacy › Stripe › Webhooks
-                  curl -sSL -A "${{ env.USERAGENT }}" https://stripe.com/files/ips/ips_webhooks.txt | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/02_privacy_stripe_webhooks.ipset
+                  curl -sSL -A "${{ env.USERAGENT }}" https://stripe.com/files/ips/ips_webhooks.txt | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/privacy/privacy_stripe_webhooks.ipset
 
                   #   Privacy › Stripe › Armada Gator
-                  curl -sSL -A "${{ env.USERAGENT }}" https://stripe.com/files/ips/ips_armada_gator.txt | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/02_privacy_stripe_armada_gator.ipset
+                  curl -sSL -A "${{ env.USERAGENT }}" https://stripe.com/files/ips/ips_armada_gator.txt | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/privacy/privacy_stripe_armada_gator.ipset
 
                   #   Privacy › RSS API
-                  curl -sSL -A "${{ env.USERAGENT }}" https://rssapi.net/ips.txt | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/02_privacy_rssapi.ipset
+                  curl -sSL -A "${{ env.USERAGENT }}" https://rssapi.net/ips.txt | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/privacy/privacy_rssapi.ipset
 
                   #   Privacy › WebPageTest
-                  curl -sSL -A "${{ env.USERAGENT }}" https://www.webpagetest.org/addresses.php?f=json | jq -r '.data[].addresses[] | select( . != null )' | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/02_privacy_webpagetest.ipset
+                  curl -sSL -A "${{ env.USERAGENT }}" https://www.webpagetest.org/addresses.php?f=json | jq -r '.data[].addresses[] | select( . != null )' | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/privacy/privacy_webpagetest.ipset
 
                   #   Privacy > Bunny CDN
                   BUNNYCDN_IPv4=$(curl -sSL -A "${{ env.USERAGENT }}" https://api.bunny.net/system/edgeserverlist/plain)
                   BUNNYCDN_IPv6=$(curl -sSL -A "${{ env.USERAGENT }}" https://api.bunny.net/system/edgeserverlist/ipv6 | jq -r '.[] | select( . != null )')
                   BUNNYCDN_LIST="${BUNNYCDN_IPv4} ${BUNNYCDN_IPv6}"
-                  echo "$BUNNYCDN_LIST" | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/02_privacy_bunnycdn.ipset
+                  echo "$BUNNYCDN_LIST" | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/privacy/privacy_bunnycdn.ipset
 
                   #   Privacy › Cloudflare CDN
                   CLOUDFLARE_IPv4=$(curl -sSL -A "${{ env.USERAGENT }}" https://www.cloudflare.com/ips-v4)
                   CLOUDFLARE_IPv6=$(curl -sSL -A "${{ env.USERAGENT }}" https://www.cloudflare.com/ips-v6)
                   CLOUDFLARE_LIST="${CLOUDFLARE_IPv4} ${CLOUDFLARE_IPv6}"
-                  echo "$CLOUDFLARE_LIST" | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/02_privacy_cloudflarecdn.ipset
+                  echo "$CLOUDFLARE_LIST" | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/privacy/privacy_cloudflarecdn.ipset
 
                   #   Privacy › AppleBot
-                  curl -sSL -A "${{ env.USERAGENT }}" https://search.developer.apple.com/applebot.json | jq -r '.prefixes | .[] |.ipv4Prefix//empty,.ipv6Prefix//empty' | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/02_privacy_applebot.ipset
+                  curl -sSL -A "${{ env.USERAGENT }}" https://search.developer.apple.com/applebot.json | jq -r '.prefixes | .[] |.ipv4Prefix//empty,.ipv6Prefix//empty' | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/privacy/privacy_applebot.ipset
 
                   # Privacy › Blizzard
-                  run_blizzard=".github/scripts/tool-range-iprange.sh blocklists/02_privacy_blizzard.ipset http://list.iblocklist.com/?list=ercbntshuthyykfkmhxc 'at&t'"
+                  run_blizzard=".github/scripts/tool-range-iprange.sh blocklists/privacy/privacy_blizzard.ipset http://list.iblocklist.com/?list=ercbntshuthyykfkmhxc 'at&t'"
                   eval "./$run_blizzard"
+
+                  # Privacy › Activision
+                  run_activision=".github/scripts/tool-range-iprange.sh blocklists/privacy/privacy_activision.ipset http://list.iblocklist.com/?list=gfnxlhxsijzrcuxwzebb"
+                  eval "./$run_activision"
+
+                  # Privacy › Electronic Arts & IGN
+                  run_ea_ign=".github/scripts/tool-range-iprange.sh blocklists/privacy/privacy_electronicarts_ign.ipset http://list.iblocklist.com/?list=ejqebpcdmffinaetsvxj"
+                  eval "./$run_ea_ign"
+
+                  # Privacy › Nintendo
+                  run_nintendo=".github/scripts/tool-range-iprange.sh blocklists/privacy/privacy_nintendo.ipset http://list.iblocklist.com/?list=pevkykuhgaegqyayzbnr"
+                  eval "./$run_nintendo"
+
+                  # Privacy › Pandora
+                  run_pandora=".github/scripts/tool-range-iprange.sh blocklists/privacy/privacy_pandora.ipset http://list.iblocklist.com/?list=aevzidimyvwybzkletsg"
+                  eval "./$run_pandora"
+
+                  # Privacy › Sony Entertainment
+                  run_sony=".github/scripts/tool-range-iprange.sh blocklists/privacy/privacy_sony.ipset http://list.iblocklist.com/?list=tukpvrvlubsputmkmiwg"
+                  eval "./$run_sony"
+
+                  # Privacy › Sony Entertainment
+                  run_sony=".github/scripts/tool-range-iprange.sh blocklists/privacy/privacy_sony.ipset http://list.iblocklist.com/?list=tukpvrvlubsputmkmiwg"
+                  eval "./$run_sony"
+
+                  # Privacy › Punkbuster
+                  run_punkbuster=".github/scripts/tool-range-iprange.sh blocklists/privacy/privacy_punkbuster.ipset http://list.iblocklist.com/?list=zvwwndvzulqcltsicwdg"
+                  eval "./$run_punkbuster"
+
+                  # Privacy › Riot Games
+                  run_riot_games=".github/scripts/tool-range-iprange.sh blocklists/privacy/privacy_riot_games.ipset http://list.iblocklist.com/?list=sdlvfabdjvrdttfjotcy"
+                  eval "./$run_riot_games"
+
+                  # Privacy › Pirate Bay
+                  run_piratebay=".github/scripts/tool-range-iprange.sh blocklists/privacy/privacy_piratebay.ipset http://list.iblocklist.com/?list=nzldzlpkgrcncdomnttb"
+                  eval "./$run_piratebay"
+
+                  # Privacy › Steam
+                  run_steam=".github/scripts/tool-range-iprange.sh blocklists/privacy/privacy_steam.ipset http://list.iblocklist.com/?list=cnxkgiklecdaihzukrud"
+                  eval "./$run_steam"
+
+                  # Privacy › Unisoft
+                  run_ubisoft=".github/scripts/tool-range-iprange.sh blocklists/privacy/privacy_ubisoft.ipset http://list.iblocklist.com/?list=etmcrglomupyxtaebzht"
+                  eval "./$run_ubisoft"
+
+                  # Privacy › Xfire
+                  run_xfire=".github/scripts/tool-range-iprange.sh blocklists/privacy/privacy_xfire.ipset http://list.iblocklist.com/?list=ppqqnyihmcrryraaqsjo"
+                  eval "./$run_xfire"
 
             # #
             #   Generate > Spam
@@ -290,7 +338,7 @@ jobs:
             - name: "🧱 Generate › Spam"
               id: task_blocklist_generate_spam
               run: |
-                  run_spamhaus=".github/scripts/bl-plain.sh blocklists/${{ vars.API_03_SPAM_SPAMHAUS_OUT }} ${{ secrets.API_03_SPAM_SPAMHAUS_URL }}"
+                  run_spamhaus=".github/scripts/bl-plain.sh blocklists/spam_spamhaus.ipset ${{ secrets.API_03_SPAM_SPAMHAUS_URL }}"
                   eval "./$run_spamhaus"
 
             # #
@@ -304,8 +352,59 @@ jobs:
               if: github.event_name == 'schedule' && github.event.schedule == '0 2 * * *'
               run: |
                   chmod +x ".github/scripts/bl-plain.sh"
-                  run_forums=".github/scripts/bl-plain.sh blocklists/${{ vars.API_03_SPAM_FORUMS_OUT }} ${{ secrets.API_03_SPAM_FORUMS_URL }}"
+                  run_forums=".github/scripts/bl-plain.sh blocklists/spam_forums.ipset ${{ secrets.API_03_SPAM_FORUMS_URL }}"
                   eval "./$run_forums"
+
+            # #
+            #   Generate > Spam
+            # #
+
+            - name: "🧱 Generate › ISP"
+              id: task_blocklist_generate_isp
+              run: |
+                  # ISP › AOL
+                  run_isp_aol=".github/scripts/bl-block.sh blocklists/isp/isp_aol.ipset isp/aol.ipset"
+                  eval "./$run_isp_aol"
+
+                  # ISP › ATT
+                  run_isp_att=".github/scripts/tool-range-iprange.sh blocklists/isp/isp_att.ipset http://list.iblocklist.com/?list=grbtkzijgrowvobvessf"
+                  eval "./$run_isp_att"
+
+                  # ISP › Cablevision
+                  run_isp_cablevision=".github/scripts/tool-range-iprange.sh blocklists/isp/isp_cablevision.ipset http://list.iblocklist.com/?list=dwwbsmzirrykdlvpqozb"
+                  eval "./$run_isp_cablevision"
+
+                  # ISP › Charter
+                  run_isp_charter=".github/scripts/tool-range-iprange.sh blocklists/isp/isp_charter.ipset http://list.iblocklist.com/?list=htnzojgossawhpkbulqw"
+                  eval "./$run_isp_charter"
+
+                  # ISP › Comcast
+                  run_isp_comcast=".github/scripts/tool-range-iprange.sh blocklists/isp/isp_comcast.ipset http://list.iblocklist.com/?list=rsgyxvuklicibautguia"
+                  eval "./$run_isp_comcast"
+
+                  # ISP › Embarq
+                  run_isp_embarq=".github/scripts/tool-range-iprange.sh blocklists/isp/isp_embarq.ipset http://list.iblocklist.com/?list=twdblifaysaqtypevvdp"
+                  eval "./$run_isp_embarq"
+
+                  # ISP › Qwest
+                  run_isp_qwest=".github/scripts/tool-range-iprange.sh blocklists/isp/isp_qwest.ipset http://list.iblocklist.com/?list=jezlifrpefawuoawnfez"
+                  eval "./$run_isp_qwest"
+
+                  # ISP › Sprint
+                  run_isp_sprint=".github/scripts/tool-range-iprange.sh blocklists/isp/isp_sprint.ipset http://list.iblocklist.com/?list=hngtqrhhuadlceqxbrob"
+                  eval "./$run_isp_sprint"
+
+                  # ISP › Suddenlink / Optiumum
+                  run_isp_suddenlink_optimum=".github/scripts/bl-json.sh blocklists/isp/isp_suddenlink_optimum.ipset https://ip.guide/AS19108 '.routes | .v4//empty,.v6//empty | .[]'"
+                  eval "./$run_isp_suddenlink_optimum"
+
+                  # ISP › Time Warner Cable
+                  run_isp_time_warner_cable=".github/scripts/tool-range-iprange.sh blocklists/isp/isp_time_warner_cable.ipset http://list.iblocklist.com/?list=aqtsnttnqmcucwrjmohd"
+                  eval "./$run_isp_time_warner_cable"
+
+                  # ISP › Verizon
+                  run_isp_verizon=".github/scripts/tool-range-iprange.sh blocklists/isp/isp_verizon.ipset http://list.iblocklist.com/?list=cdmdbprvldivlqsaqjol"
+                  eval "./$run_isp_verizon"
 
             # #
             #   Generate > Geographical > Geolite2

@@ -8,8 +8,12 @@
 #                       copies local ipsets from .github/blocks/${ARG_BLOCKS_CAT}/*.ipset
 #   
 #   @terminal           .github/scripts/bl-block.sh \
-#                           blocklists/02_privacy_general.ipset \
+#                           blocklists/privacy/privacy_general.ipset \
 #                           privacy
+#
+#   @terminal           .github/scripts/bl-block.sh \
+#                           blocklists/isp/isp_aol.ipset \
+#                           isp/aol.ipset
 #
 #   @workflow           # Privacy › General
 #                       chmod +x ".github/scripts/bl-block.sh"
@@ -201,8 +205,27 @@ fi
 # #
 
 if [ -d .github/blocks/ ]; then
-	for APP_FILE_TEMP in .github/blocks/${ARG_BLOCKS_CAT}/*.ipset; do
-		echo -e "  📒 Reading static block ${ORANGE2}${APP_FILE_TEMP}${RESET}"
+
+    # #
+    #   Determines if the category provided is either a folder, or a file ending with `.ipset`.
+    #
+    #   if a folder is provided, all files in the folder will be looped and loaded.
+    #   if a file is provided, only that one file will be loaded.
+    # #
+
+    APP_BLOCK_TARGET=".github/blocks/${ARG_BLOCKS_CAT}/*.ipset"
+    if [[ "$ARG_BLOCKS_CAT" == *ipset ]]; then
+        APP_BLOCK_TARGET=".github/blocks/${ARG_BLOCKS_CAT}"
+    fi
+
+    # #
+    #   Block folder specified. Each file in folder will be loaded. does not have .ipset at the end
+    #
+    #   @usage      .github/scripts/bl-block.sh blocklists/isp/isp_aol.ipset isp/aol
+    # #
+
+    for APP_FILE_TEMP in ${APP_BLOCK_TARGET}; do
+        echo -e "  📒 Reading static block ${ORANGE2}${APP_FILE_TEMP}${RESET}"
 
         # #
         #   calculate how many IPs are in a subnet
@@ -273,7 +296,7 @@ if [ -d .github/blocks/ ]; then
 
         echo -e "  ➕ Added ${FUCHSIA2}${BLOCKS_COUNT_TOTAL_IP} IPs${RESET} and ${FUCHSIA2}${BLOCKS_COUNT_TOTAL_SUBNET} Subnets${RESET} to ${BLUE2}${APP_FILE_PERM}${RESET}"
         echo -e
-	done
+    done
 fi
 
 # #
