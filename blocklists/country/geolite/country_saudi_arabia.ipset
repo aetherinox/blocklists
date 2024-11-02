@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_saudi_arabia.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_saudi_arabia.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_saudi_arabia.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_saudi_arabia_ipset
 #   @uuid           e00c2b4b-7f02-331c-b7b5-4e33b95fd20f
-#   @updated        Fri 01 Nov 2024 02:40:28 AM UTC
-#   @entries        11,030,240 ips
-#                   1,786 subnets
-#                   1,786 lines
+#   @updated        Sat 02 Nov 2024 02:36:32 AM UTC
+#   @entries        11,031,009 ips
+#                   1,788 subnets
+#                   1,788 lines
 #   @country        Saudi Arabia (SA)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -653,6 +653,7 @@
 152.65.209.0/24
 153.94.64.0/18
 154.49.88.0/21
+154.56.108.0/22
 154.84.155.0/24
 154.85.83.0/24
 154.90.51.0/24
@@ -664,7 +665,7 @@
 154.95.86.0/23
 154.203.157.0/24
 154.203.185.0/24
-154.205.134.0/24
+154.205.134.110/32
 155.102.21.0/24
 155.138.64.0/18
 155.190.11.0/24
@@ -1658,6 +1659,7 @@
 2a07:1f80::/29
 2a07:4540::/29
 2a07:7080::/29
+2a07:d887:bf00::/40
 2a09:2640::/32
 2a09:54c1:90::/48
 2a09:54c1:100::/48

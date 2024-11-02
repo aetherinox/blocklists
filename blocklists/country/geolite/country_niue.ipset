@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_niue.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_niue.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_niue.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_niue_ipset
 #   @uuid           cf7fa765-afd4-319c-b9f8-91f32a47ff3c
-#   @updated        Fri 01 Nov 2024 02:40:21 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:25 AM UTC
 #   @entries        2,178 ips
-#                   95 subnets
-#                   95 lines
+#                   96 subnets
+#                   96 lines
 #   @country        Niue (NU)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -97,6 +97,7 @@
 2a04:4e41:407a:9000::/52
 2a04:4e41:408a:9000::/52
 2a05:dfc1:5ab2::/48
+2a07:d887:a800::/40
 2a09:bac1:5700::/64
 2a09:bac1:5720::/64
 2a09:bac1:5740::/64

@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_mauritius.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_mauritius.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_mauritius.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_mauritius_ipset
 #   @uuid           d024a351-4cca-3744-b572-4f4736acfe81
-#   @updated        Fri 01 Nov 2024 02:40:16 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:20 AM UTC
 #   @entries        2,798,864 ips
-#                   692 subnets
-#                   692 lines
+#                   693 subnets
+#                   693 lines
 #   @country        Mauritius (MU)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -593,6 +593,7 @@
 2a04:4e41:4079:9000::/52
 2a04:4e41:4089:9000::/52
 2a05:dfc1:5aa2::/48
+2a07:d887:9900::/40
 2a09:bac1:4f00::/64
 2a09:bac1:4f00:20::/64
 2a09:bac1:4f20::/64

@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_madagascar.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_madagascar.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_madagascar.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_madagascar_ipset
 #   @uuid           af763214-f92b-31a3-9b06-8d8de82dc00e
-#   @updated        Fri 01 Nov 2024 02:40:13 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:17 AM UTC
 #   @entries        587,229 ips
-#                   203 subnets
-#                   203 lines
+#                   204 subnets
+#                   204 lines
 #   @country        Madagascar (MG)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -188,6 +188,7 @@
 2a04:4e41:4078:d000::/52
 2a04:4e41:4088:d000::/52
 2a05:dfc1:5a98::/48
+2a07:d887:8d00::/40
 2a09:54c1:147::/64
 2a09:bac1:4900::/64
 2a09:bac1:4920::/64

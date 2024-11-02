@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_panama.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_panama.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_panama.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_panama_ipset
 #   @uuid           9225892a-530e-3f73-b322-b26fe8cdeb68
-#   @updated        Fri 01 Nov 2024 02:40:22 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:26 AM UTC
 #   @entries        1,769,267 ips
-#                   803 subnets
-#                   803 lines
+#                   804 subnets
+#                   804 lines
 #   @country        Panama (PA)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -702,6 +702,7 @@
 2a05:4140:221::/48
 2a05:dfc1:5ab5::/48
 2a06:bbc0::/29
+2a07:d887:ab00::/40
 2a09:4ac0::/29
 2a09:54c1:146::/48
 2a09:a700::/31

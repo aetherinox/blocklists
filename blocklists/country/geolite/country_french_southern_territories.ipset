@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_french_southern_territories.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_french_southern_territories.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_french_southern_territories.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_french_southern_territories_ipset
 #   @uuid           e91632fc-680a-3372-9d4b-fa4df3b3b847
-#   @updated        Fri 01 Nov 2024 02:40:33 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:38 AM UTC
 #   @entries        41 ips
-#                   39 subnets
-#                   39 lines
+#                   40 subnets
+#                   40 lines
 #   @country        French Southern Territories (TF)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -52,6 +52,7 @@
 2a04:4e41:407d:7000::/52
 2a04:4e41:408d:7000::/52
 2a05:dfc1:5ae1::/48
+2a07:d887:d600::/40
 2a09:bac4:6b0::/45
 2a09:bac4:16b0::/45
 2a0c:3b80:5446::/48

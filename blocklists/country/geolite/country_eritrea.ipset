@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_eritrea.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_eritrea.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_eritrea.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_eritrea_ipset
 #   @uuid           02460c55-934a-3b46-bf18-26c0c2aab948
-#   @updated        Fri 01 Nov 2024 02:39:39 AM UTC
+#   @updated        Sat 02 Nov 2024 02:35:53 AM UTC
 #   @entries        7,570 ips
-#                   126 subnets
-#                   126 lines
+#                   127 subnets
+#                   127 lines
 #   @country        Eritrea (ER)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -129,6 +129,7 @@
 2a04:4e41:4074:2000::/52
 2a04:4e41:4084:2000::/52
 2a05:dfc1:5a4e::/48
+2a07:d887:4200::/40
 2a09:bac1:2300::/64
 2a09:bac1:2320::/64
 2a09:bac1:2340::/64

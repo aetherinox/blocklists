@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_zimbabwe.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_zimbabwe.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_zimbabwe.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_zimbabwe_ipset
 #   @uuid           bb1063c0-e007-3fd7-bf19-b0bb6b190bd0
-#   @updated        Fri 01 Nov 2024 02:40:46 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:51 AM UTC
 #   @entries        240,418 ips
-#                   325 subnets
-#                   325 lines
+#                   326 subnets
+#                   326 lines
 #   @country        Zimbabwe (ZW)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -288,6 +288,7 @@
 2a04:4e41:407f:8000::/52
 2a04:4e41:408f:8000::/52
 2a05:dfc1:5a3b::/48
+2a07:d887:f700::/40
 2a09:bac1:7e80::/64
 2a09:bac1:7e80:7d0::/64
 2a09:bac1:7ea0::/64

@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_venezuela.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_venezuela.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_venezuela.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_venezuela_ipset
 #   @uuid           62d2b174-58b0-38d6-9496-7bfa471e73e6
-#   @updated        Fri 01 Nov 2024 02:40:43 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:49 AM UTC
 #   @entries        7,297,231 ips
-#                   1,229 subnets
-#                   1,229 lines
+#                   1,228 subnets
+#                   1,228 lines
 #   @country        Venezuela (VE)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -763,7 +763,6 @@
 2001:470:5:118::/64
 2001:470:5:126::/63
 2001:470:5:146::/64
-2001:470:5:14b::/64
 2001:470:5:162::/64
 2001:470:5:173::/64
 2001:470:5:18e::/64
@@ -842,7 +841,6 @@
 2001:470:d89b::/48
 2001:470:d89d::/48
 2001:470:d8a5::/48
-2001:470:d8b3::/48
 2001:470:d8be::/48
 2001:470:d8c4::/48
 2001:470:d8ca::/48
@@ -1132,6 +1130,7 @@
 2a05:dfc1:5af6::/48
 2a07:1c44:39f3:23::/64
 2a07:1c44:39f3:24::/64
+2a07:d887:ec00::/40
 2a09:54c1:102::/48
 2a09:bac1:7900::/64
 2a09:bac1:7900:8::/64

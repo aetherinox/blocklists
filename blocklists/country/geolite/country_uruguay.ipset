@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_uruguay.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_uruguay.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_uruguay.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_uruguay_ipset
 #   @uuid           c4d5d814-f1eb-380f-acbe-c98f4030f44f
-#   @updated        Fri 01 Nov 2024 02:40:42 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:48 AM UTC
 #   @entries        281,474,979,170,433 ips
-#                   380 subnets
-#                   380 lines
+#                   381 subnets
+#                   381 lines
 #   @country        Uruguay (UY)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -354,6 +354,7 @@
 2a04:4e41:407e:9000::/52
 2a04:4e41:408e:9000::/52
 2a05:dfc1:5af2::/48
+2a07:d887:e800::/40
 2a09:54c1:121::/48
 2a09:bac1:7700::/64
 2a09:bac1:7700:8::/64

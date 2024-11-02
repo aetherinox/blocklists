@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_honduras.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_honduras.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_honduras.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_honduras_ipset
 #   @uuid           0514a696-77aa-30fa-b5dc-6fce585fb215
-#   @updated        Fri 01 Nov 2024 02:40:00 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:04 AM UTC
 #   @entries        491,563 ips
-#                   572 subnets
-#                   572 lines
+#                   573 subnets
+#                   573 lines
 #   @country        Honduras (HN)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -546,6 +546,7 @@
 2a04:4e41:4076::/52
 2a04:4e41:4086::/52
 2a05:dfc1:5a6c::/48
+2a07:d887:6000::/40
 2a09:bac0:1000:627::/64
 2a09:bac1:3280::/64
 2a09:bac1:3280:8::/64

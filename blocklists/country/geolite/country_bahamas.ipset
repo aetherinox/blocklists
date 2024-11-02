@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_bahamas.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_bahamas.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_bahamas.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_bahamas_ipset
 #   @uuid           81e3248a-a3ac-3059-9c28-6328a845f663
-#   @updated        Fri 01 Nov 2024 02:39:22 AM UTC
+#   @updated        Sat 02 Nov 2024 02:35:41 AM UTC
 #   @entries        158,927 ips
-#                   272 subnets
-#                   272 lines
+#                   273 subnets
+#                   273 lines
 #   @country        Bahamas (BS)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -254,6 +254,7 @@
 2a04:4e41:4071:f000::/52
 2a04:4e41:4081:f000::/52
 2a05:dfc1:5a29::/48
+2a07:d887:1f00::/40
 2a09:54c1:173::/48
 2a09:bac1:1180::/64
 2a09:bac1:11a0::/64

@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_aruba.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_aruba.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_aruba.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_aruba_ipset
 #   @uuid           20bfc7f9-a6c5-369b-afe6-e7a089262bd0
-#   @updated        Fri 01 Nov 2024 02:39:17 AM UTC
+#   @updated        Sat 02 Nov 2024 02:35:36 AM UTC
 #   @entries        113,291 ips
-#                   188 subnets
-#                   188 lines
+#                   189 subnets
+#                   189 lines
 #   @country        Aruba (AW)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -182,6 +182,7 @@
 2a04:4e41:4070:d000::/52
 2a04:4e41:4080:d000::/52
 2a05:dfc1:5a18::/48
+2a07:d887:d00::/40
 2a09:54c1:196::/48
 2a09:bac1:880::/64
 2a09:bac1:8a0::/64

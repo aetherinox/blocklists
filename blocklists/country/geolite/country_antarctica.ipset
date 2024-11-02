@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_antarctica.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_antarctica.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_antarctica.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_antarctica_ipset
 #   @uuid           04dc0aca-cb31-383c-ada7-31ce31bdd2eb
-#   @updated        Fri 01 Nov 2024 02:39:15 AM UTC
-#   @entries        2,411 ips
-#                   202 subnets
-#                   202 lines
+#   @updated        Sat 02 Nov 2024 02:35:34 AM UTC
+#   @entries        2,412 ips
+#                   204 subnets
+#                   204 lines
 #   @country        Antarctica (AQ)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -20,6 +20,7 @@
 #       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
 # #
 
+63.141.240.246/32
 79.110.169.137/32
 85.215.235.150/32
 103.152.126.0/23
@@ -174,6 +175,7 @@
 2a06:a005:5a7::/48
 2a06:a005:2980::/44
 2a06:a005:2d10::/47
+2a07:d887:800::/40
 2a09:bac1:600::/64
 2a09:bac1:620::/64
 2a09:bac1:640::/64

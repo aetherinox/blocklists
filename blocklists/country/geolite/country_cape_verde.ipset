@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_cape_verde.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_cape_verde.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_cape_verde.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_cape_verde_ipset
 #   @uuid           6aa37f49-5942-30c1-971e-afa448efc6ba
-#   @updated        Fri 01 Nov 2024 02:39:29 AM UTC
+#   @updated        Sat 02 Nov 2024 02:35:47 AM UTC
 #   @entries        44,974 ips
-#                   162 subnets
-#                   162 lines
+#                   163 subnets
+#                   163 lines
 #   @country        Cape Verde (CV)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -161,6 +161,7 @@
 2a04:4e41:4073:3000::/52
 2a04:4e41:4083:3000::/52
 2a05:dfc1:5a3e::/48
+2a07:d887:3300::/40
 2a09:bac1:1b80::/64
 2a09:bac1:1ba0::/64
 2a09:bac1:1bc0::/64

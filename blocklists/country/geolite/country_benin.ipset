@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_benin.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_benin.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_benin.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_benin_ipset
 #   @uuid           1494cf8c-6b18-3735-99b9-543d1df0d77a
-#   @updated        Fri 01 Nov 2024 02:39:20 AM UTC
-#   @entries        155,928 ips
-#                   183 subnets
-#                   183 lines
+#   @updated        Sat 02 Nov 2024 02:35:39 AM UTC
+#   @entries        156,184 ips
+#                   185 subnets
+#                   185 lines
 #   @country        Benin (BJ)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -44,6 +44,7 @@
 81.91.224.0/20
 84.254.141.0/24
 85.255.21.208/28
+88.202.1.0/24
 88.202.60.0/24
 102.38.128.0/19
 102.207.112.0/22
@@ -168,6 +169,7 @@
 2a04:4e41:4071:8000::/52
 2a04:4e41:4081:8000::/52
 2a05:dfc1:5a23::/48
+2a07:d887:1800::/40
 2a09:bac1:e00::/64
 2a09:bac1:e20::/64
 2a09:bac1:e40::/64

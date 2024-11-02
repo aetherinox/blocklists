@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_hungary.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_hungary.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_hungary.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_hungary_ipset
 #   @uuid           951217fc-b9dc-3eb3-bb79-77b92b18bf52
-#   @updated        Fri 01 Nov 2024 02:40:00 AM UTC
-#   @entries        5,899,751 ips
-#                   2,752 subnets
-#                   2,752 lines
+#   @updated        Sat 02 Nov 2024 02:36:04 AM UTC
+#   @entries        5,899,503 ips
+#                   2,756 subnets
+#                   2,756 lines
 #   @country        Hungary (HU)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -250,7 +250,6 @@
 77.111.88.0/21
 77.111.112.0/22
 77.111.117.0/24
-77.111.118.0/24
 77.111.122.0/23
 77.111.124.0/22
 77.111.128.0/19
@@ -1590,6 +1589,7 @@
 213.222.128.0/18
 213.251.1.16/29
 213.251.27.16/28
+213.251.27.248/29
 213.253.192.0/18
 217.13.32.0/20
 217.13.96.0/23
@@ -1951,6 +1951,7 @@
 2001:470:2087::/48
 2001:470:2088::/47
 2001:470:2092::/48
+2001:470:209d::/48
 2001:470:209f::/48
 2001:470:20ab::/48
 2001:470:20ac::/48
@@ -1968,10 +1969,12 @@
 2001:470:20e4::/48
 2001:470:20e9::/48
 2001:470:20ed::/48
-2001:470:20fc::/46
+2001:470:20fc::/48
+2001:470:20fe::/47
 2001:470:2100::/48
 2001:470:2108::/48
 2001:470:210c::/48
+2001:470:2111::/48
 2001:470:2115::/48
 2001:470:211d::/48
 2001:470:211e::/48
@@ -2516,6 +2519,7 @@
 2a07:c280::/29
 2a07:c7c0::/29
 2a07:cb00::/32
+2a07:d887:6300::/40
 2a07:ed80::/32
 2a09:740::/32
 2a09:67c0::/29

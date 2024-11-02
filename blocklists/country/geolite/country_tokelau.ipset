@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_tokelau.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_tokelau.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_tokelau.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_tokelau_ipset
 #   @uuid           2aad9207-a8a0-3264-a45b-9764b2798746
-#   @updated        Fri 01 Nov 2024 02:40:34 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:38 AM UTC
 #   @entries        3,212 ips
-#                   100 subnets
-#                   100 lines
+#                   101 subnets
+#                   101 lines
 #   @country        Tokelau (TK)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -102,6 +102,7 @@
 2a04:4e41:408d:b000::/52
 2a05:dfc1:5ae5::/48
 2a05:dfc1:8c24::/48
+2a07:d887:da00::/40
 2a09:bac1:7000::/64
 2a09:bac1:7020::/64
 2a09:bac1:7040::/64

@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_portugal.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_portugal.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_portugal.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_portugal_ipset
 #   @uuid           2af1633a-f3e8-331e-84af-72a92e3a5552
-#   @updated        Fri 01 Nov 2024 02:40:25 AM UTC
-#   @entries        6,871,450 ips
-#                   2,366 subnets
-#                   2,366 lines
+#   @updated        Sat 02 Nov 2024 02:36:29 AM UTC
+#   @entries        6,871,452 ips
+#                   2,369 subnets
+#                   2,369 lines
 #   @country        Portugal (PT)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -1642,6 +1642,7 @@
 213.208.202.220/30
 213.208.202.224/29
 213.208.202.240/29
+213.208.202.254/31
 213.228.128.0/18
 213.229.191.0/24
 213.242.71.116/30
@@ -1779,6 +1780,7 @@
 2001:470:1f21:2b7::/64
 2001:470:1f21:2bf::/64
 2001:470:1f21:2c2::/64
+2001:470:1f21:2c6::/64
 2001:470:1f21:3a8::/64
 2001:470:1f21:3f9::/64
 2001:470:1f21:413::/64
@@ -1880,7 +1882,7 @@
 2600:70ff:f0b4::/48
 2600:70ff:f0cd::/48
 2600:70ff:f0cf::/48
-2600:70ff:f0da::/48
+2600:70ff:f0da::/47
 2600:70ff:f0dc::/48
 2600:70ff:f0e2::/48
 2600:70ff:f154::/48
@@ -2146,6 +2148,7 @@
 2a06:e640::/29
 2a07:1c44:7101::/48
 2a07:4f40::/29
+2a07:d887:b600::/40
 2a09:1500:5800::/40
 2a09:2840::/29
 2a09:54c1:140::/48

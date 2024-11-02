@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_saint_vincent_grenadines.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_saint_vincent_grenadines.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_saint_vincent_grenadines.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_saint_vincent_grenadines_ipset
 #   @uuid           8eaf2405-bc9a-3054-8831-87718a25262b
-#   @updated        Fri 01 Nov 2024 02:40:43 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:48 AM UTC
 #   @entries        27,845 ips
-#                   160 subnets
-#                   160 lines
+#                   161 subnets
+#                   161 lines
 #   @country        Saint Vincent Grenadines (VC)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -164,6 +164,7 @@
 2a04:4e41:407e:c000::/52
 2a04:4e41:408e:c000::/52
 2a05:dfc1:5af5::/48
+2a07:d887:eb00::/40
 2a09:bac1:7880::/64
 2a09:bac1:78a0::/64
 2a09:bac1:78c0::/64

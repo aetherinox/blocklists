@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_philippines.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_philippines.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_philippines.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_philippines_ipset
 #   @uuid           d0ff69cc-a4d8-3afd-974c-904ff5140b09
-#   @updated        Fri 01 Nov 2024 02:40:23 AM UTC
-#   @entries        6,515,347 ips
-#                   2,838 subnets
-#                   2,838 lines
+#   @updated        Sat 02 Nov 2024 02:36:27 AM UTC
+#   @entries        6,515,091 ips
+#                   2,840 subnets
+#                   2,840 lines
 #   @country        Philippines (PH)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -130,7 +130,6 @@
 43.224.188.0/22
 43.226.4.0/22
 43.230.109.0/24
-43.230.182.128/30
 43.231.228.0/22
 43.243.124.0/22
 43.245.221.0/32
@@ -278,7 +277,9 @@
 61.245.120.0/22
 62.3.50.6/32
 62.3.50.82/32
-62.3.50.124/32
+62.3.50.121/32
+62.3.50.122/31
+62.3.50.124/31
 62.3.50.204/30
 63.106.1.0/24
 63.218.123.48/28
@@ -1486,7 +1487,6 @@
 172.225.59.96/27
 172.225.77.96/27
 172.226.45.0/26
-173.82.15.0/24
 173.223.136.0/22
 173.239.196.224/28
 175.41.0.0/24
@@ -1991,6 +1991,7 @@
 2001:470:1f1f:60::/63
 2001:470:1f1f:83::/64
 2001:470:1f23:244::/64
+2001:470:1f2d:4b::/64
 2001:470:1f2d:1fe::/64
 2001:470:1f2f:7d::/64
 2001:470:280a::/48
@@ -2706,6 +2707,7 @@
 2a05:dfc1:5efb:511::/64
 2a06:a005:b6a::/48
 2a06:de00:60::/44
+2a07:d887:af00::/40
 2a09:54c1:136::/48
 2a09:bac0:68::/48
 2a09:bac0:77::/48

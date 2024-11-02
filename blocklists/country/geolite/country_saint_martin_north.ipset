@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_saint_martin_north.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_saint_martin_north.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_saint_martin_north.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_saint_martin_north_ipset
 #   @uuid           9b42ad71-b3cb-329d-a5e3-6a061e4d44f1
-#   @updated        Fri 01 Nov 2024 02:40:13 AM UTC
-#   @entries        15,530 ips
-#                   126 subnets
-#                   126 lines
+#   @updated        Sat 02 Nov 2024 02:36:17 AM UTC
+#   @entries        15,529 ips
+#                   134 subnets
+#                   134 lines
 #   @country        Saint Martin (North) (MF)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -20,7 +20,14 @@
 #       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
 # #
 
-5.102.77.0/24
+5.102.77.0/26
+5.102.77.64/27
+5.102.77.97/32
+5.102.77.98/31
+5.102.77.100/30
+5.102.77.104/29
+5.102.77.112/28
+5.102.77.128/25
 23.138.120.0/24
 45.15.196.0/22
 45.62.191.208/28
@@ -132,6 +139,7 @@
 2a04:4e41:4078:c000::/52
 2a04:4e41:4088:c000::/52
 2a05:dfc1:5a97::/48
+2a07:d887:8c00::/40
 2a09:bac1:4880:8::/64
 2a09:bac1:48a0:8::/64
 2a09:bac1:48c0:8::/64

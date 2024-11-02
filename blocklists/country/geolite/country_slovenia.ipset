@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_slovenia.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_slovenia.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_slovenia.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_slovenia_ipset
 #   @uuid           849ad83a-3ae5-3537-9f1d-0e94d92529f5
-#   @updated        Fri 01 Nov 2024 02:40:30 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:34 AM UTC
 #   @entries        2,618,755 ips
-#                   1,357 subnets
-#                   1,357 lines
+#                   1,358 subnets
+#                   1,358 lines
 #   @country        Slovenia (SI)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -1308,6 +1308,7 @@
 2a06:f940::/29
 2a07:22c1:38::/48
 2a07:8b80::/30
+2a07:d887:c600::/40
 2a09:29c0::/29
 2a09:37c0::/29
 2a09:54c1:180::/48

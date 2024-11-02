@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_liechtenstein.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_liechtenstein.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_liechtenstein.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_liechtenstein_ipset
 #   @uuid           db8a7760-9c01-3fae-84a4-35800842bd28
-#   @updated        Fri 01 Nov 2024 02:40:09 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:13 AM UTC
 #   @entries        116,159 ips
-#                   782 subnets
-#                   782 lines
+#                   783 subnets
+#                   783 lines
 #   @country        Liechtenstein (LI)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -430,6 +430,7 @@
 2a05:dfc1:5a8b::/48
 2a06:1940::/29
 2a06:8187:fd99::/48
+2a07:d887:8000::/40
 2a09:bac1:4280::/64
 2a09:bac1:42a0::/64
 2a09:bac1:42c0::/64

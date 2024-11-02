@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_suriname.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_suriname.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_suriname.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_suriname_ipset
 #   @uuid           d3c9b19f-4772-3509-96a8-f319d723e8a2
-#   @updated        Fri 01 Nov 2024 02:40:31 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:36 AM UTC
 #   @entries        86,190 ips
-#                   137 subnets
-#                   137 lines
+#                   138 subnets
+#                   138 lines
 #   @country        Suriname (SR)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -129,6 +129,7 @@
 2a04:4e41:407c:e000::/52
 2a04:4e41:408c:e000::/52
 2a05:dfc1:5ad7::/48
+2a07:d887:cd00::/40
 2a09:bac1:6980::/64
 2a09:bac1:6980:198::/64
 2a09:bac1:69a0::/64

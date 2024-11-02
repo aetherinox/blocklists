@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_macao.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_macao.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_macao.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_macao_ipset
 #   @uuid           eb52941b-d434-3ee3-b9db-2d56f50be3b5
-#   @updated        Fri 01 Nov 2024 02:40:15 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:18 AM UTC
 #   @entries        377,556 ips
-#                   240 subnets
-#                   240 lines
+#                   241 subnets
+#                   241 lines
 #   @country        Macao (MO)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -221,6 +221,7 @@
 2a06:9f81:5402::/48
 2a06:9f81:6130::/48
 2a06:a005:157c::/46
+2a07:d887:9300::/40
 2a09:bac1:4c00::/64
 2a09:bac1:4c20::/64
 2a09:bac1:4c40::/64

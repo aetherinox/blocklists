@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_macedonia_republic.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_macedonia_republic.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_macedonia_republic.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_macedonia_republic_ipset
 #   @uuid           fbeeabfd-60e1-301e-a1f2-fb31f8ffe56e
-#   @updated        Fri 01 Nov 2024 02:40:14 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:17 AM UTC
 #   @entries        708,991 ips
-#                   421 subnets
-#                   421 lines
+#                   422 subnets
+#                   422 lines
 #   @country        Macedonia Republic (MK)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -390,6 +390,7 @@
 2a05:a100::/29
 2a05:d800::/29
 2a05:dfc1:5a9a::/48
+2a07:d887:8f00::/40
 2a07:d8c0::/32
 2a09:bac1:4a00::/64
 2a09:bac1:4a20::/64

@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_northern_mariana_islands.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_northern_mariana_islands.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_northern_mariana_islands.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_northern_mariana_islands_ipset
 #   @uuid           dc6bbdea-860d-340b-b696-2be1aed70dff
-#   @updated        Fri 01 Nov 2024 02:40:15 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:19 AM UTC
 #   @entries        38,563 ips
-#                   98 subnets
-#                   98 lines
+#                   99 subnets
+#                   99 lines
 #   @country        Northern Mariana Islands (MP)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -92,6 +92,7 @@
 2a04:4e41:4079:4000::/52
 2a04:4e41:4089:4000::/52
 2a05:dfc1:5a9d::/48
+2a07:d887:9400::/40
 2a09:bac1:4c80::/64
 2a09:bac1:4ca0::/64
 2a09:bac1:4cc0::/64

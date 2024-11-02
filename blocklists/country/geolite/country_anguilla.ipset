@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_anguilla.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_anguilla.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_anguilla.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_anguilla_ipset
 #   @uuid           b2c38ecb-5141-3b86-b000-07d62973d7fd
-#   @updated        Fri 01 Nov 2024 02:39:14 AM UTC
+#   @updated        Sat 02 Nov 2024 02:35:33 AM UTC
 #   @entries        23,666 ips
-#                   174 subnets
-#                   174 lines
+#                   175 subnets
+#                   175 lines
 #   @country        Anguilla (AI)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -171,6 +171,7 @@
 2a04:4e41:4070:4000::/52
 2a04:4e41:4080:4000::/52
 2a05:dfc1:5a0f::/48
+2a07:d887:400::/40
 2a09:bac1:380::/64
 2a09:bac1:3a0::/64
 2a09:bac1:3c0::/64

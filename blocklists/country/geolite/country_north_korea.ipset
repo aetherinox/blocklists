@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - country_north_korea.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_north_korea.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_north_korea.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_north_korea_ipset
 #   @uuid           8e30e8dc-6c70-3f55-81c6-1ad746e8203e
-#   @updated        Fri 01 Nov 2024 02:40:07 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:11 AM UTC
 #   @entries        3,118 ips
 #                   110 subnets
 #                   110 lines
@@ -85,6 +85,7 @@
 2a06:a005:cf0::/44
 2a06:a005:2d12::/48
 2a07:e01:10:32::/64
+2a07:d887:7800::/40
 2a09:bac1:3e80::/64
 2a09:bac1:3ea0::/64
 2a09:bac1:3ec0::/64
@@ -122,7 +123,6 @@
 2a12:bec4:13f2::/48
 2a13:a5c3:d454::/46
 2a13:a5c3:d640::/46
-2a13:a5c7:1606::/64
 2a13:a5c7:2105::/48
 2a13:b487:18ff:1000::/64
 2a13:b487:5003::/48

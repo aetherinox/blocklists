@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_paraguay.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_paraguay.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_paraguay.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_paraguay_ipset
 #   @uuid           0de65af8-075d-36bc-ac14-d57829ca1364
-#   @updated        Fri 01 Nov 2024 02:40:25 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:30 AM UTC
 #   @entries        1,223,371 ips
-#                   623 subnets
-#                   623 lines
+#                   624 subnets
+#                   624 lines
 #   @country        Paraguay (PY)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -602,6 +602,7 @@
 2a04:4e41:407b:9000::/52
 2a04:4e41:408b:9000::/52
 2a05:dfc1:5ac2::/48
+2a07:d887:b800::/40
 2a09:bac1:5f00::/64
 2a09:bac1:5f00:8::/64
 2a09:bac1:5f20::/64

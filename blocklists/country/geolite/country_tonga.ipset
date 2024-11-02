@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_tonga.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_tonga.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_tonga.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_tonga_ipset
 #   @uuid           d9320a31-63f1-311a-a69d-451468a3d754
-#   @updated        Fri 01 Nov 2024 02:40:34 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:39 AM UTC
 #   @entries        19,066 ips
-#                   126 subnets
-#                   126 lines
+#                   127 subnets
+#                   127 lines
 #   @country        Tonga (TO)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -128,6 +128,7 @@
 2a04:4e41:407d:f000::/52
 2a04:4e41:408d:f000::/52
 2a05:dfc1:5ae8::/48
+2a07:d887:de00::/40
 2a09:bac1:7200::/64
 2a09:bac1:7220::/64
 2a09:bac1:7240::/64

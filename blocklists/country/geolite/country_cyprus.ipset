@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_cyprus.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_cyprus.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_cyprus.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_cyprus_ipset
 #   @uuid           7f133d29-c277-39c8-80e1-faac8ad5d1d6
-#   @updated        Fri 01 Nov 2024 02:39:30 AM UTC
+#   @updated        Sat 02 Nov 2024 02:35:48 AM UTC
 #   @entries        1,151,552 ips
-#                   1,338 subnets
-#                   1,338 lines
+#                   1,333 subnets
+#                   1,333 lines
 #   @country        Cyprus (CY)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -87,15 +87,7 @@
 45.82.245.0/24
 45.82.246.0/23
 45.82.248.0/21
-45.83.20.0/25
-45.83.20.128/26
-45.83.20.192/29
-45.83.20.200/32
-45.83.20.201/32
-45.83.20.202/31
-45.83.20.204/30
-45.83.20.208/28
-45.83.20.224/27
+45.83.20.0/24
 45.83.21.0/26
 45.83.21.64/27
 45.83.21.96/32
@@ -348,6 +340,7 @@
 150.48.149.38/31
 153.92.0.0/24
 153.92.2.0/24
+153.92.12.0/24
 154.6.162.0/24
 154.14.55.112/29
 154.14.254.16/29
@@ -505,7 +498,8 @@
 185.153.182.208/28
 185.153.182.224/27
 185.153.183.0/24
-185.156.108.0/22
+185.156.108.0/23
+185.156.111.0/24
 185.160.204.0/24
 185.161.69.0/24
 185.161.70.0/23
@@ -964,6 +958,7 @@
 2a07:6684::/30
 2a07:8200::/29
 2a07:cac0::/29
+2a07:d887:3600::/40
 2a09:940::/29
 2a09:cc0::/29
 2a09:1140::/29

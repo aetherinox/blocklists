@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_comoros.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_comoros.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_comoros.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_comoros_ipset
 #   @uuid           f2a6bb8d-143e-3298-8cc1-5d7feac56ed1
-#   @updated        Fri 01 Nov 2024 02:40:07 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:11 AM UTC
 #   @entries        9,835 ips
-#                   124 subnets
-#                   124 lines
+#                   125 subnets
+#                   125 lines
 #   @country        Comoros (KM)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -117,6 +117,7 @@
 2a04:4e41:4077:6000::/52
 2a04:4e41:4087:6000::/52
 2a05:dfc1:5a82::/48
+2a07:d887:7600::/40
 2a09:bac1:3d80::/64
 2a09:bac1:3da0::/64
 2a09:bac1:3dc0::/64

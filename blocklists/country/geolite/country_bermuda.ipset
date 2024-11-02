@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_bermuda.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_bermuda.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_bermuda.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_bermuda_ipset
 #   @uuid           92a5451d-b60e-3201-837b-9fcc4e892886
-#   @updated        Fri 01 Nov 2024 02:39:20 AM UTC
+#   @updated        Sat 02 Nov 2024 02:35:39 AM UTC
 #   @entries        141,644 ips
-#                   208 subnets
-#                   208 lines
+#                   209 subnets
+#                   209 lines
 #   @country        Bermuda (BM)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -203,6 +203,7 @@
 2a04:4e41:4071:a000::/52
 2a04:4e41:4081:a000::/52
 2a05:dfc1:5a25::/48
+2a07:d887:1a00::/40
 2a09:bac1:f00::/64
 2a09:bac1:f20::/64
 2a09:bac1:f40::/64

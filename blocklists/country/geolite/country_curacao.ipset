@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_curacao.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_curacao.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_curacao.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_curacao_ipset
 #   @uuid           9fbaba46-3c5a-34cc-8153-ebeefb61eb48
-#   @updated        Fri 01 Nov 2024 02:39:29 AM UTC
+#   @updated        Sat 02 Nov 2024 02:35:47 AM UTC
 #   @entries        187,039 ips
-#                   181 subnets
-#                   181 lines
+#                   182 subnets
+#                   182 lines
 #   @country        Curacao (CW)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -183,6 +183,7 @@
 2a04:4e41:4083:4000::/52
 2a05:dfc1:5a3f::/48
 2a07:6640::/29
+2a07:d887:3400::/40
 2a09:54c1:197::/48
 2a09:bac1:1c00::/64
 2a09:bac1:1c20::/64

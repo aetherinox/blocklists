@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_cayman_islands.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_cayman_islands.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_cayman_islands.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_cayman_islands_ipset
 #   @uuid           923c99a8-b5f3-3e79-b106-398622ce5cee
-#   @updated        Fri 01 Nov 2024 02:40:08 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:12 AM UTC
 #   @entries        70,006 ips
-#                   199 subnets
-#                   199 lines
+#                   200 subnets
+#                   200 lines
 #   @country        Cayman Islands (KY)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -198,6 +198,7 @@
 2a04:4e41:4077:b000::/52
 2a04:4e41:4087:b000::/52
 2a05:dfc1:5a86::/48
+2a07:d887:7b00::/40
 2a09:bac1:4000::/64
 2a09:bac1:4020::/64
 2a09:bac1:4040::/64

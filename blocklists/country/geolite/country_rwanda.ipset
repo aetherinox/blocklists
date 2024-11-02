@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_rwanda.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_rwanda.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_rwanda.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_rwanda_ipset
 #   @uuid           3f1c99ee-cd45-37c9-a8cf-50e4ac0e3d10
-#   @updated        Fri 01 Nov 2024 02:40:27 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:32 AM UTC
 #   @entries        316,872 ips
-#                   194 subnets
-#                   194 lines
+#                   195 subnets
+#                   195 lines
 #   @country        Rwanda (RW)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -172,6 +172,7 @@
 2a04:4e41:407b:f000::/52
 2a04:4e41:408b:f000::/52
 2a05:dfc1:5ac8::/48
+2a07:d887:be00::/40
 2a09:bac0:1000:486::/63
 2a09:bac1:6200::/64
 2a09:bac1:6220::/64

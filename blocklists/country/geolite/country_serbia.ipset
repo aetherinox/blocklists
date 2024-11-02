@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_serbia.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_serbia.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_serbia.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_serbia_ipset
 #   @uuid           8e9ca69f-5c25-3d83-be66-ddf4edb91984
-#   @updated        Fri 01 Nov 2024 02:40:26 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:30 AM UTC
 #   @entries        2,322,004 ips
-#                   1,288 subnets
-#                   1,288 lines
+#                   1,289 subnets
+#                   1,289 lines
 #   @country        Serbia (RS)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -1198,6 +1198,7 @@
 2a06:9400::/29
 2a07:6400::/29
 2a07:b200::/31
+2a07:d887:bc00::/40
 2a07:de80::/29
 2a07:eac0::/31
 2a09:54c1:127::/48

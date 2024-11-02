@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_grenada.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_grenada.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_grenada.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_grenada_ipset
 #   @uuid           e9560a79-3344-34a9-a11e-edfc2ec214df
-#   @updated        Fri 01 Nov 2024 02:39:49 AM UTC
+#   @updated        Sat 02 Nov 2024 02:35:59 AM UTC
 #   @entries        31,681 ips
-#                   186 subnets
-#                   186 lines
+#                   187 subnets
+#                   187 lines
 #   @country        Grenada (GD)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -184,6 +184,7 @@
 2a04:4e41:4074:d000::/52
 2a04:4e41:4084:d000::/52
 2a05:dfc1:5a5a::/48
+2a07:d887:4d00::/40
 2a09:bac1:2900::/64
 2a09:bac1:2920::/64
 2a09:bac1:2940::/64

@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_croatia.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_croatia.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_croatia.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_croatia_ipset
 #   @uuid           bcffea06-de55-3e8b-957e-8abf981f76df
-#   @updated        Fri 01 Nov 2024 02:40:00 AM UTC
-#   @entries        2,992,236 ips
-#                   1,128 subnets
-#                   1,128 lines
+#   @updated        Sat 02 Nov 2024 02:36:04 AM UTC
+#   @entries        2,992,748 ips
+#                   1,127 subnets
+#                   1,127 lines
 #   @country        Croatia (HR)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -102,11 +102,7 @@
 45.95.169.131/32
 45.95.169.132/30
 45.95.169.136/29
-45.95.169.144/29
-45.95.169.152/32
-45.95.169.153/32
-45.95.169.154/31
-45.95.169.156/30
+45.95.169.144/28
 45.95.169.160/28
 45.95.169.176/29
 45.95.169.184/32
@@ -322,6 +318,7 @@
 94.119.3.0/29
 94.250.128.0/18
 94.253.128.0/17
+95.46.209.0/24
 95.47.160.0/24
 95.128.232.0/21
 95.168.96.0/19
@@ -626,6 +623,7 @@
 185.155.208.0/22
 185.155.216.0/22
 185.155.224.0/22
+185.156.110.0/24
 185.158.80.0/22
 185.159.88.0/24
 185.165.232.0/22
@@ -1059,6 +1057,7 @@
 2a07:5ac0::/29
 2a07:7400::/29
 2a07:9740::/29
+2a07:d887:6100::/40
 2a09:2540::/29
 2a09:bac0:124::/48
 2a09:bac0:1000:322::/64

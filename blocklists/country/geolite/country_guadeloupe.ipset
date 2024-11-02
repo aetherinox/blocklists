@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_guadeloupe.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_guadeloupe.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_guadeloupe.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_guadeloupe_ipset
 #   @uuid           f97a66b7-47ac-3650-88e2-4b03e9f401fc
-#   @updated        Fri 01 Nov 2024 02:39:53 AM UTC
-#   @entries        273,347 ips
-#                   277 subnets
-#                   277 lines
+#   @updated        Sat 02 Nov 2024 02:36:01 AM UTC
+#   @entries        273,348 ips
+#                   279 subnets
+#                   279 lines
 #   @country        Guadeloupe (GP)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -26,6 +26,7 @@
 5.62.58.102/31
 5.102.74.0/24
 5.102.76.0/24
+5.102.77.96/32
 5.187.96.0/19
 37.8.160.0/20
 45.62.191.144/28
@@ -278,6 +279,7 @@
 2a04:4e41:4075:6000::/52
 2a04:4e41:4085:6000::/52
 2a05:dfc1:5a63::/48
+2a07:d887:5600::/40
 2a09:bac1:2d80::/64
 2a09:bac1:2da0::/64
 2a09:bac1:2dc0::/64

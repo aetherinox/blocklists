@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_solomon_islands.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_solomon_islands.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_solomon_islands.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_solomon_islands_ipset
 #   @uuid           7f68bfc0-2bc4-3002-8ca7-1e13bba85f80
-#   @updated        Fri 01 Nov 2024 02:40:28 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:32 AM UTC
 #   @entries        21,608 ips
-#                   131 subnets
-#                   131 lines
+#                   132 subnets
+#                   132 lines
 #   @country        Solomon Islands (SB)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -131,6 +131,7 @@
 2a04:4e41:407c:1000::/52
 2a04:4e41:408c:1000::/52
 2a05:dfc1:5aca::/48
+2a07:d887:c000::/40
 2a09:bac1:6300::/64
 2a09:bac1:6320::/64
 2a09:bac1:6340::/64

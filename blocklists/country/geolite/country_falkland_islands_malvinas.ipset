@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_falkland_islands_malvinas.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_falkland_islands_malvinas.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_falkland_islands_malvinas.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_falkland_islands_malvinas_ipset
 #   @uuid           2da2d619-cdc5-3819-b123-fe8f0ea2d37d
-#   @updated        Fri 01 Nov 2024 02:39:42 AM UTC
+#   @updated        Sat 02 Nov 2024 02:35:55 AM UTC
 #   @entries        4,968 ips
-#                   97 subnets
-#                   97 lines
+#                   98 subnets
+#                   98 lines
 #   @country        Falkland Islands Malvinas (FK)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -103,6 +103,7 @@
 2a04:4e41:4074:7000::/52
 2a04:4e41:4084:7000::/52
 2a05:dfc1:5a54::/48
+2a07:d887:4700::/40
 2a09:bac1:2600::/64
 2a09:bac1:2620::/64
 2a09:bac1:2640::/64

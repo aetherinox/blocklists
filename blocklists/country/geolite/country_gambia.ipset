@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_gambia.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_gambia.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_gambia.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_gambia_ipset
 #   @uuid           14a82e45-a897-3b96-8c16-f8e6db9775d4
-#   @updated        Fri 01 Nov 2024 02:39:52 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:00 AM UTC
 #   @entries        276,684 ips
-#                   164 subnets
-#                   164 lines
+#                   165 subnets
+#                   165 lines
 #   @country        Gambia (GM)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -150,6 +150,7 @@
 2a04:4e41:4075:4000::/52
 2a04:4e41:4085:4000::/52
 2a05:dfc1:5a61::/48
+2a07:d887:5400::/40
 2a09:bac1:2c80:38::/64
 2a09:bac1:2ca0:38::/64
 2a09:bac1:2cc0:38::/64

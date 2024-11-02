@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_antigua_barbuda.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_antigua_barbuda.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_antigua_barbuda.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_antigua_barbuda_ipset
 #   @uuid           a95ca522-2940-3a56-a8d9-60494c51ca1b
-#   @updated        Fri 01 Nov 2024 02:39:14 AM UTC
+#   @updated        Sat 02 Nov 2024 02:35:33 AM UTC
 #   @entries        61,308 ips
-#                   257 subnets
-#                   257 lines
+#                   258 subnets
+#                   258 lines
 #   @country        Antigua Barbuda (AG)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -254,6 +254,7 @@
 2a04:4e41:4070:3000::/52
 2a04:4e41:4080:3000::/52
 2a05:dfc1:5a0e::/48
+2a07:d887:300::/40
 2a09:bac1:300::/64
 2a09:bac1:320::/64
 2a09:bac1:340::/64

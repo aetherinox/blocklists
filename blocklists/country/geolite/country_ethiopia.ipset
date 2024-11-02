@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_ethiopia.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_ethiopia.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_ethiopia.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_ethiopia_ipset
 #   @uuid           99870db1-f287-3b49-a665-37ac5079f7a6
-#   @updated        Fri 01 Nov 2024 02:39:41 AM UTC
+#   @updated        Sat 02 Nov 2024 02:35:54 AM UTC
 #   @entries        371,354 ips
-#                   209 subnets
-#                   209 lines
+#                   210 subnets
+#                   210 lines
 #   @country        Ethiopia (ET)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -192,6 +192,7 @@
 2a04:4e41:4074:4000::/52
 2a04:4e41:4084:4000::/52
 2a05:dfc1:5a50::/48
+2a07:d887:4400::/40
 2a09:54c1:154::/48
 2a09:bac1:2400::/64
 2a09:bac1:2400:8::/64

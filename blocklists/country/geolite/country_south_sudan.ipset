@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_south_sudan.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_south_sudan.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_south_sudan.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_south_sudan_ipset
 #   @uuid           4ed2795a-699f-3f58-89d5-f71e2ed883bd
-#   @updated        Fri 01 Nov 2024 02:40:31 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:36 AM UTC
 #   @entries        30,657 ips
-#                   162 subnets
-#                   162 lines
+#                   163 subnets
+#                   163 lines
 #   @country        South Sudan (SS)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -155,6 +155,7 @@
 2a04:4e41:407c:f000::/52
 2a04:4e41:408c:f000::/52
 2a05:dfc1:5ad8::/48
+2a07:d887:ce00::/40
 2a09:bac1:6a00::/64
 2a09:bac1:6a20::/64
 2a09:bac1:6a40::/64

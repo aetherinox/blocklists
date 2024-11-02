@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_egypt.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_egypt.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_egypt.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_egypt_ipset
 #   @uuid           72b278a4-426a-31f9-9ef4-b8fd97796a62
-#   @updated        Fri 01 Nov 2024 02:39:38 AM UTC
-#   @entries        24,215,228 ips
-#                   926 subnets
-#                   926 lines
+#   @updated        Sat 02 Nov 2024 02:35:52 AM UTC
+#   @entries        24,214,971 ips
+#                   945 subnets
+#                   945 lines
 #   @country        Egypt (EG)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -65,7 +65,26 @@
 38.54.59.0/24
 38.54.60.0/24
 38.60.226.0/24
-41.32.0.0/12
+41.32.0.0/14
+41.36.0.0/15
+41.38.0.0/19
+41.38.32.0/20
+41.38.48.0/21
+41.38.56.0/28
+41.38.56.16/30
+41.38.56.20/31
+41.38.56.22/32
+41.38.56.24/29
+41.38.56.32/27
+41.38.56.64/26
+41.38.56.128/25
+41.38.57.0/24
+41.38.58.0/23
+41.38.60.0/22
+41.38.64.0/18
+41.38.128.0/17
+41.39.0.0/16
+41.40.0.0/13
 41.63.72.0/24
 41.64.0.0/15
 41.68.0.0/15
@@ -339,7 +358,6 @@
 154.128.0.0/12
 154.176.0.0/12
 154.203.188.0/24
-154.205.149.0/24
 154.236.0.0/15
 154.238.0.0/21
 154.238.8.0/24
@@ -822,6 +840,7 @@
 2a05:4140:205::/48
 2a05:dfc1:5a07::/48
 2a06:a005:78d::/48
+2a07:d887:4000::/40
 2a09:54c1:50::/46
 2a09:54c1:54::/48
 2a09:54c1:103::/48

@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_tuvalu.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_tuvalu.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_tuvalu.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_tuvalu_ipset
 #   @uuid           eac4219d-af9b-3cee-b08f-741e267524be
-#   @updated        Fri 01 Nov 2024 02:40:35 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:40 AM UTC
 #   @entries        15,480 ips
-#                   112 subnets
-#                   112 lines
+#                   113 subnets
+#                   113 lines
 #   @country        Tuvalu (TV)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -114,6 +114,7 @@
 2a04:4e41:407e:2000::/52
 2a04:4e41:408e:2000::/52
 2a05:dfc1:5aeb::/48
+2a07:d887:e100::/40
 2a09:bac1:7380::/64
 2a09:bac1:73a0::/64
 2a09:bac1:73c0::/64

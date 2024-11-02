@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_kiribati.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_kiribati.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_kiribati.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_kiribati_ipset
 #   @uuid           ca0f8c07-eb02-38c2-963c-4b20c58af62e
-#   @updated        Fri 01 Nov 2024 02:40:07 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:11 AM UTC
 #   @entries        7,791 ips
-#                   171 subnets
-#                   171 lines
+#                   172 subnets
+#                   172 lines
 #   @country        Kiribati (KI)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -157,6 +157,7 @@
 2a04:4e41:4077:5000::/52
 2a04:4e41:4087:5000::/52
 2a05:dfc1:5a81::/48
+2a07:d887:7500::/40
 2a09:bac1:3d00:10::/64
 2a09:bac1:3d00:130::/64
 2a09:bac1:3d00:138::/64

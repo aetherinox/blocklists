@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_guyana.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_guyana.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_guyana.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_guyana_ipset
 #   @uuid           bc500bbe-e40e-3f0b-8b6a-a7e6242d122f
-#   @updated        Fri 01 Nov 2024 02:39:56 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:02 AM UTC
 #   @entries        73,957 ips
-#                   177 subnets
-#                   177 lines
+#                   178 subnets
+#                   178 lines
 #   @country        Guyana (GY)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -162,6 +162,7 @@
 2a04:4e41:4075:d000::/52
 2a04:4e41:4085:d000::/52
 2a05:dfc1:5a6a::/48
+2a07:d887:5d00::/40
 2a09:bac1:3100::/64
 2a09:bac1:3120::/64
 2a09:bac1:3140::/64

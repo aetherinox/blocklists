@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_marshall_islands.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_marshall_islands.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_marshall_islands.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_marshall_islands_ipset
 #   @uuid           3caf8c67-1f78-39d8-9dad-75e2a1b0a2d4
-#   @updated        Fri 01 Nov 2024 02:40:14 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:17 AM UTC
 #   @entries        8,350 ips
-#                   115 subnets
-#                   115 lines
+#                   116 subnets
+#                   116 lines
 #   @country        Marshall Islands (MH)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -111,6 +111,7 @@
 2a04:4e41:4078:e000::/52
 2a04:4e41:4088:e000::/52
 2a05:dfc1:5a99::/48
+2a07:d887:8e00::/40
 2a09:bac1:4980::/64
 2a09:bac1:49a0::/64
 2a09:bac1:49c0::/64

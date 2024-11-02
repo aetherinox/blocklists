@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_montenegro.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_montenegro.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_montenegro.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_montenegro_ipset
 #   @uuid           f6e9b705-ad6a-3a19-87ae-34ca8e62e2e6
-#   @updated        Fri 01 Nov 2024 02:40:13 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:17 AM UTC
 #   @entries        202,282 ips
-#                   276 subnets
-#                   276 lines
+#                   277 subnets
+#                   277 lines
 #   @country        Montenegro (ME)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -250,6 +250,7 @@
 2a05:7b40::/29
 2a05:dfc1:5a96::/48
 2a06:e340::/29
+2a07:d887:8b00::/40
 2a09:54c1:183::/48
 2a09:bac1:4800::/64
 2a09:bac1:4820::/64

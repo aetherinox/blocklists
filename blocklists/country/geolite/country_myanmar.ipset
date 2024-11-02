@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_myanmar.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_myanmar.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_myanmar.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_myanmar_ipset
 #   @uuid           ee0c67be-abe0-3cfa-b30f-b463c29cbc05
-#   @updated        Fri 01 Nov 2024 02:40:14 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:18 AM UTC
 #   @entries        259,596 ips
-#                   1,996 subnets
-#                   1,996 lines
+#                   1,997 subnets
+#                   1,997 lines
 #   @country        Myanmar (MM)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -625,6 +625,7 @@
 2a04:4e41:4089:1000::/52
 2a05:dfc1:5a08::/48
 2a05:dfc1:6605::/48
+2a07:d887:9100::/40
 2a09:bac1:4800:1::/64
 2a09:bac1:4800:2::/63
 2a09:bac1:4800:4::/62

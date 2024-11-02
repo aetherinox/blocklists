@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_puerto_rico.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_puerto_rico.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_puerto_rico.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_puerto_rico_ipset
 #   @uuid           d624d93e-0228-30c5-bc52-57237a83fbeb
-#   @updated        Fri 01 Nov 2024 02:40:24 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:29 AM UTC
 #   @entries        1,309,891 ips
-#                   849 subnets
-#                   849 lines
+#                   850 subnets
+#                   850 lines
 #   @country        Puerto Rico (PR)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -813,6 +813,7 @@
 2a04:4e41:407b:5000::/52
 2a04:4e41:408b:5000::/52
 2a05:dfc1:5abe::/48
+2a07:d887:b400::/40
 2a09:bac1:5d00::/64
 2a09:bac1:5d00:8::/64
 2a09:bac1:5d20::/64

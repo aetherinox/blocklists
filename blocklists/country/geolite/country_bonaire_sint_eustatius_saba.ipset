@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_bonaire_sint_eustatius_saba.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_bonaire_sint_eustatius_saba.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_bonaire_sint_eustatius_saba.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_bonaire_sint_eustatius_saba_ipset
 #   @uuid           b14c615b-0708-395c-a7e8-24c3784c1d17
-#   @updated        Fri 01 Nov 2024 02:39:21 AM UTC
-#   @entries        27,023 ips
-#                   126 subnets
-#                   126 lines
+#   @updated        Sat 02 Nov 2024 02:35:40 AM UTC
+#   @entries        27,024 ips
+#                   116 subnets
+#                   116 lines
 #   @country        Bonaire Sint Eustatius Saba (BQ)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -58,18 +58,7 @@
 172.225.238.64/28
 172.225.250.32/27
 172.226.10.64/28
-186.159.96.0/22
-186.159.100.0/23
-186.159.102.0/24
-186.159.103.0/26
-186.159.103.64/28
-186.159.103.80/30
-186.159.103.84/31
-186.159.103.87/32
-186.159.103.88/29
-186.159.103.96/27
-186.159.103.128/25
-186.159.104.0/21
+186.159.96.0/20
 190.4.64.0/20
 190.97.112.0/21
 190.107.248.0/21
@@ -125,6 +114,7 @@
 2a04:4e41:4071:d000::/52
 2a04:4e41:4081:d000::/52
 2a05:dfc1:5a27::/48
+2a07:d887:1d00::/40
 2a09:bac1:1080::/64
 2a09:bac1:10a0::/64
 2a09:bac1:10c0::/64

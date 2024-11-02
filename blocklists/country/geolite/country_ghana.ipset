@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_ghana.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_ghana.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_ghana.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_ghana_ipset
 #   @uuid           ea54933d-a319-3359-a553-f8ecf1e68b3d
-#   @updated        Fri 01 Nov 2024 02:39:51 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:00 AM UTC
 #   @entries        2,220,302 ips
-#                   503 subnets
-#                   503 lines
+#                   504 subnets
+#                   504 lines
 #   @country        Ghana (GH)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -458,6 +458,7 @@
 2a04:4e42:c074::/48
 2a04:4e42:f074::/48
 2a05:dfc1:5a5e::/48
+2a07:d887:5100::/40
 2a09:bac0:1000:48e::/63
 2a09:bac0:1000:499::/64
 2a09:bac1:2b00::/64

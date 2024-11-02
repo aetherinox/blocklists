@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_andorra.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_andorra.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_andorra.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_andorra_ipset
 #   @uuid           41aa7540-c884-31b0-a452-7d9653a74b5e
-#   @updated        Fri 01 Nov 2024 02:39:13 AM UTC
+#   @updated        Sat 02 Nov 2024 02:35:32 AM UTC
 #   @entries        66,839 ips
-#                   317 subnets
-#                   317 lines
+#                   318 subnets
+#                   318 lines
 #   @country        Andorra (AD)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -294,6 +294,7 @@
 2a04:4e41:4070::/52
 2a04:4e41:4080::/52
 2a05:dfc1:5a0b::/48
+2a07:d887::/40
 2a09:54c1:195::/48
 2a09:bac1:180::/64
 2a09:bac1:1a0::/64

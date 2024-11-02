@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_estonia.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_estonia.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_estonia.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_estonia_ipset
 #   @uuid           99b13814-c63a-3a7e-a974-2556381ddecd
-#   @updated        Fri 01 Nov 2024 02:39:38 AM UTC
-#   @entries        1,596,633 ips
-#                   1,587 subnets
-#                   1,587 lines
+#   @updated        Sat 02 Nov 2024 02:35:52 AM UTC
+#   @entries        1,597,913 ips
+#                   1,590 subnets
+#                   1,590 lines
 #   @country        Estonia (EE)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -60,6 +60,7 @@
 38.180.164.0/24
 38.180.216.0/24
 38.180.230.0/24
+38.180.248.0/24
 38.210.119.0/24
 43.228.237.0/24
 44.139.0.0/16
@@ -309,6 +310,7 @@
 91.129.0.0/17
 91.131.0.0/17
 91.146.64.0/19
+91.184.248.0/22
 91.193.75.0/24
 91.195.246.0/23
 91.195.252.0/23
@@ -1039,12 +1041,12 @@
 2001:470:28:f2a::/64
 2001:470:67:161::/64
 2001:470:67:199::/64
+2001:470:6d:227::/64
 2001:470:6d:26f::/64
 2001:470:6d:2ce::/64
 2001:470:6d:664::/64
 2001:470:6d:a82::/64
 2001:470:6f:498::/64
-2001:470:6f:54d::/64
 2001:470:6f:674::/64
 2001:470:71:24::/64
 2001:470:71:32a::/64
@@ -1344,6 +1346,7 @@
 2a07:9280::/29
 2a07:9900::/29
 2a07:d880::/32
+2a07:d887:3f00::/40
 2a07:ddc0::/29
 2a07:e580::/29
 2a09:54c1:148::/48

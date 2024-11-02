@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_finland.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_finland.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_finland.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_finland_ipset
 #   @uuid           25e72cd6-ea8d-395e-8335-d27d18945779
-#   @updated        Fri 01 Nov 2024 02:39:42 AM UTC
-#   @entries        14,690,469 ips
-#                   44,493 subnets
-#                   44,493 lines
+#   @updated        Sat 02 Nov 2024 02:35:55 AM UTC
+#   @entries        14,690,725 ips
+#                   44,495 subnets
+#                   44,495 lines
 #   @country        Finland (FI)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -166,6 +166,7 @@
 31.25.144.0/21
 31.41.254.0/24
 31.47.64.0/21
+31.58.137.0/24
 31.132.12.0/22
 31.172.152.0/21
 31.187.84.0/22
@@ -1727,7 +1728,6 @@
 158.233.246.8/29
 158.233.247.8/29
 158.233.247.72/29
-158.233.248.0/24
 158.233.249.0/26
 158.233.249.64/27
 158.233.249.96/28
@@ -1915,6 +1915,7 @@
 172.225.216.0/26
 172.226.26.64/26
 172.226.52.0/24
+173.82.9.0/24
 173.194.98.0/24
 176.31.52.124/30
 176.72.0.0/16
@@ -3121,6 +3122,7 @@
 2001:470:28:da7::/64
 2001:470:28:ddc::/64
 2001:470:28:de2::/64
+2001:470:28:e32::/64
 2001:470:28:f19::/64
 2001:470:36:1d8::/64
 2001:470:4b:a8::/64
@@ -3199,7 +3201,6 @@
 2001:470:1f11:10e::/64
 2001:470:1f11:442::/64
 2001:470:1f13:13::/64
-2001:470:1f13:1dd::/64
 2001:470:1f13:2aa::/64
 2001:470:1f13:2d1::/64
 2001:470:1f13:2d9::/64
@@ -44240,6 +44241,7 @@
 2a07:54c1:2100:cafe::/64
 2a07:5a80::/29
 2a07:7840::/29
+2a07:d887:4500::/40
 2a07:ea00::/32
 2a08:4144:8a80::/48
 2a08:4144:8a88::/47

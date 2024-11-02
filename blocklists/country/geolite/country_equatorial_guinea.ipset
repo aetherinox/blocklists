@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_equatorial_guinea.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_equatorial_guinea.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_equatorial_guinea.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_equatorial_guinea_ipset
 #   @uuid           35f250c2-6a5e-3c8e-a2ff-39caa6b60785
-#   @updated        Fri 01 Nov 2024 02:39:53 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:01 AM UTC
 #   @entries        22,774 ips
-#                   136 subnets
-#                   136 lines
+#                   137 subnets
+#                   137 lines
 #   @country        Equatorial Guinea (GQ)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -129,6 +129,7 @@
 2a04:4e41:4075:7000::/52
 2a04:4e41:4085:7000::/52
 2a05:dfc1:5a64::/48
+2a07:d887:5700::/40
 2a09:bac1:2e00::/64
 2a09:bac1:2e20::/64
 2a09:bac1:2e40::/64

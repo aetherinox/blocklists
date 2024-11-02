@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_christmas_island.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_christmas_island.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_christmas_island.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_christmas_island_ipset
 #   @uuid           7c1575b4-a7e4-3e1e-9fec-fc3dad22516c
-#   @updated        Fri 01 Nov 2024 02:39:30 AM UTC
+#   @updated        Sat 02 Nov 2024 02:35:48 AM UTC
 #   @entries        27 ips
-#                   57 subnets
-#                   57 lines
+#                   58 subnets
+#                   58 lines
 #   @country        Christmas Island (CX)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -62,6 +62,7 @@
 2a05:4140:231::/48
 2a05:4140:232::/48
 2a05:dfc1:5a40::/48
+2a07:d887:3500::/40
 2a09:bac4:1a8::/45
 2a09:bac4:11a8::/45
 2a0a:6044:61ab::/48

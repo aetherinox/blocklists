@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_kosovo.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_kosovo.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_kosovo.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_kosovo_ipset
 #   @uuid           b356dc5e-c550-3ba8-95ad-049b1236b1a0
-#   @updated        Fri 01 Nov 2024 02:40:45 AM UTC
-#   @entries        156,944 ips
-#                   83 subnets
-#                   83 lines
+#   @updated        Sat 02 Nov 2024 02:36:50 AM UTC
+#   @entries        157,200 ips
+#                   84 subnets
+#                   84 lines
 #   @country        Kosovo (XK)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -23,6 +23,7 @@
 5.206.232.0/21
 37.26.64.0/21
 37.35.64.0/21
+38.110.128.0/24
 42.40.21.10/32
 45.128.197.0/24
 45.198.3.0/24

@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - country_morocco.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/dev-kw/main/blocklists/country/geolite/country_morocco.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/country/geolite/country_morocco.ipset
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_morocco_ipset
 #   @uuid           2d514060-3224-3901-89db-35681ac18ff6
-#   @updated        Fri 01 Nov 2024 02:40:11 AM UTC
+#   @updated        Sat 02 Nov 2024 02:36:16 AM UTC
 #   @entries        12,284,839 ips
-#                   680 subnets
-#                   680 lines
+#                   681 subnets
+#                   681 lines
 #   @country        Morocco (MA)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -608,6 +608,7 @@
 2a04:4e41:4078:8000::/52
 2a04:4e41:4088:8000::/52
 2a05:dfc1:5a93::/48
+2a07:d887:8800::/40
 2a09:54c1:55::/48
 2a09:54c1:56::/47
 2a09:54c1:59::/48
