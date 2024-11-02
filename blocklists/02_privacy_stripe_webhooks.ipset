@@ -5,7 +5,7 @@
 #   @source         https://stripe.com/files/ips/ips_webhooks.txt
 #   @id             02_privacy_stripe_webhooks_ipset
 #   @uuid           5fd655c5-3039-3ab7-887b-ca4bf89b5b32
-#   @updated        Sat 02 Nov 2024 12:17:23 AM UTC
+#   @updated        Sat 02 Nov 2024 02:29:24 AM UTC
 #   @entries        12 ips
 #                   0 subnets
 #                   12 lines
