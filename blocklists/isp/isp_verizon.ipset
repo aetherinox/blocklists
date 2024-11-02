@@ -1,0 +1,39 @@
+# #
+#   🧱 Firewall Blocklist - blocklists/isp/isp_verizon.ipset
+#
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/isp/isp_verizon.ipset
+#   @source         None
+#   @id             isp_verizon_ipset
+#   @uuid           edc3bdf1-3ff0-3351-8660-c0c428c0cb0e
+#   @updated        Sat 02 Nov 2024 06:08:02 AM UTC
+#   @entries        18,087,936 ips
+#                   22 subnets
+#                   22 lines
+#   @expires        6 hours
+#   @category       Uncategorized
+#
+#   No description provided
+# #
+
+68.236.0.0/14
+70.104.0.0/13
+70.16.0.0/13
+71.160.0.0/11
+71.240.0.0/12
+71.96.0.0/11
+72.64.0.0/11
+96.224.0.0/11
+100.0.0.0/11
+100.32.0.0/13
+100.40.0.0/15
+108.0.0.0/11
+108.32.0.0/12
+108.48.0.0/13
+108.56.0.0/15
+130.81.0.0/16
+141.149.0.0/16
+141.150.0.0/15
+141.152.0.0/14
+141.156.0.0/15
+141.158.0.0/16
+162.83.0.0/16

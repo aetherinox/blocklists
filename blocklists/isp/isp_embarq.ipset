@@ -1,0 +1,31 @@
+# #
+#   🧱 Firewall Blocklist - blocklists/isp/isp_embarq.ipset
+#
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/isp/isp_embarq.ipset
+#   @source         None
+#   @id             isp_embarq_ipset
+#   @uuid           2e51d53f-2999-31da-ae04-fbc14196827d
+#   @updated        Sat 02 Nov 2024 06:07:55 AM UTC
+#   @entries        2,703,360 ips
+#                   14 subnets
+#                   14 lines
+#   @expires        6 hours
+#   @category       Uncategorized
+#
+#   No description provided
+# #
+
+64.45.192.0/18
+65.40.0.0/15
+67.232.0.0/13
+67.76.0.0/15
+69.34.0.0/16
+69.68.0.0/15
+71.0.0.0/14
+71.48.0.0/13
+74.4.0.0/15
+76.0.0.0/13
+138.210.0.0/16
+168.251.0.0/16
+207.30.0.0/16
+209.26.0.0/16

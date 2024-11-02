@@ -5,7 +5,7 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_taiwan_ipset
 #   @uuid           439d5806-0355-3d57-b314-fd1a2a214aea
-#   @updated        Sat 02 Nov 2024 02:36:41 AM UTC
+#   @updated        Sat 02 Nov 2024 06:18:27 AM UTC
 #   @entries        36,786,694 ips
 #                   4,688 subnets
 #                   4,688 lines

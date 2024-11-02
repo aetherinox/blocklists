@@ -1,0 +1,38 @@
+# #
+#   🧱 Firewall Blocklist - blocklists/isp/isp_charter.ipset
+#
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/isp/isp_charter.ipset
+#   @source         None
+#   @id             isp_charter_ipset
+#   @uuid           427e33a6-9ad9-3e3e-9ca6-f1048abdb193
+#   @updated        Sat 02 Nov 2024 06:07:52 AM UTC
+#   @entries        6,138,112 ips
+#                   21 subnets
+#                   21 lines
+#   @expires        6 hours
+#   @category       Uncategorized
+#
+#   No description provided
+# #
+
+24.151.0.0/16
+24.158.0.0/16
+24.176.0.0/13
+24.196.0.0/20
+24.205.0.0/16
+24.207.128.0/17
+24.213.0.0/21
+24.217.29.0/24
+24.231.128.0/17
+66.168.0.0/15
+66.188.0.0/14
+66.227.128.0/17
+68.112.0.0/13
+68.186.192.0/20
+71.80.0.0/12
+71.8.0.0/13
+75.128.0.0/12
+96.32.0.0/13
+96.40.0.0/15
+96.42.0.0/16
+97.80.0.0/12
