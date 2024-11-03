@@ -336,7 +336,7 @@ done
 #   Get IP list
 # #
 
-list_ips=$(echo "${APP_OUT}" | grep -v "^#" | sort -n | awk '{if (++dup[$0] == 1) print $0;}' > ${APP_FILE_TEMP})
+list_ips=$(echo "${APP_OUT}" | grep -v "^#|^;|^$" | sort -n | awk '{if (++dup[$0] == 1) print $0;}' > ${APP_FILE_TEMP})
 sed -i '/[#;]/{s/#.*//;s/;.*//;/^$/d}' ${APP_FILE_TEMP}                 # remove # and ; comments
 sed -i 's/\-.*//' ${APP_FILE_TEMP}                                      # remove hyphens for ip ranges
 sed -i 's/[[:blank:]]*$//' ${APP_FILE_TEMP}                             # remove space / tab from EOL

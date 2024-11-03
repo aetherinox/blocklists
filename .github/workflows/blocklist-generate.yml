@@ -165,6 +165,7 @@ jobs:
                   chmod +x ".github/scripts/bl-json.sh"
                   chmod +x ".github/scripts/bl-plain.sh"
                   chmod +x ".github/scripts/bl-spf.sh"
+                  chmod +x ".github/scripts/bl-whois.sh"
                   chmod +x ".github/scripts/bt-transmission.sh"
                   chmod +x ".github/scripts/update-readme.sh"
                   chmod +x ".github/scripts/tool-range-iprange.sh"
@@ -229,7 +230,8 @@ jobs:
                   eval "./$run_amz_ec2"
 
                   #   Privacy › Facebook
-                  whois -h whois.radb.net -- '-i origin AS32934' | grep ^route | awk '{gsub("(route:|route6:)","");print}' | awk '{gsub(/ /,""); print}' | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/privacy/privacy_facebook.ipset
+                  run_facebook=".github/scripts/bl-whois.sh blocklists/privacy/privacy_facebook.ipset AS32934"
+                  eval "./$run_facebook"
 
                   #   Privacy › Ahrefs
                   curl -sSL -A "${{ env.USERAGENT }}" https://api.ahrefs.com/v3/public/crawler-ips | jq -r '.ips[].ip_address | select( . != null )' | $GITHUB_WORKSPACE/.github/scripts/bl-format.sh blocklists/privacy/privacy_ahrefs.ipset
@@ -367,16 +369,16 @@ jobs:
                   eval "./$run_isp_aol"
 
                   # ISP › ATT
-                  run_isp_att=".github/scripts/tool-range-iprange.sh blocklists/isp/isp_att.ipset http://list.iblocklist.com/?list=grbtkzijgrowvobvessf"
+                  run_isp_att=".github/scripts/bl-whois.sh blocklists/isp/isp_att.ipset AS7018"
                   eval "./$run_isp_att"
 
                   # ISP › Cablevision
-                  run_isp_cablevision=".github/scripts/tool-range-iprange.sh blocklists/isp/isp_cablevision.ipset http://list.iblocklist.com/?list=dwwbsmzirrykdlvpqozb"
+                  run_isp_cablevision=".github/scripts/bl-whois.sh blocklists/isp/isp_cablevision.ipset AS6128"
                   eval "./$run_isp_cablevision"
 
-                  # ISP › Charter
-                  run_isp_charter=".github/scripts/tool-range-iprange.sh blocklists/isp/isp_charter.ipset http://list.iblocklist.com/?list=htnzojgossawhpkbulqw"
-                  eval "./$run_isp_charter"
+                  # ISP › Charter & Spectrum
+                  run_isp_charter_spectrum=".github/scripts/bl-whois.sh blocklists/isp/isp_charter_spectrum.ipset AS20115"
+                  eval "./$run_isp_charter_spectrum"
 
                   # ISP › Comcast
                   run_isp_comcast=".github/scripts/tool-range-iprange.sh blocklists/isp/isp_comcast.ipset http://list.iblocklist.com/?list=rsgyxvuklicibautguia"

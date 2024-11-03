@@ -4,35 +4,39 @@
 #   @for                https://github.com/Aetherinox/csf-firewall
 #   @workflow           blocklist-generate.yml
 #   @type               bash script
-#   @summary            generate ipset by fetching HTML in web url, does not run its own grep, must be specified in command | URLs: VARARG
-#                       when running this script, specify a website URL. The script will fetch the HTML code from the
-#                       website. This script will then pick out any text that appears to be an ipv4 or ipv5 address from the grep rule which is hard-coded.
-#                       For custom grep rules to get anything other than an IP, use bl-htmlip script
+#   @summary            utilizes various whois services and allows you to fetch a list of IP addresses associated with an ASN.
+#   
+#   @terminal           .github/scripts/bl-whois.sh \
+#                           blocklists/privacy/privacy_facebook.ipset
+#                           AS32934
 #
-#                       There are two versions of this script:
-#                           bl-htmlip.sh        Uses a single URL and grep rule which are defined in the command to pull ANY text.
-#                                               Only supports a single URL
-#                           bl_htm              Supports multiple URLs, but doesn't allow you to specify a custom grep rule.
-#                                               It only grabs ipv4 and ipv6 addresses.
+#                       .github/scripts/bl-whois.sh \
+#                           blocklists/privacy/privacy_facebook.ipset
+#                           AS32934 \
+#                           whois.radb.net
 #
-#   @terminal           .github/scripts/bl-html.sh \
-#                           blocklists/02_privacy_yandex.ipset \
-#                           https://udger.com/resources/ua-list/bot-detail?bot=YandexBot
+#                       .github/scripts/bl-whois.sh \
+#                           blocklists/privacy/privacy_facebook.ipset
+#                           AS32934 \
+#                           whois.radb.net \
+#                           '#|^;|^$'
 #
-#   @workflow           # Privacy › Yandex
-#                       chmod +x ".github/scripts/bl-html.sh"
-#                       run_yandex=".github/scripts/bl-html.sh 02_privacy_yandex.ipset https://udger.com/resources/ua-list/bot-detail?bot=YandexBot"
-#                       eval "./$run_yandex"
+#   @workflow           # Privacy › Facebook
+#                       chmod +x ".github/scripts/bl-whois.sh"
+#                       run_facebook=".github/scripts/bl-whois.sh blocklists/privacy/privacy_facebook.ipset AS32934"
+#                       eval "./$run_facebook"
 #
-#   @command            bl-html.sh
-#                           <ARG_SAVEFILE>
-#                           <URL_1>
-#                           <URL_2>
-#                           {...}
+#   @command            bl-whois.sh
+#                           <ARG_SAVEFILE>              required
+#                           <ARG_ASN>                   required
+#                           <ARG_WHOIS_SERVICE>         optional
+#                           <ARG_GREP_FILTER>           optional
+#
+#                       bl-whois.sh blocklists/privacy/privacy_facebook.ipset AS32934 whois.radb.net '#|^;|^$'
 #
 #                       📁 .github
 #                           📁 scripts
-#                               📄 bl-html.sh
+#                               📄 bl-whois.sh
 #                           📁 workflows
 #                               📄 blocklist-generate.yml
 #
@@ -116,13 +120,17 @@ sort_results()
 #   This bash script has the following arguments:
 #
 #       ARG_SAVEFILE        (str)       file to save IP addresses into
-#       { ... }             (varg)      list of URLs to API end-points
+#       ARG_ASN             (str)       ASN to look up for whois
+#       ARG_JSON_QRY        (str)       jq rules which pull the needed ip addresses
 # #
 
 ARG_SAVEFILE=$1
+ARG_ASN=$2
+ARG_WHOIS_SERVICE=$3
+ARG_GREP_FILTER=$4
 
 # #
-#   Validation checks
+#   Arguments > Validate
 # #
 
 if [[ -z "${ARG_SAVEFILE}" ]]; then
@@ -132,11 +140,29 @@ if [[ -z "${ARG_SAVEFILE}" ]]; then
     exit 0
 fi
 
-if test "$#" -lt 2; then
+if [[ -z "${ARG_ASN}" ]]; then
+    echo -e "  ⭕ ${YELLOW1}[${APP_THIS_FILE}]${RESET}: Invalid ASN specified for ${YELLOW1}${ARG_SAVEFILE}${RESET}"
     echo -e
-    echo -e "  ⭕  ${YELLOW1}[${APP_THIS_FILE}]${RESET}: Aborting -- did not provide URL arguments for ${YELLOW1}${ARG_SAVEFILE}${RESET}"
-    echo -e
-    exit 0
+    exit 1
+fi
+
+# #
+#   No whois service specified, set to default
+#       
+# #
+
+if [[ -z "${ARG_WHOIS_SERVICE}" ]]; then
+    ARG_WHOIS_SERVICE="whois.radb.net"
+fi
+
+# #
+#   Grep search pattern not provided, ignore comments and blank lines.
+#   this is already done in the step before this grep exclude pattern is ran, but
+#   we need a default grep pattern if one is not provided.
+# #
+
+if [[ -z "${ARG_GREP_FILTER}" ]]; then
+    ARG_GREP_FILTER="^#|^;|^$"
 fi
 
 # #
@@ -149,10 +175,13 @@ APP_DEBUG=false                                         # debug mode
 APP_REPO="Aetherinox/blocklists"                        # repository
 APP_REPO_BRANCH="main"                                  # repository branch
 APP_OUT=""                                              # each ip fetched from stdin will be stored in this var
+APP_FILE_TEMP="${ARG_SAVEFILE}.tmp"                     # temp file when building ipset list
 APP_FILE_PERM="${ARG_SAVEFILE}"                         # perm file when building ipset list
 COUNT_LINES=0                                           # number of lines in doc
 COUNT_TOTAL_SUBNET=0                                    # number of IPs in all subnets combined
 COUNT_TOTAL_IP=0                                        # number of single IPs (counts each line)
+BLOCKS_COUNT_TOTAL_IP=0                                 # number of ips for one particular file
+BLOCKS_COUNT_TOTAL_SUBNET=0                             # number of subnets for one particular file
 APP_AGENT="Mozilla/5.0 (Windows NT 10.0; WOW64) "\
 "AppleWebKit/537.36 (KHTML, like Gecko) "\
 "Chrome/51.0.2704.103 Safari/537.36"                    # user agent used with curl
@@ -224,128 +253,82 @@ else
 fi
 
 # #
-#   Func > Download List
+#   Get IP list
 # #
 
-download_list()
-{
+echo -e "  🌎 Downloading IP blacklist to ${ORANGE1}${APP_FILE_TEMP}${RESET}"
 
-    local fnUrl=$1
-    local fnFile=$2
-    local fnFileTemp="${2}.tmp"
-    local DL_COUNT_TOTAL_IP=0
-    local DL_COUNT_TOTAL_SUBNET=0
+# #
+#   Get IP list
+# #
 
-    echo -e "  🌎 Downloading IP blacklist to ${ORANGE2}${fnFileTemp}${RESET}"
+APP_OUT=$(whois -h ${ARG_WHOIS_SERVICE} -- "-i origin ${ARG_ASN}" | grep ^route | awk '{gsub("(route:|route6:)","");print}' | awk '{gsub(/ /,""); print}' | grep -vi "^#|^;|^$" | grep -vi "${ARG_GREP_FILTER}" | awk '{if (++dup[$0] == 1) print $0;}' | sort_results > ${APP_FILE_TEMP})
 
-    APP_OUT=$(curl -sSL -A "${APP_AGENT}" ${fnUrl} | html2text | grep -vi "^#|^;|^$" | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}(/[0-9]{1,2})|(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]).){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]).){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))(/[0-9]{1,2})?' | sort_results | awk '{if (++dup[$0] == 1) print $0;}' > ${fnFileTemp})
-    sed -i 's/\-.*//' ${fnFileTemp}                                             # remove hyphens for ip ranges
-    sed -i '/[#;]/{s/#.*//;s/;.*//;/^$/d}' ${fnFileTemp}                        # remove # and ; comments
-    sed -i 's/[[:blank:]]*$//' ${fnFileTemp}                                    # remove space / tab from EOL
-    sed -i '/^\s*$/d' ${fnFileTemp}                                             # remove empty lines
+# #
+#   calculate how many IPs are in a subnet
+#   if you want to calculate the USABLE IP addresses, subtract -2 from any subnet not ending with 31 or 32.
+#   
+#   for our purpose, we want to block them all in the event that the network has reconfigured their network / broadcast IPs,
+#   so we will count every IP in the block.
+# #
 
-    # #
-    #   calculate how many IPs are in a subnet
-    #   if you want to calculate the USABLE IP addresses, subtract -2 from any subnet not ending with 31 or 32.
-    #   
-    #   for our purpose, we want to block them all in the event that the network has reconfigured their network / broadcast IPs,
-    #   so we will count every IP in the block.
-    # #
+for line in $(cat ${APP_FILE_TEMP}); do
 
-    echo -e "  📊 Fetching statistics for clean file ${ORANGE2}${fnFileTemp}${RESET}"
-    for line in $(cat ${fnFileTemp}); do
     # is ipv6
-        if [ "$line" != "${line#*:[0-9a-fA-F]}" ]; then
-            if [[ $line =~ /[0-9]{1,3}$ ]]; then
-                COUNT_TOTAL_SUBNET=$(( $COUNT_TOTAL_SUBNET + 1 ))                       # GLOBAL count subnet
-                BLOCKS_COUNT_TOTAL_SUBNET=$(( $BLOCKS_COUNT_TOTAL_SUBNET + 1 ))         # LOCAL count subnet
-            else
-                COUNT_TOTAL_IP=$(( $COUNT_TOTAL_IP + 1 ))                               # GLOBAL count ip
-                BLOCKS_COUNT_TOTAL_IP=$(( $BLOCKS_COUNT_TOTAL_IP + 1 ))                 # LOCAL count ip
-            fi
-
-        # is subnet
-        elif [[ $line =~ /[0-9]{1,2}$ ]]; then
-            ips=$(( 1 << (32 - ${line#*/}) ))
-
-            if [[ $ips =~ $REGEX_ISNUM ]]; then
-                # CIDR=$(echo $line | sed 's:.*/::')
-
-                # uncomment if you want to count ONLY usable IP addresses
-                # subtract - 2 from any cidr not ending with 31 or 32
-                # if [[ $CIDR != "31" ]] && [[ $CIDR != "32" ]]; then
-                    # BLOCKS_COUNT_TOTAL_IP=$(( $BLOCKS_COUNT_TOTAL_IP - 2 ))
-                    # COUNT_TOTAL_IP=$(( $COUNT_TOTAL_IP - 2 ))
-                # fi
-
-                COUNT_TOTAL_IP=$(( $COUNT_TOTAL_IP + $ips ))                    # GLOBAL count IPs in subnet
-                COUNT_TOTAL_SUBNET=$(( $COUNT_TOTAL_SUBNET + 1 ))               # GLOBAL count subnet
-
-                DL_COUNT_TOTAL_IP=$(( $DL_COUNT_TOTAL_IP + $ips ))              # LOCAL count IPs in subnet
-                DL_COUNT_TOTAL_SUBNET=$(( $DL_COUNT_TOTAL_SUBNET + 1 ))         # LOCAL count subnet
-            fi
-
-        # is normal IP
-        elif [[ $line =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            COUNT_TOTAL_IP=$(( $COUNT_TOTAL_IP + 1 ))
-            DL_COUNT_TOTAL_IP=$(( $DL_COUNT_TOTAL_IP + 1 ))
+    if [ "$line" != "${line#*:[0-9a-fA-F]}" ]; then
+        if [[ $line =~ /[0-9]{1,3}$ ]]; then
+            COUNT_TOTAL_SUBNET=$(( $COUNT_TOTAL_SUBNET + 1 ))                       # GLOBAL count subnet
+            BLOCKS_COUNT_TOTAL_SUBNET=$(( $BLOCKS_COUNT_TOTAL_SUBNET + 1 ))         # LOCAL count subnet
+        else
+            COUNT_TOTAL_IP=$(( $COUNT_TOTAL_IP + 1 ))                               # GLOBAL count ip
+            BLOCKS_COUNT_TOTAL_IP=$(( $BLOCKS_COUNT_TOTAL_IP + 1 ))                 # LOCAL count ip
         fi
-    done
 
-    # #
-    #   Count lines and subnets
-    # #
+    # is subnet
+    elif [[ $line =~ /[0-9]{1,2}$ ]]; then
+        ips=$(( 1 << (32 - ${line#*/}) ))
 
-    DL_COUNT_TOTAL_IP=$(printf "%'d" "$DL_COUNT_TOTAL_IP")                      # LOCAL add commas to thousands
-    DL_COUNT_TOTAL_SUBNET=$(printf "%'d" "$DL_COUNT_TOTAL_SUBNET")              # LOCAL add commas to thousands
+        if [[ $ips =~ $REGEX_ISNUM ]]; then
+            # CIDR=$(echo $line | sed 's:.*/::')
 
-    # #
-    #   Move temp file to final
-    # #
+            # uncomment if you want to count ONLY usable IP addresses
+            # subtract - 2 from any cidr not ending with 31 or 32
+            # if [[ $CIDR != "31" ]] && [[ $CIDR != "32" ]]; then
+                # BLOCKS_COUNT_TOTAL_IP=$(( $BLOCKS_COUNT_TOTAL_IP - 2 ))
+                # COUNT_TOTAL_IP=$(( $COUNT_TOTAL_IP - 2 ))
+            # fi
 
-    echo -e "  🚛 Move ${ORANGE2}${fnFileTemp}${RESET} to ${BLUE2}${fnFile}${RESET}"
-    cat ${fnFileTemp} >> ${fnFile}                                              # copy .tmp contents to real file
-    rm ${fnFileTemp}                                                            # delete temp file
+            BLOCKS_COUNT_TOTAL_IP=$(( $BLOCKS_COUNT_TOTAL_IP + $ips ))              # LOCAL count IPs in subnet
+            BLOCKS_COUNT_TOTAL_SUBNET=$(( $BLOCKS_COUNT_TOTAL_SUBNET + 1 ))         # LOCAL count subnet
 
-    echo -e "  ➕ Added ${FUCHSIA2}${DL_COUNT_TOTAL_IP} IPs${RESET} and ${FUCHSIA2}${DL_COUNT_TOTAL_SUBNET} subnets${RESET} to ${BLUE2}${fnFile}${RESET}"
-}
+            COUNT_TOTAL_IP=$(( $COUNT_TOTAL_IP + $ips ))                            # GLOBAL count IPs in subnet
+            COUNT_TOTAL_SUBNET=$(( $COUNT_TOTAL_SUBNET + 1 ))                       # GLOBAL count subnet
+        fi
 
-# #
-#   Download lists
-# #
-
-for arg in "${@:2}"; do
-    if [[ $arg =~ $REGEX_URL ]]; then
-        download_list ${arg} ${APP_FILE_PERM}
-        echo -e
+    # is normal IP
+    elif [[ $line =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+        BLOCKS_COUNT_TOTAL_IP=$(( $BLOCKS_COUNT_TOTAL_IP + 1 ))
+        COUNT_TOTAL_IP=$(( $COUNT_TOTAL_IP + 1 ))
     fi
 done
 
 # #
-#   Sort
-#       - sort lines numerically and create .sort file
-#       - move re-sorted text from .sort over to real file
-#       - remove .sort temp file
+#   Count lines and subnets
 # #
 
-sorting=$(cat ${APP_FILE_PERM} | grep -vi "^#|^;|^$" | sort -n | awk '{if (++dup[$0] == 1) print $0;}' > ${APP_FILE_PERM}.sort)
-> ${APP_FILE_PERM}
-cat ${APP_FILE_PERM}.sort >> ${APP_FILE_PERM}
-rm ${APP_FILE_PERM}.sort
+COUNT_LINES=$(wc -l < ${APP_FILE_TEMP})                                             # GLOBAL count ip lines
+COUNT_LINES=$(printf "%'d" "$COUNT_LINES")                                          # GLOBAL add commas to thousands
+COUNT_TOTAL_IP=$(printf "%'d" "$COUNT_TOTAL_IP")                                    # GLOBAL add commas to thousands
+COUNT_TOTAL_SUBNET=$(printf "%'d" "$COUNT_TOTAL_SUBNET")                            # GLOBAL add commas to thousands
 
-# #
-#   Format Counts
-# #
+BLOCKS_COUNT_TOTAL_IP=$(printf "%'d" "$BLOCKS_COUNT_TOTAL_IP")                      # LOCAL add commas to thousands
+BLOCKS_COUNT_TOTAL_SUBNET=$(printf "%'d" "$BLOCKS_COUNT_TOTAL_SUBNET")              # LOCAL add commas to thousands
 
-COUNT_LINES=$(wc -l < ${APP_FILE_PERM})                                     # count ip lines
-COUNT_LINES=$(printf "%'d" "$COUNT_LINES")                                  # GLOBAL add commas to thousands
+echo -e "  🚛 Move ${ORANGE2}${APP_FILE_TEMP}${RESET} to ${BLUE2}${APP_FILE_PERM}${RESET}"
+cat ${APP_FILE_TEMP} >> ${APP_FILE_PERM}                                            # copy .tmp contents to real file
+rm ${APP_FILE_TEMP}                                                                 # delete temp file
 
-# #
-#   Format count totals since we no longer need to add
-# #
-
-COUNT_TOTAL_IP=$(printf "%'d" "$COUNT_TOTAL_IP")                            # GLOBAL add commas to thousands
-COUNT_TOTAL_SUBNET=$(printf "%'d" "$COUNT_TOTAL_SUBNET")                    # GLOBAL add commas to thousands
+echo -e "  ➕ Added ${FUCHSIA2}${BLOCKS_COUNT_TOTAL_IP} IPs${RESET} and ${FUCHSIA2}${BLOCKS_COUNT_TOTAL_SUBNET} Subnets${RESET} to ${BLUE2}${APP_FILE_PERM}${RESET}"
 
 # #
 #   ed
@@ -386,6 +369,7 @@ H=$((T/3600%24))
 M=$((T/60%60))
 S=$((T%60))
 
+echo -e
 echo -e "  🎌 ${GREY2}Finished! ${YELLOW2}${D} days ${H} hrs ${M} mins ${S} secs${RESET}"
 
 # #

@@ -77,6 +77,28 @@ function error()
 }
 
 # #
+#   Sort Results
+#
+#   @usage          line=$(parse_spf_record "${ip}" | sort_results)
+# #
+
+sort_results()
+{
+	declare -a ipv4 ipv6
+
+	while read -r line ; do
+		if [[ ${line} =~ : ]] ; then
+			ipv6+=("${line}")
+		else
+			ipv4+=("${line}")
+		fi
+	done
+
+	[[ -v ipv4[@] ]] && printf '%s\n' "${ipv4[@]}" | sort -g -t. -k1,1 -k 2,2 -k 3,3 -k 4,4 | uniq
+	[[ -v ipv6[@] ]] && printf '%s\n' "${ipv6[@]}" | sort -g -t: -k1,1 -k 2,2 -k 3,3 -k 4,4 -k 5,5 -k 6,6 -k 7,7 -k 8,8 | uniq
+}
+
+# #
 #   Arguments
 #
 #   This bash script has the following arguments:
@@ -256,7 +278,7 @@ done
 #   Get IP list
 # #
 
-list_ips=$(echo "${APP_OUT}" | grep -v "^#" | sort -n | awk '{if (++dup[$0] == 1) print $0;}' > ${APP_FILE_TEMP})
+list_ips=$(echo "${APP_OUT}" | grep -vi "^#|^;|^$" | sort -n | awk '{if (++dup[$0] == 1) print $0;}' > ${APP_FILE_TEMP})
 sed -i '/[#;]/{s/#.*//;s/;.*//;/^$/d}' ${APP_FILE_TEMP}                 # remove # and ; comments
 sed -i 's/\-.*//' ${APP_FILE_TEMP}                                      # remove hyphens for ip ranges
 sed -i 's/[[:blank:]]*$//' ${APP_FILE_TEMP}                             # remove space / tab from EOL
