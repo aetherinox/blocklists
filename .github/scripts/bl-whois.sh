@@ -117,17 +117,37 @@ sort_results()
 # #
 #   Arguments
 #
-#   This bash script has the following arguments:
+#   We are attempting to add dynamic arguments, meaning they can be in any order. this is because some of the arguments are
+#   optional, and we support providing multiple ASN.
 #
-#       ARG_SAVEFILE        (str)       file to save IP addresses into
-#       ARG_ASN             (str)       ASN to look up for whois
-#       ARG_JSON_QRY        (str)       jq rules which pull the needed ip addresses
+#       ARG_SAVEFILE        (str)       always the first arg
+#       ARG_WHOIS_SERVICE   (str)       specifies what whois service to use
+#                                           - if string arg is valid URL (checked by regex)
+#                                           - if string arg STARTS with `whois`
+#       ARG_GREP_FILTER     (str)       specifies what grep pattern to use for filtering out results
+#                                           - if string arg STARTS with ^
+#                                           - if string arg STARTS with (
+#                                           - if string arg ENDS with $
+#                                           - if string arg ENDS with )
+#       ARG_ASN             (str)       ASN to grab IP addresses from. supports multiple ASN numbers.
+#                                           - if string arg STARTS with `AS`
 # #
 
+REGEX_URL='^(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]\.[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]$'
+for arg in "${@:1}"; do
+    if [[ $arg == whois* ]] || [[ $arg =~ $REGEX_URL ]]; then
+        ARG_WHOIS_SERVICE=${arg}
+    fi
+    if [[ $arg == ^* ]] || [[ $arg == \(* ]] || [[ $arg == *$ ]] || [[ $arg == *\) ]]; then
+        ARG_GREP_FILTER=${arg}
+    fi
+done
+
 ARG_SAVEFILE=$1
-ARG_ASN=$2
-ARG_WHOIS_SERVICE=$3
-ARG_GREP_FILTER=$4
+
+echo -e "Save File .... ${ARG_SAVEFILE}"
+echo -e "Service ...... ${ARG_WHOIS_SERVICE}"
+echo -e "Grep ......... ${ARG_GREP_FILTER}"
 
 # #
 #   Arguments > Validate
@@ -140,10 +160,11 @@ if [[ -z "${ARG_SAVEFILE}" ]]; then
     exit 0
 fi
 
-if [[ -z "${ARG_ASN}" ]]; then
-    echo -e "  ⭕ ${YELLOW1}[${APP_THIS_FILE}]${RESET}: Invalid ASN specified for ${YELLOW1}${ARG_SAVEFILE}${RESET}"
+if test "$#" -lt 2; then
     echo -e
-    exit 1
+    echo -e "  ⭕ ${YELLOW1}[${APP_THIS_FILE}]${RESET}: Invalid ASN list specified for ${YELLOW1}${ARG_SAVEFILE}${RESET}"
+    echo -e
+    exit 0
 fi
 
 # #
@@ -193,7 +214,6 @@ TEMPL_DESC=$(curl -sSL -A "${APP_AGENT}" "https://raw.githubusercontent.com/${AP
 TEMPL_CAT=$(curl -sSL -A "${APP_AGENT}" "https://raw.githubusercontent.com/${APP_REPO}/${APP_REPO_BRANCH}/.github/categories/${TEMPL_ID}.txt")
 TEMPL_EXP=$(curl -sSL -A "${APP_AGENT}" "https://raw.githubusercontent.com/${APP_REPO}/${APP_REPO_BRANCH}/.github/expires/${TEMPL_ID}.txt")
 TEMP_URL_SRC=$(curl -sSL -A "${APP_AGENT}" "https://raw.githubusercontent.com/${APP_REPO}/${APP_REPO_BRANCH}/.github/url-source/${TEMPL_ID}.txt")
-REGEX_URL='^(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]\.[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]$'
 REGEX_ISNUM='^[0-9]+$'
 
 # #
@@ -253,82 +273,130 @@ else
 fi
 
 # #
-#   Get IP list
+#   Func > Download List
 # #
 
-echo -e "  🌎 Downloading IP blacklist to ${ORANGE1}${APP_FILE_TEMP}${RESET}"
+download_list()
+{
 
-# #
-#   Get IP list
-# #
+    local fnASN=$1
+    local fnFile=$2
+    local fnFileTemp="${2}.tmp"
+    local DL_COUNT_TOTAL_IP=0
+    local DL_COUNT_TOTAL_SUBNET=0
 
-APP_OUT=$(whois -h ${ARG_WHOIS_SERVICE} -- "-i origin ${ARG_ASN}" | grep ^route | awk '{gsub("(route:|route6:)","");print}' | awk '{gsub(/ /,""); print}' | grep -vi "^#|^;|^$" | grep -vi "${ARG_GREP_FILTER}" | awk '{if (++dup[$0] == 1) print $0;}' | sort_results > ${APP_FILE_TEMP})
+    echo -e "  🌎 Downloading ASN ${YELLOW1}${fnASN}${RESET} list to ${ORANGE2}${fnFileTemp}${RESET}"
 
-# #
-#   calculate how many IPs are in a subnet
-#   if you want to calculate the USABLE IP addresses, subtract -2 from any subnet not ending with 31 or 32.
-#   
-#   for our purpose, we want to block them all in the event that the network has reconfigured their network / broadcast IPs,
-#   so we will count every IP in the block.
-# #
+    whois -h ${ARG_WHOIS_SERVICE} -- "-i origin ${fnASN}" | grep ^route | awk '{gsub("(route:|route6:)","");print}' | awk '{gsub(/ /,""); print}' | grep -vi "^#|^;|^$" | grep -vi "${ARG_GREP_FILTER}" | awk '{if (++dup[$0] == 1) print $0;}' | sort_results > ${fnFileTemp}
 
-for line in $(cat ${APP_FILE_TEMP}); do
+    # #
+    #   calculate how many IPs are in a subnet
+    #   if you want to calculate the USABLE IP addresses, subtract -2 from any subnet not ending with 31 or 32.
+    #   
+    #   for our purpose, we want to block them all in the event that the network has reconfigured their network / broadcast IPs,
+    #   so we will count every IP in the block.
+    # #
 
-    # is ipv6
-    if [ "$line" != "${line#*:[0-9a-fA-F]}" ]; then
-        if [[ $line =~ /[0-9]{1,3}$ ]]; then
-            COUNT_TOTAL_SUBNET=$(( $COUNT_TOTAL_SUBNET + 1 ))                       # GLOBAL count subnet
-            BLOCKS_COUNT_TOTAL_SUBNET=$(( $BLOCKS_COUNT_TOTAL_SUBNET + 1 ))         # LOCAL count subnet
-        else
-            COUNT_TOTAL_IP=$(( $COUNT_TOTAL_IP + 1 ))                               # GLOBAL count ip
-            BLOCKS_COUNT_TOTAL_IP=$(( $BLOCKS_COUNT_TOTAL_IP + 1 ))                 # LOCAL count ip
+    echo -e "  📊 Fetching statistics for clean file ${ORANGE2}${fnFileTemp}${RESET}"
+    for line in $(cat ${fnFileTemp}); do
+        # is ipv6
+        if [ "$line" != "${line#*:[0-9a-fA-F]}" ]; then
+            if [[ $line =~ /[0-9]{1,3}$ ]]; then
+                COUNT_TOTAL_SUBNET=$(( $COUNT_TOTAL_SUBNET + 1 ))                       # GLOBAL count subnet
+                BLOCKS_COUNT_TOTAL_SUBNET=$(( $BLOCKS_COUNT_TOTAL_SUBNET + 1 ))         # LOCAL count subnet
+            else
+                COUNT_TOTAL_IP=$(( $COUNT_TOTAL_IP + 1 ))                               # GLOBAL count ip
+                BLOCKS_COUNT_TOTAL_IP=$(( $BLOCKS_COUNT_TOTAL_IP + 1 ))                 # LOCAL count ip
+            fi
+
+        # is subnet
+        elif [[ $line =~ /[0-9]{1,2}$ ]]; then
+            ips=$(( 1 << (32 - ${line#*/}) ))
+
+            if [[ $ips =~ $REGEX_ISNUM ]]; then
+                # CIDR=$(echo $line | sed 's:.*/::')
+
+                # uncomment if you want to count ONLY usable IP addresses
+                # subtract - 2 from any cidr not ending with 31 or 32
+                # if [[ $CIDR != "31" ]] && [[ $CIDR != "32" ]]; then
+                    # COUNT_TOTAL_IP=$(( $COUNT_TOTAL_IP - 2 ))
+                    # DL_COUNT_TOTAL_IP=$(( $DL_COUNT_TOTAL_IP - 2 ))
+                # fi
+
+                COUNT_TOTAL_IP=$(( $COUNT_TOTAL_IP + $ips ))                    # GLOBAL count IPs in subnet
+                COUNT_TOTAL_SUBNET=$(( $COUNT_TOTAL_SUBNET + 1 ))               # GLOBAL count subnet
+
+                DL_COUNT_TOTAL_IP=$(( $DL_COUNT_TOTAL_IP + $ips ))              # LOCAL count IPs in subnet
+                DL_COUNT_TOTAL_SUBNET=$(( $DL_COUNT_TOTAL_SUBNET + 1 ))         # LOCAL count subnet
+            fi
+
+        # is normal IP
+        elif [[ $line =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            COUNT_TOTAL_IP=$(( $COUNT_TOTAL_IP + 1 ))
+            DL_COUNT_TOTAL_IP=$(( $DL_COUNT_TOTAL_IP + 1 ))
         fi
+    done
 
-    # is subnet
-    elif [[ $line =~ /[0-9]{1,2}$ ]]; then
-        ips=$(( 1 << (32 - ${line#*/}) ))
+    # #
+    #   Count lines and subnets
+    # #
 
-        if [[ $ips =~ $REGEX_ISNUM ]]; then
-            # CIDR=$(echo $line | sed 's:.*/::')
+    DL_COUNT_TOTAL_IP=$(printf "%'d" "$DL_COUNT_TOTAL_IP")                      # LOCAL add commas to thousands
+    DL_COUNT_TOTAL_SUBNET=$(printf "%'d" "$DL_COUNT_TOTAL_SUBNET")              # LOCAL add commas to thousands
 
-            # uncomment if you want to count ONLY usable IP addresses
-            # subtract - 2 from any cidr not ending with 31 or 32
-            # if [[ $CIDR != "31" ]] && [[ $CIDR != "32" ]]; then
-                # BLOCKS_COUNT_TOTAL_IP=$(( $BLOCKS_COUNT_TOTAL_IP - 2 ))
-                # COUNT_TOTAL_IP=$(( $COUNT_TOTAL_IP - 2 ))
-            # fi
+    # #
+    #   Move temp file to final
+    # #
 
-            BLOCKS_COUNT_TOTAL_IP=$(( $BLOCKS_COUNT_TOTAL_IP + $ips ))              # LOCAL count IPs in subnet
-            BLOCKS_COUNT_TOTAL_SUBNET=$(( $BLOCKS_COUNT_TOTAL_SUBNET + 1 ))         # LOCAL count subnet
+    echo -e "  🚛 Move ${ORANGE2}${fnFileTemp}${RESET} to ${BLUE2}${fnFile}${RESET}"
+    cat ${fnFileTemp} >> ${fnFile}                                              # copy .tmp contents to real file
+    rm ${fnFileTemp}                                                            # delete temp file
 
-            COUNT_TOTAL_IP=$(( $COUNT_TOTAL_IP + $ips ))                            # GLOBAL count IPs in subnet
-            COUNT_TOTAL_SUBNET=$(( $COUNT_TOTAL_SUBNET + 1 ))                       # GLOBAL count subnet
-        fi
+    echo -e "  ➕ Added ${FUCHSIA2}${DL_COUNT_TOTAL_IP} IPs${RESET} and ${FUCHSIA2}${DL_COUNT_TOTAL_SUBNET} subnets${RESET} to ${BLUE2}${fnFile}${RESET}"
+}
 
-    # is normal IP
-    elif [[ $line =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-        BLOCKS_COUNT_TOTAL_IP=$(( $BLOCKS_COUNT_TOTAL_IP + 1 ))
-        COUNT_TOTAL_IP=$(( $COUNT_TOTAL_IP + 1 ))
+# #
+#   Get ASN arguments
+#
+#   string must start with "AS*"
+# #
+
+TEMPL_ASN_LIST=""                           # ASN list
+count=1                                     # start at one, since the last step is base continent file
+for arg in "${@:2}"; do
+    if [[ $arg == AS* ]]; then
+        download_list ${arg} ${APP_FILE_PERM}
+        echo -e
+
+        TEMPL_ASN_LIST+="${arg} "
     fi
 done
 
 # #
-#   Count lines and subnets
+#   Sort
+#       - sort lines numerically and create .sort file
+#       - move re-sorted text from .sort over to real file
+#       - remove .sort temp file
 # #
 
-COUNT_LINES=$(wc -l < ${APP_FILE_TEMP})                                             # GLOBAL count ip lines
-COUNT_LINES=$(printf "%'d" "$COUNT_LINES")                                          # GLOBAL add commas to thousands
-COUNT_TOTAL_IP=$(printf "%'d" "$COUNT_TOTAL_IP")                                    # GLOBAL add commas to thousands
-COUNT_TOTAL_SUBNET=$(printf "%'d" "$COUNT_TOTAL_SUBNET")                            # GLOBAL add commas to thousands
+sorting=$(cat ${APP_FILE_PERM} | grep -vi "^#|^;|^$" | awk '{if (++dup[$0] == 1) print $0;}' | sort_results > ${APP_FILE_PERM}.sort)
+> ${APP_FILE_PERM}
+cat ${APP_FILE_PERM}.sort >> ${APP_FILE_PERM}
+rm ${APP_FILE_PERM}.sort
 
-BLOCKS_COUNT_TOTAL_IP=$(printf "%'d" "$BLOCKS_COUNT_TOTAL_IP")                      # LOCAL add commas to thousands
-BLOCKS_COUNT_TOTAL_SUBNET=$(printf "%'d" "$BLOCKS_COUNT_TOTAL_SUBNET")              # LOCAL add commas to thousands
+# #
+#   Format Counts
+# #
 
-echo -e "  🚛 Move ${ORANGE2}${APP_FILE_TEMP}${RESET} to ${BLUE2}${APP_FILE_PERM}${RESET}"
-cat ${APP_FILE_TEMP} >> ${APP_FILE_PERM}                                            # copy .tmp contents to real file
-rm ${APP_FILE_TEMP}                                                                 # delete temp file
+COUNT_LINES=$(wc -l < ${APP_FILE_PERM})                                     # count ip lines
+COUNT_LINES=$(printf "%'d" "$COUNT_LINES")                                  # GLOBAL add commas to thousands
 
-echo -e "  ➕ Added ${FUCHSIA2}${BLOCKS_COUNT_TOTAL_IP} IPs${RESET} and ${FUCHSIA2}${BLOCKS_COUNT_TOTAL_SUBNET} Subnets${RESET} to ${BLUE2}${APP_FILE_PERM}${RESET}"
+# #
+#   Format count totals since we no longer need to add
+# #
+
+COUNT_TOTAL_IP=$(printf "%'d" "$COUNT_TOTAL_IP")                            # GLOBAL add commas to thousands
+COUNT_TOTAL_SUBNET=$(printf "%'d" "$COUNT_TOTAL_SUBNET")                    # GLOBAL add commas to thousands
 
 # #
 #   ed
@@ -348,6 +416,7 @@ ed -s ${APP_FILE_PERM} <<END_ED
 #   @entries        ${COUNT_TOTAL_IP} ips
 #                   ${COUNT_TOTAL_SUBNET} subnets
 #                   ${COUNT_LINES} lines
+#   @asn            ${TEMPL_ASN_LIST}
 #   @expires        ${TEMPL_EXP}
 #   @category       ${TEMPL_CAT}
 #
@@ -369,7 +438,6 @@ H=$((T/3600%24))
 M=$((T/60%60))
 S=$((T%60))
 
-echo -e
 echo -e "  🎌 ${GREY2}Finished! ${YELLOW2}${D} days ${H} hrs ${M} mins ${S} secs${RESET}"
 
 # #
