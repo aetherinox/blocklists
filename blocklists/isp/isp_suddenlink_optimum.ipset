@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             isp_suddenlink_optimum_ipset
 #   @uuid           ad8e670a-a9a9-391b-b945-5f1381e6a9b4
-#   @updated        Sun 03 Nov 2024 12:12:00 PM UTC
-#   @entries        7,122,176 ips
-#                   682 subnets
-#                   682 lines
+#   @updated        Sun 03 Nov 2024 06:10:21 PM UTC
+#   @entries        7,121,664 ips
+#                   681 subnets
+#                   681 lines
 #   @expires        7 days
 #   @category       Uncategorized
 #
@@ -354,7 +354,6 @@
 75.109.0.0/17
 75.109.0.0/18
 75.109.8.0/23
-75.109.44.0/23
 75.109.46.0/24
 75.109.76.0/24
 75.109.77.0/24
