@@ -340,7 +340,7 @@ jobs:
             - name: "🧱 Generate › Spam"
               id: task_blocklist_generate_spam
               run: |
-                  run_spamhaus=".github/scripts/bl-plain.sh blocklists/spam_spamhaus.ipset ${{ secrets.API_03_SPAM_SPAMHAUS_URL }}"
+                  run_spamhaus=".github/scripts/bl-plain.sh blocklists/spam/spam_spamhaus.ipset ${{ secrets.API_03_SPAM_SPAMHAUS_URL }}"
                   eval "./$run_spamhaus"
 
             # #
