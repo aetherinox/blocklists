@@ -1,11 +1,11 @@
 # #
-#   🧱 Firewall Blocklist - blocklists/spam_spamhaus.ipset
+#   🧱 Firewall Blocklist - blocklists/spam/spam_spamhaus.ipset
 #
-#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/spam_spamhaus.ipset
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/spam/spam_spamhaus.ipset
 #   @source         https://spamhaus.org/drop/drop.txt
 #   @id             spam_spamhaus_ipset
 #   @uuid           58ac5de8-785d-356a-ab2b-8be8960e311b
-#   @updated        Sun 03 Nov 2024 12:22:25 AM UTC
+#   @updated        Sun 03 Nov 2024 02:10:30 AM UTC
 #   @entries        15,952,128 ips
 #                   1,361 subnets
 #                   1,361 lines
