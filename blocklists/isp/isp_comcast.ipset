@@ -1,0 +1,50 @@
+# #
+#   🧱 Firewall Blocklist - blocklists/isp/isp_comcast.ipset
+#
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/isp/isp_comcast.ipset
+#   @source         None
+#   @id             isp_comcast_ipset
+#   @uuid           09606518-a08a-36f8-a001-3be67dedd4bd
+#   @updated        Sun 03 Nov 2024 12:22:33 AM UTC
+#   @entries        45,121,536 ips
+#                   33 subnets
+#                   33 lines
+#   @expires        6 hours
+#   @category       Uncategorized
+#
+#   No description provided
+# #
+
+24.0.0.0/12
+24.118.0.0/16
+24.125.0.0/16
+24.130.192.0/19
+24.16.0.0/13
+24.34.0.0/16
+24.60.0.0/14
+50.128.0.0/9
+66.176.0.0/15
+66.229.0.0/16
+67.160.0.0/11
+68.32.0.0/11
+68.80.0.0/13
+69.136.0.0/13
+69.180.0.0/15
+69.240.0.0/12
+71.192.0.0/12
+71.224.0.0/12
+71.56.0.0/13
+73.0.0.0/8
+75.64.0.0/13
+75.72.0.0/15
+75.74.0.0/16
+75.75.0.0/17
+75.75.128.0/18
+76.16.0.0/12
+76.96.0.0/11
+98.192.0.0/11
+98.224.0.0/12
+98.240.0.0/13
+174.48.0.0/12
+208.110.192.0/19
+216.45.128.0/17

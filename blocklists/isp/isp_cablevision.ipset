@@ -1,0 +1,28 @@
+# #
+#   🧱 Firewall Blocklist - blocklists/isp/isp_cablevision.ipset
+#
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/isp/isp_cablevision.ipset
+#   @source         None
+#   @id             isp_cablevision_ipset
+#   @uuid           6de5a872-560e-3446-914e-b3818263d0c9
+#   @updated        Sun 03 Nov 2024 12:22:30 AM UTC
+#   @entries        1,787,136 ips
+#                   11 subnets
+#                   11 lines
+#   @expires        6 hours
+#   @category       Uncategorized
+#
+#   No description provided
+# #
+
+24.188.0.0/14
+24.44.0.0/14
+65.51.0.0/16
+67.80.0.0/13
+68.192.0.0/13
+69.27.224.0/19
+69.74.0.0/16
+167.206.0.0/16
+198.242.55.0/24
+216.2.192.0/22
+216.255.96.0/19
