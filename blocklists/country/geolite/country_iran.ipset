@@ -5,7 +5,7 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_iran_ipset
 #   @uuid           a56d768c-cf9c-375d-be45-b9c82065513e
-#   @updated        Sun 03 Nov 2024 02:24:56 AM UTC
+#   @updated        Sun 03 Nov 2024 04:58:37 AM UTC
 #   @entries        11,507,102 ips
 #                   2,579 subnets
 #                   2,579 lines

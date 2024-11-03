@@ -5,7 +5,7 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_finland_ipset
 #   @uuid           25e72cd6-ea8d-395e-8335-d27d18945779
-#   @updated        Sun 03 Nov 2024 02:24:13 AM UTC
+#   @updated        Sun 03 Nov 2024 04:57:27 AM UTC
 #   @entries        14,690,725 ips
 #                   44,495 subnets
 #                   44,495 lines

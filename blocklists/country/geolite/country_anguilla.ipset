@@ -5,7 +5,7 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_anguilla_ipset
 #   @uuid           b2c38ecb-5141-3b86-b000-07d62973d7fd
-#   @updated        Sun 03 Nov 2024 02:23:04 AM UTC
+#   @updated        Sun 03 Nov 2024 04:55:32 AM UTC
 #   @entries        23,666 ips
 #                   175 subnets
 #                   175 lines
