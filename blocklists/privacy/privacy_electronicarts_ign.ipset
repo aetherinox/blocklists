@@ -2,10 +2,10 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/privacy_electronicarts_ign.ipset
 #
 #   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/privacy/privacy_electronicarts_ign.ipset
-#   @source         None
+#   @source         
 #   @id             privacy_electronicarts_ign_ipset
 #   @uuid           7f947bfc-e01e-322a-8d36-89a94ad0bfba
-#   @updated        Sun 03 Nov 2024 06:09:32 PM UTC
+#   @updated        Mon 04 Nov 2024 12:44:06 AM UTC
 #   @entries        69,720 ips
 #                   42 subnets
 #                   42 lines
