@@ -43,7 +43,8 @@
 # #
 
 APP_THIS_FILE=$(basename "$0")                          # current script file
-APP_THIS_DIR="${PWD}"                                   # Current script directory
+APP_THIS_DIR="${PWD}"                                   # current script directory
+APP_GITHUB_DIR="${APP_THIS_DIR}/.github"                # .github folder
 
 # #
 #   vars > colors
@@ -144,10 +145,6 @@ for arg in "${@:1}"; do
 done
 
 ARG_SAVEFILE=$1
-
-echo -e "Save File .... ${ARG_SAVEFILE}"
-echo -e "Service ...... ${ARG_WHOIS_SERVICE}"
-echo -e "Grep ......... ${ARG_GREP_FILTER}"
 
 # #
 #   Arguments > Validate
@@ -356,19 +353,51 @@ download_list()
 }
 
 # #
+#   Count ASN
+#
+#   To make sure we add the correct amount of commas to the ASN list, as well as break up the ASN numbers per line
+#   we need to get the total count available.
+# #
+
+ASN_I_TOTAL=0                           # start at one, since the last step is base continent file
+ASN_I_STEP=0                            # count current asn in step
+TEMPL_ASN_LIST=""                       # ASN list
+
+for arg in "${@:2}"; do
+    if [[ $arg == AS* ]]; then
+        ASN_I_TOTAL=$(( ASN_I_TOTAL + 1 ))
+    fi
+done
+
+# Hacky, remove one from total since step starts at 0
+ASN_I_TOTAL=$(( $ASN_I_TOTAL - 1 ))
+
+# #
 #   Get ASN arguments
 #
 #   string must start with "AS*"
 # #
 
-TEMPL_ASN_LIST=""                           # ASN list
-count=1                                     # start at one, since the last step is base continent file
 for arg in "${@:2}"; do
     if [[ $arg == AS* ]]; then
         download_list ${arg} ${APP_FILE_PERM}
         echo -e
 
-        TEMPL_ASN_LIST+="${arg} "
+        if [ "${ASN_I_TOTAL}" == "${ASN_I_STEP}" ]; then
+            if [ $((ASN_I_STEP%3)) -eq 0 ]; then
+                TEMPL_ASN_LIST+=$'\n'"#                   ${arg}"
+            else
+                TEMPL_ASN_LIST+="${arg}"
+            fi
+        else
+            if [ $((ASN_I_STEP%3)) -eq 0 ]; then
+                TEMPL_ASN_LIST+=$'\n'"#                   ${arg}, "
+            else
+                TEMPL_ASN_LIST+="${arg}, "
+            fi
+        fi
+
+        ASN_I_STEP=$(( ASN_I_STEP + 1 ))
     fi
 done
 

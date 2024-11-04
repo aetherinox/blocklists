@@ -1,7 +1,6 @@
 #   AT&T Internet (Internet Service Provider)
-#   AS7018
 #
-#   Website 	          https://www.att.com/internet/
+#   Website 	          https://att.com/internet/
 #   Parent organization:  AT&T Communications
 #   Founded               September 19, 2016
 #

@@ -1,5 +1,4 @@
 #   Cablevision (Internet Service Provider)
-#   AS6128
 #
 #   Website 	          https://cablevision.com
 #   Founded               1973

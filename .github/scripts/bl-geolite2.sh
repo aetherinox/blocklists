@@ -10,16 +10,20 @@
 #   @terminal           .github/scripts/bl-geolite2.sh -l <LICENSE_KEY>
 #                       .github/scripts/bl-geolite2.sh --local
 #                       .github/scripts/bl-geolite2.sh --local --dev
+#                       .github/scripts/bl-geolite2.sh --dry
 #
 #   @command            bl-geolite2.sh -l <LICENSE_KEY> ]
 #                       bl-geolite2.sh --local
 #                       bl-geolite2.sh --dev
+#                       bl-geolite2.sh --dry
 # #
 
 # #
-#   Download / License Key
+#   LICENSE KEY / DOWNLOAD MODE
+#       .github/scripts/bl-geolite2.sh -l <LICENSE_KEY>
+#       .github/scripts/bl-geolite2.sh --license <LICENSE_KEY>
 #
-#   If you are not running local mode (see below), you will need to download the GeoLite2 database .csv files when the script starts.
+#   If you are not running LOCAL MODE (see below), you will need to download the GeoLite2 database .csv files when the script starts.
 #   You must specify a license key from the MaxMind website. Ensure you set up a Github workflow secret if running this script on Github.
 #
 #   To specify a license key, you can:
@@ -32,19 +36,60 @@
 # #
 
 # #
-#   Local Mode
+#   LOCAL MODE
+#       .github/scripts/bl-geolite2.sh -o
+#       .github/scripts/bl-geolite2.sh --local
 #
-#   allows you to use a local copy of the .CSV files instead of downloading them each and every time you run the script.
-#       - Create a new folder `/local` in the parent folder
-#       - Download the location files from:
-#           http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
-#       - Place the .csv files in the `/local` folder
-#       - Enable local mode in the settings below
-#           APP_SOURCE_LOCAL_ENABLED=true
+#   PLACE FILES IN
+#       `.github/local`
+#
+#   Local mode allows you to use GeoLite2 database from a local copy on your server, instead of downloading a fresh zip.
+#
+#   Local files must be placed in the `.github/local` folder. This method supports either the zipped files, OR each CSV.
+#
+#   If providing the ZIP, you must have the following files:
+#       .github/local/GeoLite2-Country-CSV.zip
+#       .github/local/GeoLite2-Country-CSV.zip.md5
+#
+#   OR
+#
+#   If providing each CSV file, you must have the files:
+#       .github/local/GeoLite2-Country-Locations-en.csv
+#       .github/local/GeoLite2-Country-Blocks-IPv4.csv
+#       .github/local/GeoLite2-Country-Blocks-IPv6.csv
+#
+#   If you are providing the ZIP files, you can get the zip and the md5 hash files from
+#       - CSV URL: https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country-CSV&license_key=LICENSE_KEY&suffix=zip
+#       - MD5 URL: https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country-CSV&license_key=LICENSE_KEY&suffix=zip.md5
+#
+#   The files MUST be named:
+#       - GeoLite2-Country-CSV.zip
+#       - GeoLite2-Country-CSV.zip.md5
+# #
+
+# #
+#   DRY-RUN MODE
+#       .github/scripts/bl-geolite2.sh -d
+#       .github/scripts/bl-geolite2.sh --dry
+#
+#   PLACE FILES IN
+#       `.github/local`
+#   
+#   This parameter runs the script as if it were downloading the files from the MaxMind official website, except the CURL calls are skipped.
+#   the .ZIP and .ZIP.MD5 files are required to be in the .temp folder.
+#
+#   The files MUST be named:
+#       - GeoLite2-Country-CSV.zip
+#       - GeoLite2-Country-CSV.zip.md5
+#
+#   Download the .zip and .zip.md5 from:
+#           - CSV URL: https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country-CSV&license_key=LICENSE_KEY&suffix=zip
+#           - MD5 URL: https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country-CSV&license_key=LICENSE_KEY&suffix=zip.md5
 # #
 
 APP_THIS_FILE=$(basename "$0")                          # current script file
-APP_THIS_DIR="${PWD}"                                   # Current script directory
+APP_THIS_DIR="${PWD}"                                   # current script directory
+APP_GITHUB_DIR="${APP_THIS_DIR}/.github"                # .github folder
 
 # #
 #   vars > colors
@@ -89,7 +134,7 @@ GREY3=$'\e[38;5;250m'
 
 function error()
 {
-    echo -e "  ⭕ ${GREY2}${APP_THIS_FILE}${RESET}: \n     ${BOLD}${RED}Error${RESET}: ${RESET}$1"
+    echo -e "  ⭕ ${GREY2}${APP_THIS_FILE}${RESET}: \n     ${BOLD}${RED1}Error${RESET}: ${RESET}$1"
     echo -e
     exit 0
 }
@@ -115,13 +160,16 @@ APP_TARGET_DIR="blocklists/country/geolite"                         # path to sa
 APP_TARGET_EXT_TMP="tmp"                                            # temp extension for ipsets before work is done
 APP_TARGET_EXT_PROD="ipset"                                         # extension for ipsets
 APP_SOURCE_LOCAL_ENABLED=false                                      # True = loads from ./local, False = download from MaxMind
-APP_SOURCE_LOCAL="local"                                            # where to fetch local csv from if local mode enabled
+APP_SOURCE_LOCAL="local"                                            # local mode enabled: where to fetch local csv from
+APP_SOURCE_TEMP=".temp"                                             # local mode disabled: where csv will be downloaded to
+APP_SOURCE_CACHE="cache"                                            # location where countries and continents are stored as array to file
 APP_DIR_IPV4="./${APP_TARGET_DIR}/ipv4"                             # folder to store ipv4
 APP_DIR_IPV6="./${APP_TARGET_DIR}/ipv6"                             # folder to store ipv6
 APP_GEO_LOCS_CSV="GeoLite2-Country-Locations-en.csv"                # Geolite2 Country Locations CSV 
 APP_GEO_IPV4_CSV="GeoLite2-Country-Blocks-IPv4.csv"                 # Geolite2 Country CSV IPv4
 APP_GEO_IPV6_CSV="GeoLite2-Country-Blocks-IPv6.csv"                 # Geolite2 Country CSV IPv6
 APP_GEO_ZIP="GeoLite2-Country-CSV.zip"                              # Geolite2 Country CSV Zip
+APP_GEO_ZIP_MD5="${APP_GEO_ZIP}.md5"                                # Geolite2 Country CSV Zip MD5 hash file
 COUNT_LINES=0                                                       # number of lines in doc
 COUNT_TOTAL_SUBNET=0                                                # number of IPs in all subnets combined
 COUNT_TOTAL_IP=0                                                    # number of single IPs (counts each line)
@@ -135,7 +183,7 @@ APP_AGENT="Mozilla/5.0 (Windows NT 10.0; WOW64) "\
 #   Define > Help Vars
 # #
 
-APP_DESC="This script downloads the geographical databases from the MaxMind GeoLite2 servers. \n\n  They are then broken up into their respective continent and countrie files. Duplicates are removed, IPs\n  are re-sorted, and then all files are pushed to the repository."
+APP_DESC="This script downloads the geographical databases from the MaxMind GeoLite2 servers. \n\n  They are then broken up into their respective continent and country files. Duplicates are removed, IPs\n  are re-sorted, and then all files are pushed to the repository."
 
 APP_USAGE="🗔  Usage: ./${APP_THIS_FILE} ${BLUE2}[-l <LICENSE_KEY>]${RESET}
         ${GREY2}./${APP_THIS_FILE} ${BLUE2}-?${RESET}
@@ -239,21 +287,25 @@ opt_usage()
     printf "  ${DIM}${APP_DESC}${RESET}\n" 1>&2
     echo -e
     printf '  %-5s %-40s\n' "Usage:" "" 1>&2
-    printf '  %-5s %-40s\n' "    " "${APP_THIS_FILE} [ ${GREY2} options${RESET}]" 1>&2
-    printf '  %-5s %-40s\n\n' "    " "${APP_THIS_FILE} [${GREY2}-h${RESET}] [${GREY2}-d${RESET}] [${GREY2}-n${RESET}] [${GREY2}-l LICENSE_KEY${RESET}] [${GREY2}-v${RESET}]" 1>&2
+    printf '  %-5s %-40s\n' "    " "${APP_THIS_FILE} [ ${GREY2} options${RESET} ]" 1>&2
+    printf '  %-5s %-40s\n\n' "    " "${APP_THIS_FILE} [ ${GREY2}--help${RESET} ] [ ${GREY2}--dry${RESET} ] [ ${GREY2}--local${RESET} ] [ ${GREY2}--license LICENSE_KEY${RESET} ] [ ${GREY2}--version${RESET} ]" 1>&2
     printf '  %-5s %-40s\n' "Options:" "" 1>&2
     printf '  %-5s %-18s %-40s\n' "    " "-l,  --license" "specifies your MaxMind license key" 1>&2
     printf '  %-5s %-18s %-40s\n' "    " "-o,  --local" "enables local mode, geo database must be provided locally." 1>&2
     printf '  %-5s %-18s %-40s\n' "    " "" "    ${GREY2}does not require MaxMind license key${RESET}" 1>&2
-    printf '  %-5s %-18s %-40s\n' "    " "" "    ${GREY2}local geo .csv files must be placed in folder ${BLUE2}${APP_THIS_DIR}/${APP_SOURCE_LOCAL}${RESET}" 1>&2
+    printf '  %-5s %-18s %-40s\n' "    " "" "    ${GREY2}local geo .csv files OR .zip must be placed in folder ${BLUE2}${APP_THIS_DIR}/${APP_SOURCE_LOCAL}${RESET}" 1>&2
+    printf '  %-5s %-18s %-40s\n' "    " "-d,  --dry" "runs a dry run of loading csv files from ${BLUE2}${APP_GITHUB_DIR}/${APP_SOURCE_TEMP}${RESET} folder" 1>&2
+    printf '  %-5s %-18s %-40s\n' "    " "" "    ${GREY2}requires you place ${GREEN1}${APP_GEO_ZIP}${RESET} and ${GREEN1}${APP_GEO_ZIP_MD5}${RESET} files in ${BLUE2}${APP_GITHUB_DIR}/${APP_SOURCE_TEMP}${RESET} folder${RESET}" 1>&2
     printf '  %-5s %-18s %-40s\n' "    " "-c,  --color" "displays a demo of the available colors" 1>&2
     printf '  %-5s %-18s %-40s\n' "    " "" "    ${GREY2}only needed by developer${RESET}" 1>&2
     printf '  %-5s %-18s %-40s\n' "    " "-g,  --graph" "displays a demo bash color graph" 1>&2
     printf '  %-5s %-18s %-40s\n' "    " "" "    ${GREY2}only needed by developer${RESET}" 1>&2
     printf '  %-5s %-18s %-40s\n' "    " "-d,  --dev" "dev mode" 1>&2
+    printf '  %-5s %-18s %-40s\n' "    " "-p,  --path" "list of paths associated to script" 1>&2
     printf '  %-5s %-18s %-40s\n' "    " "-h,  --help" "show help menu" 1>&2
     printf '  %-5s %-18s %-40s\n' "    " "" "    ${GREY2}not required when using local mode${RESET}" 1>&2
-    printf '  %-5s %-18s %-40s\n' "    " "-v,  --version" "current version of app manager" 1>&2
+    printf '  %-5s %-18s %-40s\n' "    " "-u,  --usage" "how to use this script" 1>&2
+    printf '  %-5s %-18s %-40s\n' "    " "-v,  --version" "current version of ${APP_THIS_FILE}" 1>&2
     echo
     echo
     exit 1
@@ -265,13 +317,103 @@ opt_usage()
 
 while [ $# -gt 0 ]; do
     case "$1" in
+        -u|--usage)
+                    echo -e
+                    echo -e "  ${WHITE}To use this script, use one of the following methods:\n"
+                    echo -e "  ${GREEN1}${BOLD}   License Key / Normal Mode${RESET}"
+                    echo -e "  ${GREY3}${BOLD}   This method requires no files to be added. The geographical files will be downloaded from the${RESET}"
+                    echo -e "  ${GREY3}${BOLD}   MaxMind website / servers.${RESET}"
+                    echo -e "  ${BLUE2}         ./${APP_THIS_FILE} -l ABCDEF1234567-01234${RESET}"
+                    echo -e "  ${BLUE2}         ./${APP_THIS_FILE} -l ABCDEF1234567-01234${RESET}"
+                    echo -e
+                    echo -e
+                    echo -e "  ${GREEN1}${BOLD}   Local Mode .................................................................................................. ${DIM}[ Option 1 ]${RESET}"
+                    echo -e "  ${GREY3}   This mode allows you to use local copies of the GeoLite2 database files to generate an IP list instead of${RESET}"
+                    echo -e "  ${GREY3}   downloading a fresh copy of the .CSV / .ZIP files from the MaxMind website. This method requires you to${RESET}"
+                    echo -e "  ${GREY3}   place the .ZIP, and .ZIP.MD5 file in the folder ${ORANGE2}${APP_THIS_DIR}/${APP_SOURCE_LOCAL}${RESET}"
+                    echo -e
+                    echo -e "  ${GREY3}${BOLD}   Download the following files from the MaxMind website: ${RESET}"
+                    echo -e "  ${BLUE2}         https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country-CSV&license_key=LICENSE_KEY&suffix=zip${RESET}"
+                    echo -e "  ${BLUE2}         https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country-CSV&license_key=LICENSE_KEY&suffix=zip.md5${RESET}"
+                    echo -e
+                    echo -e "  ${GREY3}${BOLD}   Place the ${GREEN2}.ZIP${RESET} and ${GREEN2}.ZIP.MD5${RESET} files in: ${RESET}"
+                    echo -e "  ${BLUE2}         ${APP_THIS_DIR}/${APP_SOURCE_LOCAL}${RESET}"
+                    echo -e
+                    echo -e "  ${GREY3}${BOLD}   The filenames MUST be: ${RESET}"
+                    echo -e "  ${BLUE2}         ${APP_THIS_DIR}/${APP_SOURCE_LOCAL}/GeoLite2-Country-CSV.zip${RESET}"
+                    echo -e "  ${BLUE2}         ${APP_THIS_DIR}/${APP_SOURCE_LOCAL}/GeoLite2-Country-CSV.zip.md5${RESET}"
+                    echo -e
+                    echo -e "  ${GREY3}${BOLD}   Run the following command: ${RESET}"
+                    echo -e "  ${BLUE2}         ./${APP_THIS_FILE} --local${RESET}"
+                    echo -e "  ${BLUE2}         ./${APP_THIS_FILE} -o${RESET}"
+                    echo -e
+                    echo -e
+                    echo -e "  ${GREEN1}${BOLD}   Local Mode .................................................................................................. ${DIM}[ Option 2 ]${RESET}"
+                    echo -e "  ${GREY3}   This mode allows you to use local copies of the GeoLite2 database files to generate an IP list instead of${RESET}"
+                    echo -e "  ${GREY3}   downloading a fresh copy of the .ZIP files from the MaxMind website. This method requires you to extract${RESET}"
+                    echo -e "  ${GREY3}   the .ZIP and place the .CSV files in the folder ${ORANGE2}${APP_THIS_DIR}/${APP_SOURCE_LOCAL}${RESET}"
+                    echo -e
+                    echo -e "  ${GREY3}${BOLD}   Download the following file from the MaxMind website: ${RESET}"
+                    echo -e "  ${BLUE2}         https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country-CSV&license_key=LICENSE_KEY&suffix=zip${RESET}"
+                    echo -e
+                    echo -e "  ${GREY3}${BOLD}   Open the .ZIP and extract the following files to the folder ${ORANGE2}${APP_THIS_DIR}/${APP_SOURCE_LOCAL}${RESET}"
+                    echo -e "  ${BLUE2}         ${APP_THIS_DIR}/${APP_SOURCE_LOCAL}/GeoLite2-Country-Locations-en.csv${RESET}"
+                    echo -e "  ${BLUE2}         ${APP_THIS_DIR}/${APP_SOURCE_LOCAL}/GeoLite2-Country-Blocks-IPv4.csv${RESET}"
+                    echo -e "  ${BLUE2}         ${APP_THIS_DIR}/${APP_SOURCE_LOCAL}/GeoLite2-Country-Blocks-IPv6.csv${RESET}"
+                    echo -e
+                    echo -e "  ${GREY3}${BOLD}   Run the following command: ${RESET}"
+                    echo -e "  ${BLUE2}         ./${APP_THIS_FILE} --local${RESET}"
+                    echo -e "  ${BLUE2}         ./${APP_THIS_FILE} -o${RESET}"
+                    echo -e
+                    echo -e
+                    echo -e "  ${GREEN1}${BOLD}   Dry Run .....................................................................................................${RESET}"
+                    echo -e "  ${GREY3}   This mode allows you to simulate downloading the .ZIP files from the MaxMind website. However, the CURL${RESET}"
+                    echo -e "  ${GREY3}   commands will not actually be ran. Instead, the script will look for the needed database files in the ${RESET}"
+                    echo -e "  ${GREY3}   ${APP_SOURCE_TEMP} folder. This method requires you to place either the .ZIP & .ZIP.MD5 files, or extracted CSV files${RESET}"
+                    echo -e "  ${GREY3}   in the folder ${ORANGE2}${APP_THIS_DIR}/${APP_SOURCE_TEMP}${RESET}"
+                    echo -e
+                    echo -e "  ${GREY3}${BOLD}   Place the .ZIP & .ZIP.MD5 file, OR the .CSV files in the folder ${ORANGE2}${APP_THIS_DIR}/${APP_SOURCE_TEMP}${RESET}"
+                    echo -e "  ${BLUE2}         ${APP_THIS_DIR}/${APP_SOURCE_TEMP}/GeoLite2-Country-Locations-en.csv${RESET}"
+                    echo -e "  ${BLUE2}         ${APP_THIS_DIR}/${APP_SOURCE_TEMP}/GeoLite2-Country-Blocks-IPv4.csv${RESET}"
+                    echo -e "  ${BLUE2}         ${APP_THIS_DIR}/${APP_SOURCE_TEMP}/GeoLite2-Country-Blocks-IPv6.csv${RESET}"
+                    echo -e
+                    echo -e "  ${BLUE2}         ${APP_THIS_DIR}/${APP_SOURCE_TEMP}/GeoLite2-Country-CSV.zip${RESET}"
+                    echo -e "  ${BLUE2}         ${APP_THIS_DIR}/${APP_SOURCE_TEMP}/GeoLite2-Country-CSV.zip.md5${RESET}"
+                    echo -e
+                    echo -e "  ${GREY3}${BOLD}   Run the following command: ${RESET}"
+                    echo -e "  ${BLUE2}         ./${APP_THIS_FILE} --dry${RESET}"
+                    echo -e "  ${BLUE2}         ./${APP_THIS_FILE} -d${RESET}"
+                    echo -e
+                    exit 1
+                ;;
+        -p|--paths)
+                    echo -e
+                    echo -e "  ${WHITE}List of paths important to this script:\n"
+                    echo -e "  ${GREEN1}${BOLD}${ORANGE2}${APP_THIS_DIR}/${APP_SOURCE_LOCAL}${RESET}${RESET}"
+                    echo -e "  ${GREY3}Folder used when Local Mode enabled (${GREEN2}--local${RESET})${RESET}"
+                    echo -e "  ${GREY2}    Can detect GeoLite2 ${BLUE2}.ZIP${GREY2} and ${BLUE2}.ZIP.MD5${GREY2} files${RESET}"
+                    echo -e "  ${GREY2}    Can detect GeoLite2 ${BLUE2}.CSV${GREY2} location and IPv4/IPv6 files${RESET}"
+                    echo -e
+                    echo -e
+                    echo -e "  ${GREEN1}${BOLD}${ORANGE2}${APP_THIS_DIR}/${APP_SOURCE_TEMP}${RESET}${RESET}"
+                    echo -e "  ${GREY3}Folder used when Dry Run enabled (${GREEN2}--dry${RESET})${RESET}"
+                    echo -e "  ${GREY2}    Can detect GeoLite2 ${BLUE2}.ZIP${GREY2} and ${BLUE2}.ZIP.MD5${GREY2} files${RESET}"
+                    echo -e "  ${GREY2}    Can detect GeoLite2 ${BLUE2}.CSV${GREY2} location and IPv4/IPv6 files${RESET}"
+                    echo -e
+                    echo -e
+                    echo -e "  ${GREEN1}${BOLD}${ORANGE2}${APP_THIS_DIR}/${APP_SOURCE_CACHE}${RESET}${RESET}"
+                    echo -e "  ${GREY3}Folder used to store associative array for continents and countries${RESET}"
+                    echo -e
+                    echo -e
+                    exit 1
+                ;;
         -l|--license)
                 if [[ "$1" != *=* ]]; then shift; fi
                 LICENSE_KEY="${1#*=}"
                 if [ -z "${LICENSE_KEY}" ]; then
                     echo -e
-                    echo -e "  ${WHITE}Specifies your MaxMind license key."
-                    echo -e "  ${GREY1}Required if you are not running the script in local mode."
+                    echo -e "  ${WHITE}Specifies your MaxMind license key.${RESET}"
+                    echo -e "  ${GREY1}Required if you are not running the script in local mode.${RESET}"
                     echo -e "  ${WHITE}      Example:    ${GREY2}./${APP_THIS_FILE} -l ABCDEF1234567-01234${RESET}"
                     echo
                     exit 1
@@ -284,6 +426,10 @@ while [ $# -gt 0 ]; do
         -o|--local)
                 APP_SOURCE_LOCAL_ENABLED=true
                 echo -e "  ${FUCHSIA2}${BLINK}Local Mode Enabled${RESET}"
+                ;;
+        -d|--dry)
+                APP_DRYRUN=true
+                echo -e "  ${FUCHSIA2}${BLINK}Dry Run Enabled${RESET}"
                 ;;
         -v|--version)
                 echo -e
@@ -905,35 +1051,125 @@ function CHECK_PACKAGES()
 #   get latest MaxMind GeoLite2 IP country database and md5 checksum
 #       CSV URL: https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country-CSV&license_key=LICENSE_KEY&suffix=zip
 #       MD5 URL: https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country-CSV&license_key=LICENSE_KEY&suffix=zip.md5
+#
+#   if using --dry, you must manually download the .zip and .zip.md5 files and place them in the local folder assigned to the value
+#       $APP_SOURCE_LOCAL
 # #
 
 function DB_DOWNLOAD()
 {
-    local FILE_MD5="${APP_GEO_ZIP}.md5"
     local URL_CSV="https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country-CSV&license_key=${LICENSE_KEY}&suffix=zip"
-    local URL_MD5="${URL_CSV}.md5"
+    local URL_MD5="${URL_CSV}.md5" # take URL_CSV value and add .md5 to end for hash file
 
     # #
     #   download files
     # #
 
-    echo -e "  🌎 Downloading file ${GREEN2}${APP_GEO_ZIP}${RESET}"
-    curl --silent --location --output $APP_GEO_ZIP "$URL_CSV" || error "Failed to curl file: ${URL_CSV}"
-    curl --silent --location --output $FILE_MD5 "$URL_MD5" || error "Failed to curl file: ${URL_MD5}"
+    if [[ "${APP_DRYRUN}" != "true" ]] && [[ $APP_SOURCE_LOCAL_ENABLED != "true" ]]; then
+        local URL_HIDDEN_CSV=$(echo $URL_CSV | sed -e "s/$LICENSE_KEY/HIDDEN/g")
+        local URL_HIDDEN_MD5=$(echo $URL_MD5 | sed -e "s/$LICENSE_KEY/HIDDEN/g")
+
+        echo -e "  🌎 Downloading file ${GREEN2}${APP_GEO_ZIP}${RESET} from ${URL_HIDDEN_CSV}"
+        curl --silent --location --output $APP_GEO_ZIP "$URL_CSV" || error "Failed to curl file: ${URL_CSV}"
+
+        echo -e "  🌎 Downloading file ${GREEN2}${APP_GEO_ZIP_MD5}${RESET} from ${URL_HIDDEN_MD5}"
+        curl --silent --location --output $APP_GEO_ZIP_MD5 "$URL_MD5" || error "Failed to curl file: ${URL_MD5}"
+    fi
 
     # #
-    #   validate checksum
-    #   .md5 file is not in expected format; which means method 'md5sum --check $FILE_MD5' wont work
+    #   Both the .ZIP and the .CSV are missing, warn user to provide one or the other
     # #
 
-    [[ "$(cat ${FILE_MD5})" == "$(md5sum ${APP_GEO_ZIP} | awk '{print $1}')" ]] || error "GeoLite2 md5 downloaded checksum does not match local md5 checksum"
+    if [[ ! -f ${APP_GEO_ZIP} ]] && [[ ! -f ${APP_GEO_LOCS_CSV} ]]; then
+        error "You must supply either the [ ZIP ${RED2}${APP_GEO_ZIP}${RESET} + MD5 hash file ${RED2}${APP_GEO_ZIP_MD5}${RESET} ] or the extracted CSV files ${RED2}${APP_GEO_LOCS_CSV}${RESET} -- Cannot locate either${RESET}"
+    fi
 
     # #
-    #   unzip into current working directory
+    #   Provided the .ZIP, but not the ZIP hash file
     # #
 
-    echo -e "  📦 Unzip ${APP_GEO_ZIP}"
-    unzip -j -q -d . ${APP_GEO_ZIP}
+    if [[ -f ${APP_GEO_ZIP} ]] && [[ ! -f "${APP_GEO_ZIP_MD5}" ]]; then
+        error "You provided the ZIP ${RED2}${APP_GEO_ZIP}${RESET}, but did not provide the hash file ${RED2}${APP_GEO_ZIP_MD5}${RESET} -- Cannot continue${RESET}"
+    fi
+
+    # #
+    #   Provided the LOCATIONS csv file, but may be missing the others
+    # #
+
+    if [[ -f ${APP_GEO_LOCS_CSV} ]]; then
+        if [[ ! -f ${APP_GEO_IPV4_CSV} ]]; then
+            error "You provided the LOCATION CSV ${RED2}${APP_GEO_LOCS_CSV}${RESET}, but did not provide the other needed CSV file ${RED2}$APP_GEO_IPV4_CSV${RESET} -- Cannot continue${RESET}"
+        fi
+
+        if [[ ! -f ${APP_GEO_IPV6_CSV} ]]; then
+            error "You provided the LOCATION CSV ${RED2}${APP_GEO_LOCS_CSV}${RESET}, but did not provide the other needed CSV file ${RED2}$APP_GEO_IPV6_CSV${RESET} -- Cannot continue${RESET}"
+        fi
+    fi
+
+    # #
+    #   Provided the IPv4 csv file, but may be missing the others
+    # #
+
+    if [[ -f ${APP_GEO_IPV4_CSV} ]]; then
+        if [[ ! -f ${APP_GEO_LOCS_CSV} ]]; then
+            error "You provided the IPV4 CSV ${RED2}${APP_GEO_IPV4_CSV}${RESET}, the locations file ${RED2}$APP_GEO_LOCS_CSV${RESET} -- Cannot continue${RESET}"
+        fi
+
+        if [[ ! -f ${APP_GEO_IPV6_CSV} ]]; then
+            error "You provided the IPV4 CSV ${RED2}${APP_GEO_LOCS_CSV}${RESET}, but did not provide the other IPv6 CSV file ${RED2}$APP_GEO_IPV6_CSV${RESET} -- Cannot continue${RESET}"
+        fi
+    fi
+
+    # #
+    #   Provided the IPv6 csv file, but may be missing the others
+    # #
+
+    if [[ -f ${APP_GEO_IPV6_CSV} ]]; then
+        if [[ ! -f ${APP_GEO_LOCS_CSV} ]]; then
+            error "You provided the IPV6 CSV ${RED2}${APP_GEO_IPV4_CSV}${RESET}, the locations file ${RED2}$APP_GEO_LOCS_CSV${RESET} -- Cannot continue${RESET}"
+        fi
+
+        if [[ ! -f ${APP_GEO_IPV4_CSV} ]]; then
+            error "You provided the IPV6 CSV ${RED2}${APP_GEO_LOCS_CSV}${RESET}, but did not provide the other IPv4 CSV file ${RED2}$APP_GEO_IPV6_CSV${RESET} -- Cannot continue${RESET}"
+        fi
+    fi
+
+    # #
+    #   Zip files provided, check MD5
+    # #
+
+    if [[ -f ${APP_GEO_ZIP} ]] && [[ -f ${APP_GEO_ZIP_MD5} ]]; then
+
+        echo -e "  📄 Found ZIP set ${BLUE2}${APP_GEO_ZIP}${RESET} and ${BLUE2}${APP_GEO_ZIP_MD5}${RESET}"
+
+        local md5Response="$(cat ${APP_GEO_ZIP_MD5})"
+        if [[ $md5Response == *"download limit reached"* ]]; then
+            error "MaxMind: Daily download limit reached"
+        fi
+
+        # #
+        #   validate checksum
+        #   .md5 file is not in expected format; which means method 'md5sum --check $APP_GEO_ZIP_MD5' wont work
+        # #
+
+        [[ "$md5Response" == "$(md5sum ${TEMPDIR}/${APP_GEO_ZIP} | awk '{print $1}')" ]] || error "GeoLite2 md5 downloaded checksum does not match local md5 checksum"
+
+        # #
+        #   unzip into current working directory
+        # #
+
+        if [ -f ${APP_GEO_ZIP} ]; then
+            echo -e "      📦 Unzip ${BLUE2}${APP_GEO_ZIP}${RESET}"
+            unzip -o -j -q -d . ${APP_GEO_ZIP}
+        else
+            error "Cannot find ${RED2}${APP_GEO_ZIP}${RESET}"
+        fi
+
+    elif [[ -f ${APP_GEO_LOCS_CSV} ]] && [[ -f ${APP_GEO_IPV4_CSV} ]] && [[ -f ${APP_GEO_IPV6_CSV} ]]; then
+        echo -e "  📄 Found Uncompressed set ${BLUE2}${APP_GEO_LOCS_CSV}${RESET}, ${BLUE2}${APP_GEO_IPV4_CSV}${RESET} and ${BLUE2}${APP_GEO_IPV6_CSV}${RESET}"
+    else
+        error "Could not find either ${ORANGE1}ZIP + MD5${RESET}, or the ${ORANGE1}uncompressed CSV files${RESET}. Aborting.${RESET}"
+    fi
 }
 
 # #
@@ -942,12 +1178,12 @@ function DB_DOWNLOAD()
 
 function CONFIG_LOAD()
 {
-    echo -e "  📄 Check config files"
+    echo -e "  📄 Loading geo database files"
 
     local configs=(${CONFIGS_LIST})
     for f in ${configs[@]}; do
-        echo -e "      📄 Mounting database file ${BLUE2}${APP_SOURCE_LOCAL}/${f}${RESET}"
-        [[ -f $f  ]] || error "Missing configuration file: $f"
+        echo -e "      📄 Mounting geo file ${BLUE2}${TEMPDIR}/${f}${RESET}"
+        [[ -f $f  ]] || error "Missing geo file: $f"
     done
 }
 
@@ -1265,6 +1501,9 @@ function GARBAGE()
         echo -e "  🗑️  Cleanup ${APP_DIR_IPV6}"
        rm -rf ${APP_DIR_IPV6}
     fi
+
+    # remove temp
+    rm -rf "${APP_GITHUB_DIR}/${APP_SOURCE_TEMP}"
 }
 
 # #
@@ -1320,7 +1559,7 @@ function GENERATE_CONTINENTS()
 
     # loop continents, antartica, europe, north america
     local TEMPL_COUNTRIES_LIST=""
-    local count=1
+    local count=0
     for key in "${!continents[@]}"; do
     
         CONTINENT_NAME=${continents[$key]}
@@ -1345,6 +1584,7 @@ function GENERATE_CONTINENTS()
 
             # count number of items in country array for this particular continent
             i_array=$(eval echo \${#$COUNTRY_ABBREV${i}[@]})
+            i_array=$(( $i_array - 1 ))
 
             echo -e "          🌎 + Country ${DIM}${BLUE2}${CONTINENT_NAME}${RESET} › ${BLUE2}${CONTINENT_COUNTRY_NAME}${RESET} ${GREY2}(${country})${RESET}"
 
@@ -1368,7 +1608,11 @@ function GENERATE_CONTINENTS()
             # #
 
             if [ "${i_array}" == "${count}" ]; then
-                TEMPL_COUNTRIES_LIST+="${CONTINENT_COUNTRY_NAME} (${country})"
+                if [ $((ASN_I_STEP%3)) -eq 0 ]; then
+                    TEMPL_ASN_LIST+=$'\n'"#                   ${CONTINENT_COUNTRY_NAME} (${country})"
+                else
+                    TEMPL_ASN_LIST+="${CONTINENT_COUNTRY_NAME} (${country})"
+                fi
             else
                 if [ $((count%3)) -eq 0 ]; then
                     TEMPL_COUNTRIES_LIST+=$'\n'"#                   ${CONTINENT_COUNTRY_NAME} (${country}), "
@@ -1802,14 +2046,27 @@ function main()
     echo -e "  ⭐ Starting script ${GREEN1}${APP_THIS_FILE}${RESET}"
 
     # #
-    #   setup
+    #   Check Packages
+    #
+    #   ensure all the packages we need are installed on the system.
     # #
 
     CHECK_PACKAGES
+
+    # #
+    #   Temp Path
+    #
+    #   Local Mode          .github/local
+    #   Network Mode        .github/.temp
+    # #
+
     if [[ $APP_SOURCE_LOCAL_ENABLED == "false" ]]; then
-        export TEMPDIR=$(mktemp --directory)
+       # export TEMPDIR=$(mktemp --directory "${APP_GITHUB_DIR}/${APP_SOURCE_TEMP}")
+        mkdir -p "${APP_GITHUB_DIR}/${APP_SOURCE_TEMP}"
+        export TEMPDIR="${APP_GITHUB_DIR}/${APP_SOURCE_TEMP}"
     else
-        export TEMPDIR="${APP_THIS_DIR}/${APP_SOURCE_LOCAL}"
+        mkdir -p "${APP_GITHUB_DIR}/${APP_SOURCE_LOCAL}"
+        export TEMPDIR="${APP_GITHUB_DIR}/${APP_SOURCE_LOCAL}"
     fi
 
     # #
@@ -1819,12 +2076,34 @@ function main()
     echo -e "  ⚙️  Setting temp folder ${YELLOW2}${TEMPDIR}${RESET}"
     pushd ${TEMPDIR} > /dev/null 2>&1
   
-    if [[ $APP_SOURCE_LOCAL_ENABLED == "false" ]]; then
-        DB_DOWNLOAD
-    fi
+    # #
+    #   Download / Unzip .zip
+    # #
+
+    DB_DOWNLOAD
+
 
     CONFIG_LOAD
     MAP_BUILD
+
+    # #
+    #   @TODO       add caching for associative array
+    # #
+
+    mkdir -p "${APP_GITHUB_DIR}/${APP_SOURCE_CACHE}"
+
+    declare -p MAP_CONTINENT > ${APP_GITHUB_DIR}/${APP_SOURCE_CACHE}/MAP_CONTINENT.cache
+    declare -p MAP_COUNTRY > ${APP_GITHUB_DIR}/${APP_SOURCE_CACHE}/MAP_COUNTRY.cache
+
+    if [[ $APP_DEBUG == "true" ]]; then
+        for KEY in "${!MAP_CONTINENT[@]}"; do
+            printf "%s --> %s\n" "$KEY" "${MAP_CONTINENT[$KEY]}"
+        done | tee "${APP_GITHUB_DIR}/.logs/MAP_CONTINENT.log"
+
+        for KEY in "${!MAP_COUNTRY[@]}"; do
+            printf "%s --> %s\n" "$KEY" "${MAP_COUNTRY[$KEY]}"
+        done | tee "${APP_GITHUB_DIR}/.logs/MAP_COUNTRY.log"
+    fi
 
     # #
     #   place set output in current working directory

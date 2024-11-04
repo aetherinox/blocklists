@@ -24,8 +24,9 @@
 #                               📄 blocklist-generate.yml
 # #
 
-APP_THIS_FILE=$(basename "$0")                                  # current script file
-APP_THIS_DIR="${PWD}"                                           # Current script directory
+APP_THIS_FILE=$(basename "$0")                          # current script file
+APP_THIS_DIR="${PWD}"                                   # current script directory
+APP_GITHUB_DIR="${APP_THIS_DIR}/.github"                # .github folder
 
 # #
 #   vars > colors
