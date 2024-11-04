@@ -284,7 +284,19 @@ download_list()
 
     echo -e "  🌎 Downloading ASN ${YELLOW1}${fnASN}${RESET} list to ${ORANGE2}${fnFileTemp}${RESET}"
 
-    whois -h ${ARG_WHOIS_SERVICE} -- "-i origin ${fnASN}" | grep ^route | awk '{gsub("(route:|route6:)","");print}' | awk '{gsub(/ /,""); print}' | grep -vi "^#|^;|^$" | grep -vi "${ARG_GREP_FILTER}" | awk '{if (++dup[$0] == 1) print $0;}' | sort_results > ${fnFileTemp}
+# #
+#   Add comment for current ASN
+# #
+
+cat >${fnFileTemp} <<EOL
+
+# #
+#   ${fnASN}
+# #
+
+EOL
+
+    whois -h ${ARG_WHOIS_SERVICE} -- "-i origin ${fnASN}" | grep ^route | awk '{gsub("(route:|route6:)","");print}' | awk '{gsub(/ /,""); print}' | grep -vi "^#|^;|^$" | grep -vi "${ARG_GREP_FILTER}" | awk '/^($|[:space:]*#)/ || !a[$0]++' >> ${fnFileTemp}
 
     # #
     #   calculate how many IPs are in a subnet
@@ -413,7 +425,7 @@ done
 #       - remove .sort temp file
 # #
 
-sorting=$(cat ${APP_FILE_PERM} | grep -vi "^#|^;|^$" | awk '{if (++dup[$0] == 1) print $0;}' | sort_results > ${APP_FILE_PERM}.sort)
+sorting=$(cat ${APP_FILE_PERM} | grep -vi "^#|^;|^$" | awk '/^($|[:space:]*#)/ || !a[$0]++' > ${APP_FILE_PERM}.sort)
 > ${APP_FILE_PERM}
 cat ${APP_FILE_PERM}.sort >> ${APP_FILE_PERM}
 rm ${APP_FILE_PERM}.sort
