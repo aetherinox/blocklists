@@ -5,7 +5,7 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_micronesia_ipset
 #   @uuid           41e48b8a-0631-3bc7-8a9a-42a72db4774b
-#   @updated        Mon 04 Nov 2024 12:58:34 AM UTC
+#   @updated        Mon 04 Nov 2024 02:39:18 AM UTC
 #   @entries        16,380 ips
 #                   155 subnets
 #                   155 lines
