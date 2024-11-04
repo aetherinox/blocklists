@@ -65,8 +65,8 @@ on:
     # #
 
     schedule:
-        - cron: '0 0,6,12,18 * * *'
-        - cron: '0 2 * * *'
+        - cron: '0 2,8,14,20 * * *'
+        - cron: '0 0 * * *'
 
 # #
 #   environment variables
@@ -372,7 +372,7 @@ jobs:
 
             - name: "🧱 Generate › Spam › Forums (1/day)"
               id: task_blocklist_spam_generate_forums
-              if: (github.event_name == 'schedule' && github.event.schedule == '0 2 * * *') || inputs.RUN_ALL_ACTIONS
+              if: (github.event_name == 'schedule' && github.event.schedule == '0 0 * * *') || inputs.RUN_ALL_ACTIONS
               run: |
                   chmod +x ".github/scripts/bl-plain.sh"
                   run_forums=".github/scripts/bl-plain.sh blocklists/spam/spam_forums.ipset https://raw.githubusercontent.com/firehol/blocklist-ipsets/master/stopforumspam_7d.ipset"
@@ -467,7 +467,7 @@ jobs:
 
             - name: "🧱 Geographical › GeoLite2 (Setup)"
               id: task_blocklist_geographical_generate_setup
-              if: (github.event_name == 'schedule' && github.event.schedule == '0 2 * * *') || ( github.event_name == 'workflow_dispatch' && inputs.RUN_ALL_ACTIONS == 'true' )
+              if: (github.event_name == 'schedule' && github.event.schedule == '0 0 * * *') || ( github.event_name == 'workflow_dispatch' && inputs.RUN_ALL_ACTIONS == 'true' )
               run: |
                   echo "year_week=$(date +'%U_%Y')" >> $GITHUB_ENV
                   echo "year_day=$(date +'%j_%Y')" >> $GITHUB_ENV
