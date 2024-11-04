@@ -383,17 +383,22 @@ for arg in "${@:2}"; do
         download_list ${arg} ${APP_FILE_PERM}
         echo -e
 
-        if [ "${ASN_I_TOTAL}" == "${ASN_I_STEP}" ]; then
-            if [ $((ASN_I_STEP%3)) -eq 0 ]; then
-                TEMPL_ASN_LIST+=$'\n'"#                   ${arg}"
-            else
-                TEMPL_ASN_LIST+="${arg}"
-            fi
+        if [[ ${ASN_I_STEP} == 0 ]]; then
+            TEMPL_ASN_LIST+="${arg}, "
         else
-            if [ $((ASN_I_STEP%3)) -eq 0 ]; then
-                TEMPL_ASN_LIST+=$'\n'"#                   ${arg}, "
+            if [ "${ASN_I_TOTAL}" == "${ASN_I_STEP}" ]; then
+                # new row after 5th option
+                if [ $((ASN_I_STEP%5)) -eq 0 ]; then
+                    TEMPL_ASN_LIST+=$'\n'"#                   ${arg}"
+                else
+                    TEMPL_ASN_LIST+="${arg}"
+                fi
             else
-                TEMPL_ASN_LIST+="${arg}, "
+                if [ $((ASN_I_STEP%5)) -eq 0 ]; then
+                    TEMPL_ASN_LIST+=$'\n'"#                   ${arg}, "
+                else
+                    TEMPL_ASN_LIST+="${arg}, "
+                fi
             fi
         fi
 

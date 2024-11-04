@@ -1559,7 +1559,6 @@ function GENERATE_CONTINENTS()
 
     # loop continents, antartica, europe, north america
     local TEMPL_COUNTRIES_LIST=""
-    local count=0
     for key in "${!continents[@]}"; do
     
         CONTINENT_NAME=${continents[$key]}
@@ -1578,13 +1577,13 @@ function GENERATE_CONTINENTS()
 
         COUNTRY_ABBREV=$(echo "$key" | tr '[:upper:]' '[:lower:]')
         TEMPL_COUNTRIES_LIST=""
-        local count=1   # start at one, since the last step is base continent file
+        local ARRAY_I_STEP=0   # start at one, since the last step is base continent file
         for country in $(eval echo \${$COUNTRY_ABBREV${i}[@]}); do
             CONTINENT_COUNTRY_NAME=$(get_country_name "$country")
 
             # count number of items in country array for this particular continent
-            i_array=$(eval echo \${#$COUNTRY_ABBREV${i}[@]})
-            i_array=$(( $i_array - 1 ))
+            ARRAY_I_TOTAL=$(eval echo \${#$COUNTRY_ABBREV${i}[@]})
+            ARRAY_I_TOTAL=$(( $ARRAY_I_TOTAL - 1 ))
 
             echo -e "          🌎 + Country ${DIM}${BLUE2}${CONTINENT_NAME}${RESET} › ${BLUE2}${CONTINENT_COUNTRY_NAME}${RESET} ${GREY2}(${country})${RESET}"
 
@@ -1607,21 +1606,26 @@ function GENERATE_CONTINENTS()
             #   depending on the position, the comma will be excluded on the last entry in the list
             # #
 
-            if [ "${i_array}" == "${count}" ]; then
-                if [ $((ASN_I_STEP%3)) -eq 0 ]; then
-                    TEMPL_ASN_LIST+=$'\n'"#                   ${CONTINENT_COUNTRY_NAME} (${country})"
-                else
-                    TEMPL_ASN_LIST+="${CONTINENT_COUNTRY_NAME} (${country})"
-                fi
+            if [[ ${ARRAY_I_STEP} == 0 ]]; then
+                TEMPL_COUNTRIES_LIST+="${CONTINENT_COUNTRY_NAME} (${country}), "
             else
-                if [ $((count%3)) -eq 0 ]; then
-                    TEMPL_COUNTRIES_LIST+=$'\n'"#                   ${CONTINENT_COUNTRY_NAME} (${country}), "
+                if [ "${ARRAY_I_TOTAL}" == "${ARRAY_I_STEP}" ]; then
+                    # new row after 3rd option
+                    if [ $((ARRAY_I_STEP%3)) -eq 0 ]; then
+                        TEMPL_COUNTRIES_LIST+=$'\n'"#                   ${CONTINENT_COUNTRY_NAME} (${country})"
+                    else
+                        TEMPL_COUNTRIES_LIST+="${CONTINENT_COUNTRY_NAME} (${country})"
+                    fi
                 else
-                    TEMPL_COUNTRIES_LIST+="${CONTINENT_COUNTRY_NAME} (${country}), "
+                    if [ $((ARRAY_I_STEP%3)) -eq 0 ]; then
+                        TEMPL_COUNTRIES_LIST+=$'\n'"#                   ${CONTINENT_COUNTRY_NAME} (${country}), "
+                    else
+                        TEMPL_COUNTRIES_LIST+="${CONTINENT_COUNTRY_NAME} (${country}), "
+                    fi
                 fi
             fi
 
-            count=$(( count + 1 ))
+            ARRAY_I_STEP=$(( ARRAY_I_STEP + 1 ))
         done
 
         # #
