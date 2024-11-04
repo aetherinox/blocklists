@@ -5,12 +5,11 @@
 #   @source         whois.radb.net
 #   @id             isp_cablevision_ipset
 #   @uuid           6de5a872-560e-3446-914e-b3818263d0c9
-#   @updated        Mon 04 Nov 2024 06:07:47 AM UTC
+#   @updated        Mon 04 Nov 2024 12:08:47 PM UTC
 #   @entries        7,915,136 ips
 #                   872 subnets
 #                   872 lines
-#   @asn            
-#                   AS6128, AS13490, AS19720
+#   @asn            AS6128, AS13490, AS19720
 #   @expires        7 days
 #   @category       Internet Service Provider (ISP)
 #
