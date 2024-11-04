@@ -447,7 +447,7 @@ jobs:
                   eval "./$run_isp_cox"
 
                   # ISP › SpaceX Starlink
-                  run_isp_starlink=".github/scripts/bl-whois.sh blocklists/isp/isp_spacex_starlink.ipset AS14593 AS36492 AS397763 AS27277 AS142475"
+                  run_isp_starlink=".github/scripts/bl-whois.sh blocklists/isp/isp_spacex_starlink.ipset AS14593 AS397763 AS27277 AS142475"
                   eval "./$run_isp_starlink"
 
             # #
