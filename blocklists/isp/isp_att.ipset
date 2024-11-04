@@ -5,18 +5,18 @@
 #   @source         whois.radb.net
 #   @id             isp_att_ipset
 #   @uuid           c2a8f492-a17f-36a3-821d-aae3d9b8669e
-#   @updated        Mon 04 Nov 2024 02:33:44 AM UTC
+#   @updated        Mon 04 Nov 2024 05:45:59 AM UTC
 #   @entries        50,060,032 ips
 #                   1,318 subnets
 #                   1,318 lines
-#   @asn            AS7018 
+#   @asn            
+#                   AS7018
 #   @expires        7 days
 #   @category       Internet Service Provider (ISP)
 #
 #   AT&T Internet (Internet Service Provider)
-#   AS7018
 #
-#   Website 	          https://www.att.com/internet/
+#   Website 	          https://att.com/internet/
 #   Parent organization:  AT&T Communications
 #   Founded               September 19, 2016
 #

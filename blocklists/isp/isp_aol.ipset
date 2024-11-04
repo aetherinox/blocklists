@@ -5,7 +5,7 @@
 #   @source         https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/isp/isp_aol.ipset
 #   @id             isp_aol_ipset
 #   @uuid           a97ea50e-08b1-3984-a6a4-2cce03dfc7dc
-#   @updated        Mon 04 Nov 2024 02:33:43 AM UTC
+#   @updated        Mon 04 Nov 2024 05:45:58 AM UTC
 #   @entries        106,496 ips
 #                   3 subnets
 #                   2 lines
@@ -14,7 +14,6 @@
 #
 #   Historic AOL LLC (Internet Service Provider)
 #   Oath Holdings Inc.
-#   AS13084
 #
 #   Website 	          https://aol.com
 #   Parent organization:  Warner Bros. Discovery
