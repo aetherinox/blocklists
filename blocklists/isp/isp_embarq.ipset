@@ -5,18 +5,14 @@
 #   @source         None
 #   @id             isp_embarq_ipset
 #   @uuid           2e51d53f-2999-31da-ae04-fbc14196827d
-#   @updated        Mon 04 Nov 2024 06:08:00 AM UTC
+#   @updated        Mon 04 Nov 2024 12:09:00 PM UTC
 #   @entries        5,836,736 ips
 #                   1,098 subnets
 #                   1,056 lines
-#   @asn            
-#                   AS22186, AS32855, AS2379, 
-#                   AS3447, AS4212, AS5778, 
-#                   AS6222, AS6367, AS11398, 
-#                   AS11530, AS13787, AS14905, 
-#                   AS14910, AS14921, AS16718, 
-#                   AS17402, AS18494, AS22186, 
-#                   AS32855
+#   @asn            AS22186, AS32855, AS2379, AS3447, AS4212, 
+#                   AS5778, AS6222, AS6367, AS11398, AS11530, 
+#                   AS13787, AS14905, AS14910, AS14921, AS16718, 
+#                   AS17402, AS18494, AS22186, AS32855
 #   @expires        6 hours
 #   @category       Uncategorized
 #
