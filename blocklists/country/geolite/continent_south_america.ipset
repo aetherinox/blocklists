@@ -5,16 +5,16 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             continent_south_america_ipset
 #   @uuid           c4d5f795-a326-3443-85e4-13fd310ce537
-#   @updated        Mon 04 Nov 2024 02:38:18 AM UTC
+#   @updated        Tue 05 Nov 2024 12:33:29 AM UTC
 #   @entries        281,475,145,000,889 ips
 #                   41,244 subnets
 #                   41,244 lines
 #   @continent      South America (SA)
-#   @countries      French Guiana (GF), Falkland Islands Malvinas (FK), 
-#                   Guyana (GY), Uruguay (UY), Bolivia (BO), 
-#                   Argentina (AR), Venezuela (VE), Brazil (BR), 
-#                   Paraguay (PY), Peru (PE), Chile (CL), 
-#                   Colombia (CO), Ecuador (EC), Suriname (SR)
+#   @countries      French Guiana (GF), Falkland Islands Malvinas (FK), Guyana (GY), 
+#                   Uruguay (UY), Bolivia (BO), Argentina (AR), 
+#                   Venezuela (VE), Brazil (BR), Paraguay (PY), 
+#                   Peru (PE), Chile (CL), Colombia (CO), 
+#                   Ecuador (EC), Suriname (SR)
 #   @expires        24 hours
 #   @category       Geolocation
 #

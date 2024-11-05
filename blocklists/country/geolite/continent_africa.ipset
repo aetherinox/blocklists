@@ -5,30 +5,30 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             continent_africa_ipset
 #   @uuid           4a0748a7-cdc8-3172-9f54-0d51413649ec
-#   @updated        Mon 04 Nov 2024 02:37:40 AM UTC
+#   @updated        Tue 05 Nov 2024 12:33:05 AM UTC
 #   @entries        153,338,768 ips
 #                   50,784 subnets
 #                   50,784 lines
 #   @continent      Africa (AF)
-#   @countries      Ghana (GH), Malawi (MW), 
-#                   Namibia (NA), Russia (RU), Nigeria (NG), 
-#                   Mauritania (MR), Gambia (GM), Niger (NE), 
-#                   Guinea (GN), Zimbabwe (ZW), Gabon (GA), 
-#                   Tanzania (TZ), Mozambique (MZ), Madagascar (MG), 
-#                   Zambia (ZM), Togo (TG), Morocco (MA), 
-#                   Equatorial Guinea (GQ), Mali (ML), South Africa (ZA), 
-#                   Tunisia (TN), Guinea-Bissau (GW), Burkina Faso (BF), 
-#                   Benin (BJ), Burundi (BI), Botswana (BW), 
-#                   Angola (AO), Uganda (UG), Cape Verde (CV), 
-#                   Djibouti (DJ), Democratic Republic Congo (CD), Central African Republic (CF), 
-#                   Congo (CG), Cameroon (CM), Algeria (DZ), 
-#                   Cote d'Ivoire (CI), Sudan (SD), Rwanda (RW), 
-#                   Mayotte (YT), Western Sahara (EH), Seychelles (SC), 
-#                   Sierra Leone (SL), Egypt (EG), Senegal (SN), 
-#                   Somalia (SO), Saint Helena (SH), Sao Tome Principe (ST), 
-#                   Reunion (RE), Comoros (KM), Reunion (RE), 
-#                   South Sudan (SS), Kenya (KE), Lesotho (LS), 
-#                   Ethiopia (ET), Liberia (LR), Eritrea (ER), Eswatini (SZ)
+#   @countries      Ghana (GH), Malawi (MW), Namibia (NA), 
+#                   Russia (RU), Nigeria (NG), Mauritania (MR), 
+#                   Gambia (GM), Niger (NE), Guinea (GN), 
+#                   Zimbabwe (ZW), Gabon (GA), Tanzania (TZ), 
+#                   Mozambique (MZ), Madagascar (MG), Zambia (ZM), 
+#                   Togo (TG), Morocco (MA), Equatorial Guinea (GQ), 
+#                   Mali (ML), South Africa (ZA), Tunisia (TN), 
+#                   Guinea-Bissau (GW), Burkina Faso (BF), Benin (BJ), 
+#                   Burundi (BI), Botswana (BW), Angola (AO), 
+#                   Uganda (UG), Cape Verde (CV), Djibouti (DJ), 
+#                   Democratic Republic Congo (CD), Central African Republic (CF), Congo (CG), 
+#                   Cameroon (CM), Algeria (DZ), Cote d'Ivoire (CI), 
+#                   Sudan (SD), Rwanda (RW), Mayotte (YT), 
+#                   Western Sahara (EH), Seychelles (SC), Sierra Leone (SL), 
+#                   Egypt (EG), Senegal (SN), Somalia (SO), 
+#                   Saint Helena (SH), Sao Tome Principe (ST), Reunion (RE), 
+#                   Comoros (KM), Reunion (RE), South Sudan (SS), 
+#                   Kenya (KE), Lesotho (LS), Ethiopia (ET), 
+#                   Liberia (LR), Eritrea (ER), Eswatini (SZ)
 #   @expires        24 hours
 #   @category       Geolocation
 #

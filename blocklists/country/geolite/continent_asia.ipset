@@ -5,15 +5,15 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             continent_asia_ipset
 #   @uuid           c6ce07f2-68b5-3cfb-b63e-93c6c0709f36
-#   @updated        Mon 04 Nov 2024 02:37:30 AM UTC
+#   @updated        Tue 05 Nov 2024 12:32:58 AM UTC
 #   @entries        31,232,310 ips
 #                   12,491 subnets
 #                   12,491 lines
 #   @continent      Asia (AS)
-#   @countries      Iran (IR), Iraq (IQ), 
-#                   Armenia (AM), Oman (OM), Jordan (JO), 
-#                   Qatar (QA), Saudi Arabia (SA), Lebanon (LB), 
-#                   Kuwait (KW), Yemen (YE), Syria (SY)
+#   @countries      Iran (IR), Iraq (IQ), Armenia (AM), 
+#                   Oman (OM), Jordan (JO), Qatar (QA), 
+#                   Saudi Arabia (SA), Lebanon (LB), Kuwait (KW), 
+#                   Yemen (YE), Syria (SY)
 #   @expires        24 hours
 #   @category       Geolocation
 #

@@ -5,16 +5,21 @@
 #   @source         None
 #   @id             isp_qwest_ipset
 #   @uuid           9c68912f-89f5-3f6c-b703-f22601fa3c54
-#   @updated        Mon 04 Nov 2024 12:09:04 PM UTC
+#   @updated        Tue 05 Nov 2024 12:30:58 AM UTC
 #   @entries        147,456 ips
 #                   13 subnets
-#                   13 lines
+#                   63 lines
 #   @asn            AS3908, AS3909, AS3910, AS3951, AS4015, 
 #                   AS4911, AS6225, AS6226, AS6227, AS394190
 #   @expires        6 hours
 #   @category       Uncategorized
 #
 #   No description provided
+# #
+
+
+# #
+#   AS3908
 # #
 
 49.143.232.0/22
@@ -27,6 +32,51 @@
 65.154.160.0/22
 67.131.88.0/22
 103.7.160.0/22
+204.134.160.0/20
+
+# #
+#   AS3909
+# #
+
 130.13.0.0/16
 151.118.0.0/16
-204.134.160.0/20
+
+# #
+#   AS3910
+# #
+
+
+# #
+#   AS3951
+# #
+
+
+# #
+#   AS4015
+# #
+
+
+# #
+#   AS4911
+# #
+
+
+# #
+#   AS6225
+# #
+
+
+# #
+#   AS6226
+# #
+
+
+# #
+#   AS6227
+# #
+
+
+# #
+#   AS394190
+# #
+
