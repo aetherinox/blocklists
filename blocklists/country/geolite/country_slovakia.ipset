@@ -5,7 +5,7 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_slovakia_ipset
 #   @uuid           37900d8e-07c4-3a41-8217-ab044f0643f5
-#   @updated        Sun 10 Nov 2024 12:43:43 AM UTC
+#   @updated        Mon 11 Nov 2024 12:37:44 AM UTC
 #   @entries        2,847,857 ips
 #                   1,727 subnets
 #                   1,727 lines
