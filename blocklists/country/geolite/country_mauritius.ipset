@@ -5,7 +5,7 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_mauritius_ipset
 #   @uuid           d024a351-4cca-3744-b572-4f4736acfe81
-#   @updated        Mon 11 Nov 2024 12:37:28 AM UTC
+#   @updated        Tue 12 Nov 2024 12:43:14 AM UTC
 #   @entries        2,831,856 ips
 #                   714 subnets
 #                   714 lines

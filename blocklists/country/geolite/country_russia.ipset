@@ -5,7 +5,7 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_russia_ipset
 #   @uuid           0081d783-76d7-3d49-b1fc-bbb3eb213629
-#   @updated        Mon 11 Nov 2024 12:37:40 AM UTC
+#   @updated        Tue 12 Nov 2024 12:43:28 AM UTC
 #   @entries        45,027,976 ips
 #                   25,133 subnets
 #                   25,133 lines
