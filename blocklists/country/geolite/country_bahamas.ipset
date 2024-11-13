@@ -5,7 +5,7 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_bahamas_ipset
 #   @uuid           81e3248a-a3ac-3059-9c28-6328a845f663
-#   @updated        Tue 12 Nov 2024 12:42:29 AM UTC
+#   @updated        Wed 13 Nov 2024 12:35:30 AM UTC
 #   @entries        155,344 ips
 #                   282 subnets
 #                   282 lines

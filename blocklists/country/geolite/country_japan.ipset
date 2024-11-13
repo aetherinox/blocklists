@@ -5,7 +5,7 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_japan_ipset
 #   @uuid           455384c7-ef34-3bdd-a2b1-4e7d15a3e214
-#   @updated        Tue 12 Nov 2024 12:43:03 AM UTC
+#   @updated        Wed 13 Nov 2024 12:36:04 AM UTC
 #   @entries        198,929,011 ips
 #                   15,696 subnets
 #                   15,696 lines

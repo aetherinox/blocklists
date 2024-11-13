@@ -5,7 +5,7 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_brazil_ipset
 #   @uuid           708bf346-7d98-362d-8f73-908a65901cb4
-#   @updated        Tue 12 Nov 2024 12:42:28 AM UTC
+#   @updated        Wed 13 Nov 2024 12:35:29 AM UTC
 #   @entries        90,664,533 ips
 #                   22,200 subnets
 #                   22,200 lines
