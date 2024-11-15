@@ -5,7 +5,7 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_romania_ipset
 #   @uuid           fc647a87-d88f-315d-8834-bc3eef606cf3
-#   @updated        Thu 14 Nov 2024 12:36:06 AM UTC
+#   @updated        Fri 15 Nov 2024 12:44:29 AM UTC
 #   @entries        7,710,436 ips
 #                   5,083 subnets
 #                   5,083 lines
