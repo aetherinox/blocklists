@@ -5,7 +5,7 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_nigeria_ipset
 #   @uuid           df2220e4-b94c-35ca-8e22-2b5b31942e9d
-#   @updated        Fri 15 Nov 2024 12:44:20 AM UTC
+#   @updated        Sat 16 Nov 2024 12:37:20 AM UTC
 #   @entries        3,194,143 ips
 #                   1,872 subnets
 #                   1,872 lines

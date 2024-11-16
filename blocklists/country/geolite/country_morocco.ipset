@@ -5,10 +5,10 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_morocco_ipset
 #   @uuid           2d514060-3224-3901-89db-35681ac18ff6
-#   @updated        Fri 15 Nov 2024 12:44:13 AM UTC
-#   @entries        12,284,841 ips
-#                   679 subnets
-#                   679 lines
+#   @updated        Sat 16 Nov 2024 12:37:13 AM UTC
+#   @entries        12,284,849 ips
+#                   681 subnets
+#                   681 lines
 #   @country        Morocco (MA)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -54,6 +54,7 @@
 80.250.32.0/20
 81.192.0.0/16
 82.197.76.0/24
+83.167.57.204/30
 85.255.21.128/28
 88.204.43.0/24
 92.118.70.0/24
@@ -454,6 +455,7 @@
 212.217.0.0/17
 212.222.119.232/29
 212.222.119.240/29
+213.173.187.68/30
 217.156.144.192/29
 2001:470:5:340::/64
 2001:470:8:247::/64

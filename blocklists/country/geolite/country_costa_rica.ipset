@@ -5,8 +5,8 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_costa_rica_ipset
 #   @uuid           6fc745f4-0ffe-3c3c-8d43-76e82331df80
-#   @updated        Fri 15 Nov 2024 12:43:40 AM UTC
-#   @entries        2,309,621 ips
+#   @updated        Sat 16 Nov 2024 12:36:43 AM UTC
+#   @entries        2,309,365 ips
 #                   892 subnets
 #                   892 lines
 #   @country        Costa Rica (CR)
@@ -538,9 +538,9 @@
 200.189.18.0/24
 200.192.236.0/22
 200.229.0.0/21
-200.229.8.0/22
+200.229.8.0/23
 200.229.12.0/24
-200.229.14.0/24
+200.229.14.0/23
 200.229.144.0/23
 200.229.147.0/24
 201.131.37.0/24

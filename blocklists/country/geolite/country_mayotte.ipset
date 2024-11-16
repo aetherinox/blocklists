@@ -5,7 +5,7 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_mayotte_ipset
 #   @uuid           218e7a1d-4d0b-3b04-87e4-e717d08b5430
-#   @updated        Fri 15 Nov 2024 12:44:53 AM UTC
+#   @updated        Sat 16 Nov 2024 12:37:50 AM UTC
 #   @entries        27,148 ips
 #                   150 subnets
 #                   150 lines
