@@ -5,7 +5,7 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_wallis_futuna_ipset
 #   @uuid           83f13c4a-cdda-37f4-b93a-bb0d620e2d27
-#   @updated        Sun 17 Nov 2024 12:47:27 AM UTC
+#   @updated        Mon 18 Nov 2024 12:40:08 AM UTC
 #   @entries        3,682 ips
 #                   103 subnets
 #                   103 lines
