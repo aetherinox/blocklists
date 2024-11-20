@@ -5,10 +5,10 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_barbados_ipset
 #   @uuid           35844e1f-fc26-348b-9ca9-2f7640631b68
-#   @updated        Tue 19 Nov 2024 12:44:16 AM UTC
+#   @updated        Wed 20 Nov 2024 12:36:40 AM UTC
 #   @entries        148,979 ips
-#                   313 subnets
-#                   313 lines
+#                   314 subnets
+#                   314 lines
 #   @country        Barbados (BB)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -218,6 +218,7 @@
 216.110.123.0/24
 216.110.124.0/24
 2001:470:28:b43::/64
+2001:470:36:131::/64
 2001:470:4b:24d::/64
 2001:470:6d:1ba::/64
 2001:470:1f07:189::/64

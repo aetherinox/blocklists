@@ -5,10 +5,10 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_luxembourg_ipset
 #   @uuid           6091660d-076d-38c5-8b24-3115fccded32
-#   @updated        Tue 19 Nov 2024 12:44:54 AM UTC
+#   @updated        Wed 20 Nov 2024 12:37:16 AM UTC
 #   @entries        1,579,602 ips
-#                   2,778 subnets
-#                   2,778 lines
+#                   2,779 subnets
+#                   2,779 lines
 #   @country        Luxembourg (LU)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -2731,6 +2731,7 @@
 2a0f:4d40::/29
 2a0f:5340::/29
 2a0f:6980::/29
+2a0f:7803:fac1::/48
 2a0f:7803:fad8::/48
 2a0f:7803:fb43::/48
 2a0f:7803:fe44::/48

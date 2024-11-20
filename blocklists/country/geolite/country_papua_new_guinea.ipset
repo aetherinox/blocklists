@@ -5,10 +5,10 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_papua_new_guinea_ipset
 #   @uuid           adf2cc5e-f810-312b-b528-1065ca91538e
-#   @updated        Tue 19 Nov 2024 12:45:06 AM UTC
-#   @entries        85,399 ips
-#                   307 subnets
-#                   307 lines
+#   @updated        Wed 20 Nov 2024 12:37:27 AM UTC
+#   @entries        85,143 ips
+#                   306 subnets
+#                   306 lines
 #   @country        Papua New Guinea (PG)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -113,7 +113,6 @@
 124.240.192.0/19
 125.254.50.0/23
 128.77.108.96/27
-129.224.222.0/24
 130.41.156.224/27
 130.41.184.224/27
 134.231.205.64/26
