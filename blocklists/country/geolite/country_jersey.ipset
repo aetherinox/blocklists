@@ -5,7 +5,7 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_jersey_ipset
 #   @uuid           4cb7e795-c4a9-305c-9fd1-1911e163ce8f
-#   @updated        Sat Jun  7 00:24:38 UTC 2025
+#   @updated        Sun Jun  8 00:27:29 UTC 2025
 #   @entries        158832 ips
 #                   213 subnets
 #                   213 lines

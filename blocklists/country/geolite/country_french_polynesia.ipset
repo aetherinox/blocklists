@@ -5,7 +5,7 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_french_polynesia_ipset
 #   @uuid           c60577a2-0fbc-3853-912a-85febbd2a46d
-#   @updated        Sat Jun  7 00:24:56 UTC 2025
+#   @updated        Sun Jun  8 00:27:45 UTC 2025
 #   @entries        78029 ips
 #                   243 subnets
 #                   243 lines
