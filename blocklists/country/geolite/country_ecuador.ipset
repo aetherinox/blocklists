@@ -5,7 +5,7 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_ecuador_ipset
 #   @uuid           1a14483e-aa0a-3c2a-a982-6087b313a94c
-#   @updated        Mon Jun  9 00:25:55 UTC 2025
+#   @updated        Tue Jun 10 00:24:55 UTC 2025
 #   @entries        2841012 ips
 #                   1317 subnets
 #                   1317 lines
