@@ -5,7 +5,7 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_canada_ipset
 #   @uuid           8dc58e38-706f-3f7e-a0d8-739afda65ba9
-#   @updated        Fri Jun 13 00:25:23 UTC 2025
+#   @updated        Sat Jun 14 00:24:03 UTC 2025
 #   @entries        71892246 ips
 #                   37394 subnets
 #                   37394 lines
