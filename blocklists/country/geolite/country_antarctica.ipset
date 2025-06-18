@@ -5,10 +5,10 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_antarctica_ipset
 #   @uuid           04dc0aca-cb31-383c-ada7-31ce31bdd2eb
-#   @updated        Tue Jun 17 00:24:54 UTC 2025
+#   @updated        Wed Jun 18 00:24:38 UTC 2025
 #   @entries        1969 ips
-#                   370 subnets
-#                   370 lines
+#                   371 subnets
+#                   371 lines
 #   @country        Antarctica (AQ)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -152,6 +152,7 @@
 2001:470:36:78d::/64
 2001:470:36:7ce::/64
 2001:470:36:889::/64
+2001:470:36:8b8::/64
 2001:470:4b:4ca::/64
 2001:470:67:e::/64
 2001:470:67:ef::/64

@@ -5,10 +5,10 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_seychelles_ipset
 #   @uuid           a4cc52d4-b037-3f0b-8e06-a30ea0c4118c
-#   @updated        Tue Jun 17 00:26:08 UTC 2025
-#   @entries        1104655 ips
-#                   3927 subnets
-#                   3927 lines
+#   @updated        Wed Jun 18 00:25:37 UTC 2025
+#   @entries        1104399 ips
+#                   3926 subnets
+#                   3926 lines
 #   @country        Seychelles (SC)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -65,7 +65,6 @@
 45.128.244.0/22
 45.129.1.0/24
 45.129.124.0/24
-45.129.128.0/24
 45.130.124.0/24
 45.130.255.0/24
 45.131.215.0/24
