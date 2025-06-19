@@ -5,7 +5,7 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_guernsey_ipset
 #   @uuid           67664050-8eff-3298-bc00-b404e2905f5a
-#   @updated        Wed Jun 18 00:25:04 UTC 2025
+#   @updated        Thu Jun 19 00:25:43 UTC 2025
 #   @entries        62137 ips
 #                   231 subnets
 #                   231 lines
