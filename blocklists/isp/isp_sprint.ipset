@@ -1,0 +1,147 @@
+# #
+#   🧱 Firewall Blocklist - blocklists/isp/isp_sprint.ipset
+#
+#   @url            https://raw.githubusercontent.com/Aetherinox/blocklists/main/blocklists/isp/isp_sprint.ipset
+#   @source         None
+#   @id             isp_sprint_ipset
+#   @uuid           2bdab4b3-4e73-39a5-887f-d74798d7c94e
+#   @updated        Sat Jun 21 12:11:53 UTC 2025
+#   @entries        0 ips
+#                   0 subnets
+#                   125 lines
+#   @asn            AS1239, AS150389, AS1789, AS1790, AS1791, 
+#                   AS1792, AS1793, AS1794, AS1795, AS197226, 
+#                   AS2014, AS2050, AS2053, AS206963, AS21288, 
+#                   AS2938, AS2942, AS2959, AS2981, AS3647, 
+#                   AS3648, AS3649, AS3650, AS3651, AS3652
+#   @expires        6 hours
+#   @category       Uncategorized
+#
+#   No description provided
+# #
+
+
+# #
+#   AS1239
+# #
+
+
+# #
+#   AS150389
+# #
+
+
+# #
+#   AS1789
+# #
+
+
+# #
+#   AS1790
+# #
+
+
+# #
+#   AS1791
+# #
+
+
+# #
+#   AS1792
+# #
+
+
+# #
+#   AS1793
+# #
+
+
+# #
+#   AS1794
+# #
+
+
+# #
+#   AS1795
+# #
+
+
+# #
+#   AS197226
+# #
+
+
+# #
+#   AS2014
+# #
+
+
+# #
+#   AS2050
+# #
+
+
+# #
+#   AS2053
+# #
+
+
+# #
+#   AS206963
+# #
+
+
+# #
+#   AS21288
+# #
+
+
+# #
+#   AS2938
+# #
+
+
+# #
+#   AS2942
+# #
+
+
+# #
+#   AS2959
+# #
+
+
+# #
+#   AS2981
+# #
+
+
+# #
+#   AS3647
+# #
+
+
+# #
+#   AS3648
+# #
+
+
+# #
+#   AS3649
+# #
+
+
+# #
+#   AS3650
+# #
+
+
+# #
+#   AS3651
+# #
+
+
+# #
+#   AS3652
+# #
+
