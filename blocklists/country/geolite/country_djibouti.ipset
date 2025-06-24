@@ -5,7 +5,7 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_djibouti_ipset
 #   @uuid           b9cadc49-d8af-3313-a6ef-2db51245c5d5
-#   @updated        Mon Jun 23 00:26:27 UTC 2025
+#   @updated        Tue Jun 24 00:24:36 UTC 2025
 #   @entries        58051 ips
 #                   188 subnets
 #                   188 lines
