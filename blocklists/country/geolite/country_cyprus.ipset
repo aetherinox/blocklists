@@ -5,7 +5,7 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_cyprus_ipset
 #   @uuid           7f133d29-c277-39c8-80e1-faac8ad5d1d6
-#   @updated        Wed Jun 25 00:24:47 UTC 2025
+#   @updated        Thu Jun 26 00:24:51 UTC 2025
 #   @entries        1129445 ips
 #                   1338 subnets
 #                   1338 lines
