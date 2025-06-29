@@ -5,7 +5,7 @@
 #   @source         http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             country_united_states_virgin_islands_ipset
 #   @uuid           afbe3fa6-010a-3df3-8090-2127a3842651
-#   @updated        Sat Jun 28 00:25:30 UTC 2025
+#   @updated        Sun Jun 29 00:28:33 UTC 2025
 #   @entries        162380 ips
 #                   314 subnets
 #                   314 lines
